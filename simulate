@@ -3,6 +3,7 @@ import time
 import pybullet_data
 import pyrosim.pyrosim as pyrosim
 import numpy
+import os
 
 
 physicsClient = p.connect(p.GUI)
@@ -22,7 +23,9 @@ for i in range (1000):
 	backLegTouch = pyrosim.Get_Touch_Sensor_Value_For_Link("backleg")
 	backLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("backleg")
 
+numpy.save(os.path.join('data', 'backLegSensorValuesData'), backLegSensorValues)
 
 p.disconnect()
 
 print(backLegSensorValues)
+
