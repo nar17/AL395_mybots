@@ -5,6 +5,7 @@ import pyrosim.pyrosim as pyrosim
 import numpy
 import os
 
+pi = 3.14159265359
 
 physicsClient = p.connect(p.GUI)
 
@@ -23,11 +24,13 @@ for i in range (1000):
 	time.sleep(1/60)
 	backLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("backleg")
 	frontLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("frontleg")
+	pyrosim.Set_Motor_For_Joint(bodyIndex = robotId, jointName = b'torso_backleg', controlMode = p.POSITION_CONTROL, targetPosition = pi/4.0, maxForce = 500)
+	pyrosim.Set_Motor_For_Joint(bodyIndex = robotId, jointName = b'torso_frontleg', controlMode = p.POSITION_CONTROL, targetPosition = -pi/4.0, maxForce = 500)
 
 numpy.save(os.path.join('data', 'backLegSensorValuesData'), backLegSensorValues)
 numpy.save(os.path.join('data', 'frontLegSensorValuesData'), frontLegSensorValues)
 
 p.disconnect()
 
-print(backLegSensorValues)
-print(frontLegSensorValues)
+#print(backLegSensorValues)
+#print(frontLegSensorValues)
