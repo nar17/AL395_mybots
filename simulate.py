@@ -5,16 +5,17 @@ import pyrosim.pyrosim as pyrosim
 import numpy
 import random
 import os
+import constants as c
 
 #backleg
-amplitude_BL = numpy.pi/3
-frequency_BL = 10
-phaseOffset_BL = numpy.pi/4
+#c.amplitude_BL = numpy.pi/3
+#c.frequency_BL = 10
+#c.phaseOffset_BL = numpy.pi/4
 
 #frontleg
-amplitude_FL = numpy.pi/4
-frequency_FL = 10
-phaseOffset_FL = 0
+#c.amplitude_FL = numpy.pi/4
+#c.frequency_FL = 10
+#c.phaseOffset_FL = 0
 
 physicsClient = p.connect(p.GUI)
 p.setAdditionalSearchPath(pybullet_data.getDataPath())
@@ -26,8 +27,8 @@ pyrosim.Prepare_To_Simulate(robotId)
 
 backLegSensorValues = numpy.zeros(1000)
 frontLegSensorValues = numpy.zeros(1000)
-targetAngles_BL = (numpy.sin(numpy.linspace(phaseOffset_BL, 2*numpy.pi*frequency_BL+phaseOffset_BL, 1000)))*(amplitude_BL)
-targetAngles_FL = (numpy.sin(numpy.linspace(phaseOffset_FL, 2*numpy.pi*frequency_FL+phaseOffset_FL, 1000)))*(amplitude_FL)
+targetAngles_BL = (numpy.sin(numpy.linspace(c.phaseOffset_BL, 2*numpy.pi*c.frequency_BL+c.phaseOffset_BL, 1000)))*(c.amplitude_BL)
+targetAngles_FL = (numpy.sin(numpy.linspace(c.phaseOffset_FL, 2*numpy.pi*c.frequency_FL+c.phaseOffset_FL, 1000)))*(c.amplitude_FL)
 
 for i in range (1000):
 	p.stepSimulation()
