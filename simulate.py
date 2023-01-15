@@ -10,7 +10,7 @@
 from simulation import SIMULATION
 
 simulation = SIMULATION()
-#simulation.Run()
+simulation.Run()
 
 ##backleg
 ##c.amplitude_BL = numpy.pi/3
