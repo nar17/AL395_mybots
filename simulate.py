@@ -6,27 +6,29 @@
 #import random
 #import os
 #import constants as c
+
 from simulation import SIMULATION
 
 simulation = SIMULATION()
+#simulation.Run()
 
-#backleg
-#c.amplitude_BL = numpy.pi/3
-#c.frequency_BL = 10
-#c.phaseOffset_BL = numpy.pi/4
+##backleg
+##c.amplitude_BL = numpy.pi/3
+##c.frequency_BL = 10
+##c.phaseOffset_BL = numpy.pi/4
 
-#frontleg
-#c.amplitude_FL = numpy.pi/4
-#c.frequency_FL = 10
-#c.phaseOffset_FL = 0
+##frontleg
+##c.amplitude_FL = numpy.pi/4
+##c.frequency_FL = 10
+##c.phaseOffset_FL = 0
 
-#physicsClient = p.connect(p.GUI)
-#p.setAdditionalSearchPath(pybullet_data.getDataPath())
-#p.setGravity(0,0,-9.8)
-#planeId = p.loadURDF("plane.urdf")
-#robotId = p.loadURDF("body.urdf")
-#p.loadSDF("world.sdf")
-#pyrosim.Prepare_To_Simulate(robotId)
+##physicsClient = p.connect(p.GUI)
+##p.setAdditionalSearchPath(pybullet_data.getDataPath())
+##p.setGravity(0,0,-9.8)
+##planeId = p.loadURDF("plane.urdf")
+##robotId = p.loadURDF("body.urdf")
+##p.loadSDF("world.sdf")
+##pyrosim.Prepare_To_Simulate(robotId)
 
 #backLegSensorValues = numpy.zeros(1000)
 #frontLegSensorValues = numpy.zeros(1000)
