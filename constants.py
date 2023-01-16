@@ -2,8 +2,8 @@ import numpy
 
 
 amplitude = numpy.pi/4
-frequency = 5
-phaseOffset = numpy.pi/4
+frequency = 7
+phaseOffset = 0
 
 
 

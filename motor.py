@@ -12,6 +12,8 @@ class MOTOR:
 		self.amplitude = c.amplitude
 		self.frequency = c.frequency
 		self.phaseOffset = c.phaseOffset
+		if self.jointName == b'torso_frontleg':
+			self.frequency = c.frequency / 2
 		self.motorValues = (numpy.sin(numpy.linspace(self.phaseOffset, 2 * numpy.pi * self.frequency + self.phaseOffset, 1000)))*(self.amplitude)
 		
 	def Set_Value(self, t, robotId):
