@@ -1,6 +1,15 @@
 import numpy
 
 
+amplitude = numpy.pi/4
+frequency = 5
+phaseOffset = numpy.pi/4
+
+
+
+
+
+
 #backleg
 amplitude_BL = numpy.pi/3
 frequency_BL = 10
