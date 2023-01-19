@@ -72,12 +72,17 @@ class NEURON:
 
     def Update_Hidden_Or_Motor_Neuron(self, neurons, synapses):
         self.Set_Value(0.0)
-        #print()
-        for targetNeuronName in synapses:
-            if self.Get_Name():
-                print(self.Get_Name())
-        
+        #print(self.Get_Name())
+        for i in synapses:
+            if self.Get_Name() == i[1]:
+                self.Allow_Presynaptic_Neuron_To_Influence_Me(neurons, synapses)
+                #print(i)
+    
+    def Allow_Presynaptic_Neuron_To_Influence_Me(self, neurons, synapses):
+        sushi = synapses[self.Get_Name()].Get_Weight() + neurons[self.Get_Name()].Get_Value()
+        print(sushi)
         exit()
+
     
 
 
