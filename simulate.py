@@ -23,7 +23,7 @@ simulation.Run()
 ##c.phaseOffset_FL = 0
 
 ##physicsClient = p.connect(p.GUI)
-##p.setAdditionalSearchPath(pybullet_data.getDataPath())
+##p.setAdditionalSearchPath(pybullet_data.getDataPathb())
 ##p.setGravity(0,0,-9.8)
 ##planeId = p.loadURDF("plane.urdf")
 ##robotId = p.loadURDF("body.urdf")
