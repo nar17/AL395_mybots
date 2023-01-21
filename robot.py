@@ -41,5 +41,10 @@ class ROBOT:
 		self.nn.Update()
 		self.nn.Print()
 
+	#def Get_Fitness(self):
+	#	stateOfLinkZero = p.getLinkState(self.robotId,0)
+	#	print(stateOfLinkZero)
+	#	exit()
+
 
 

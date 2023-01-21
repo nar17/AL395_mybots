@@ -6,8 +6,10 @@ frequency = 7
 phaseOffset = 0
 
 
-
-
+#Links
+length = 1
+width = 1
+height = 1
 
 
 #backleg
