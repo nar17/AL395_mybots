@@ -8,7 +8,11 @@ class SOLUTION:
 	def __init__(self):
 		self.weights = numpy.random.rand(3,2) * 2 - 1
 		
-	
+	def Evaluate(self):
+		self.Create_World()
+		self.Create_Body()
+		self.Create_Brain()
+		os.system("py simulate.py")
 
 	def Create_World(self):
 		pyrosim.Start_SDF("world.sdf")
@@ -35,8 +39,4 @@ class SOLUTION:
 			for currentColumn in range(0,2):
 				pyrosim.Send_Synapse( sourceNeuronName = currentRow , targetNeuronName = currentColumn+3 , weight = self.weights[currentRow][currentColumn] ) #weight = random.random() #weight = random.uniform(-1,1)
 
-	def Evaluate(self):
-			self.Create_World()
-			self.Create_Body()
-			self.Create_Brain()
-			os.system("py simulate.py")
+	

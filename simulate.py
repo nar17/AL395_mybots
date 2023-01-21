@@ -11,7 +11,7 @@ from simulation import SIMULATION
 
 simulation = SIMULATION()
 simulation.Run()
-#simulation.Get_Fitness()
+simulation.Get_Fitness()
 
 ##backleg
 ##c.amplitude_BL = numpy.pi/3
