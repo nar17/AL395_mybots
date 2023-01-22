@@ -2,6 +2,7 @@ import numpy
 import pyrosim.pyrosim as pyrosim
 import constants as c
 import os
+import random
 
 
 class SOLUTION:
@@ -38,5 +39,5 @@ class SOLUTION:
 		for currentRow in range(0,3):
 			for currentColumn in range(0,2):
 				pyrosim.Send_Synapse( sourceNeuronName = currentRow , targetNeuronName = currentColumn+3 , weight = self.weights[currentRow][currentColumn] ) #weight = random.random() #weight = random.uniform(-1,1)
-
+		pyrosim.End()
 	
