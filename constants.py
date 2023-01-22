@@ -5,6 +5,7 @@ amplitude = numpy.pi/4
 frequency = 7
 phaseOffset = 0
 
+numberOfGenerations = 2
 
 #Links
 length = 1
