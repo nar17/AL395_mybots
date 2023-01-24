@@ -18,6 +18,7 @@ class HILL_CLIMBER:
 		self.child.Evaluate()
 		self.Select()
 		self.Print()
+		self.Show_Best()
 
 	def Spawn(self):
 		self.child = copy.deepcopy(self.parent)
@@ -31,5 +32,9 @@ class HILL_CLIMBER:
 
 	def Print(self):
 		print(self.parent.fitness, self.child.fitness)
+
+	def Show_Best(self):
+		pass
+		
 		
 
