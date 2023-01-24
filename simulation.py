@@ -17,7 +17,7 @@ class SIMULATION:
 		self.directOrGUI = directOrGUI
 		if directOrGUI == 'DIRECT':
 			self.physicsClient = p.connect(p.DIRECT)
-		if directOrGUI == 'GUI':
+		else:
 			self.physicsClient = p.connect(p.GUI)
 
 		p.setAdditionalSearchPath(pybullet_data.getDataPath())
