@@ -16,8 +16,8 @@ class HILL_CLIMBER:
 		self.Spawn()
 		self.Mutate()
 		self.child.Evaluate()
-		exit()
 		self.Select()
+		self.Print()
 
 	def Spawn(self):
 		self.child = copy.deepcopy(self.parent)
@@ -26,4 +26,10 @@ class HILL_CLIMBER:
 		self.child.Mutate()
 
 	def Select(self):
-		pass
+		if self.parent.fitness < self.child.fitness:
+			self.parent = self.child
+
+	def Print(self):
+		print(self.parent.fitness, self.child.fitness)
+		
+
