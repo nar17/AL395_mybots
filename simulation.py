@@ -13,13 +13,12 @@ from robot import ROBOT
 
 class SIMULATION:
 
-	def __init__(self, argument):
-		self.directOrGUI = argument
-		if argument == 'DIRECT':
+	def __init__(self, directOrGUI):
+		self.directOrGUI = directOrGUI
+		if directOrGUI == 'DIRECT':
 			self.physicsClient = p.connect(p.DIRECT)
 		else:
 			self.physicsClient = p.connect(p.GUI)
-			print(argument)
 
 		p.setAdditionalSearchPath(pybullet_data.getDataPath())
 		p.setGravity(0,0,-9.8)
@@ -33,8 +32,8 @@ class SIMULATION:
 			self.robot.Sense(t)
 			self.robot.Think()
 			self.robot.Act(t)
-			#if self.directOrGUI != 'DIRECT':
-			#	time.sleep(1/60)
+			if self.directOrGUI != 'DIRECT':
+				time.sleep(1/100)
 
 	def Get_Fitness(self):
 		self.robot.Get_Fitness()

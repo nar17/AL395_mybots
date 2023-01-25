@@ -1,5 +1,6 @@
 import constants as c
 import copy
+import os
 from solution import SOLUTION
 
 
@@ -33,7 +34,7 @@ class HILL_CLIMBER:
 		print(self.parent.fitness, self.child.fitness)
 
 	def Show_Best(self):
-		self.child.Evaluate('GUI')
+		os.system("py simulate.py GUI")
 		self.Print()
 
 		
