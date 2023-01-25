@@ -9,11 +9,12 @@ class SOLUTION:
 	def __init__(self):
 		self.weights = numpy.random.rand(3,2) * 2 - 1
 		
-	def Evaluate(self):
+	def Evaluate(self, argument):
 		self.Create_World()
 		self.Create_Body()
 		self.Create_Brain()
-		os.system("py simulate.py GUI")
+		argument = {'DIRECT', 'GUI'}
+		os.system("py simulate.py {argument}")
 		fitnessFile = open("fitness.txt", "r")
 		self.fitness = float(fitnessFile.read())
 		fitnessFile.close()
