@@ -7,12 +7,12 @@ from solution import SOLUTION
 class PARALLEL_HILL_CLIMBER:
 	def __init__(self):
 		self.parents = {}
-		for i in range(c.populationSize-1):
+		for i in (0, c.populationSize-1):
 			self.parents[i] = SOLUTION()
-		print(self.parents)
+		
 
 	def Evolve(self):
-		for i in self.parents():
+		for i in self.parents:
 			self.parents[i].Evaluate('GUI')
 		#for currentGeneration in range(c.numberOfGenerations):
 		#	self.Evolve_For_One_Generation()
