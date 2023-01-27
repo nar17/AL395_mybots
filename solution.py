@@ -3,7 +3,7 @@ import pyrosim.pyrosim as pyrosim
 import constants as c
 import os
 import random
-
+import time
 
 class SOLUTION:
 	def __init__(self, nextAvailableID):
@@ -16,10 +16,12 @@ class SOLUTION:
 		self.Create_Brain()
 		self.directOrGUI = directOrGUI
 		os.system("start /B py simulate.py " + str(self.directOrGUI) + " " + str(self.myID))
-		fitnessFile = open("fitness.txt", "r")
+		while not os.path.exists("fitness" + str(self.myID) + ".txt"):
+			time.sleep(0.01)
+		fitnessFile = open("fitness" + str(self.myID) + ".txt", "r")
 		self.fitness = float(fitnessFile.read())
+		print(self.fitness)
 		fitnessFile.close()
-
 
 	def Create_World(self):
 		pyrosim.Start_SDF("world.sdf")
