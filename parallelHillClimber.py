@@ -27,7 +27,13 @@ class PARALLEL_HILL_CLIMBER:
 		self.Print()
 
 	def Spawn(self):
-		self.child = copy.deepcopy(self.parent)
+		self.children = {}
+		for parent_key in self.parents.keys():
+			self.children[parent_key] = copy.deepcopy(self.parents[parent_key])
+			self.children[parent_key].Set_ID(self.nextAvailableID)
+			self.nextAvailableID = self.nextAvailableID+1
+
+
 
 	def Mutate(self):
 		self.child.Mutate()

@@ -8,14 +8,15 @@ from pyrosim.neuralNetwork import NEURAL_NETWORK
 
 class ROBOT:
 
-	def __init__(self):
+	def __init__(self, solutionID):
 		self.motors = {}
 		self.sensors = {}
 		self.robotId = p.loadURDF("body.urdf")
 		pyrosim.Prepare_To_Simulate(self.robotId)
 		self.Prepare_To_Sense()
 		self.Prepare_To_Act()
-		self.nn = NEURAL_NETWORK("brain.nndf")
+		self.nn = NEURAL_NETWORK("brain" + str(solutionID) + ".nndf")
+		del "brainsolutionID.nndf"
 	
 	def Prepare_To_Sense(self):
 		for linkName in pyrosim.linkNamesToIndices:

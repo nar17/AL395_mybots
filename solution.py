@@ -52,7 +52,8 @@ class SOLUTION:
 		randomColumn = random.randint(0,1)
 		self.weights[randomRow,randomColumn] = random.random() * 2 - 1
 
-	def Set_ID(self):
-		self.childID = self.myID 
+	def Set_ID(self, ID):
+		self.myID = ID
+
 
 	
