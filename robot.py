@@ -12,6 +12,7 @@ class ROBOT:
 	def __init__(self, solutionID):
 		self.motors = {}
 		self.sensors = {}
+		self.solutionID = solutionID
 		self.robotId = p.loadURDF("body.urdf")
 		pyrosim.Prepare_To_Simulate(self.robotId)
 		self.Prepare_To_Sense()
@@ -48,7 +49,7 @@ class ROBOT:
 		positionOfLinkZero = stateOfLinkZero[0]  #not sure if this is printing the right position of the link zero (0.5000, 0.000236, 0.4999848)
 		xCoordinateOfLinkZero = str(positionOfLinkZero[0])
 		#print(xCoordinateOfLinkZero)
-		fitnessFile = open("fitness.txt", "w")
+		fitnessFile = open("fitness" + str(self.solutionID) + ".txt", "w")
 		fitnessFile.write(xCoordinateOfLinkZero)
 
 
