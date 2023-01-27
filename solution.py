@@ -11,17 +11,37 @@ class SOLUTION:
 		self.myID = nextAvailableID
 		
 	def Evaluate(self, directOrGUI):
+		#self.Create_World()
+		#self.Create_Body()
+		#self.Create_Brain()
+		#self.directOrGUI = directOrGUI
+		#os.system("start /B py simulate.py " + str(self.directOrGUI) + " " + str(self.myID))
+		#while not os.path.exists("fitness" + str(self.myID) + ".txt"):
+		#	time.sleep(0.01)
+		#fitnessFile = open("fitness" + str(self.myID) + ".txt", "r")
+		#self.fitness = float(fitnessFile.read())
+		#print(self.fitness)
+		#fitnessFile.close()
+		pass
+		
+
+	def Start_Simulation(self, directOrGUI):
 		self.Create_World()
 		self.Create_Body()
 		self.Create_Brain()
 		self.directOrGUI = directOrGUI
 		os.system("start /B py simulate.py " + str(self.directOrGUI) + " " + str(self.myID))
+		
+
+	def Wait_For_Simulation_To_End(self, directOrGUI):
 		while not os.path.exists("fitness" + str(self.myID) + ".txt"):
 			time.sleep(0.01)
 		fitnessFile = open("fitness" + str(self.myID) + ".txt", "r")
 		self.fitness = float(fitnessFile.read())
 		print(self.fitness)
 		fitnessFile.close()
+		os.system("del fitness" + str(solutionID) + ".nndf")
+
 
 	def Create_World(self):
 		pyrosim.Start_SDF("world.sdf")
