@@ -38,9 +38,9 @@ class SOLUTION:
 			time.sleep(0.01)
 		fitnessFile = open("fitness" + str(self.myID) + ".txt", "r")
 		self.fitness = float(fitnessFile.read())
-		print(self.fitness)
+		os.system("del fitness" + str(solutionID) + ".txt")
+		#print(self.fitness.keys())
 		fitnessFile.close()
-		os.system("del fitness" + str(solutionID) + ".nndf")
 
 
 	def Create_World(self):
