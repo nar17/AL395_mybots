@@ -6,8 +6,9 @@ import random
 
 
 class SOLUTION:
-	def __init__(self):
+	def __init__(self, nextAvailableID):
 		self.weights = numpy.random.rand(3,2) * 2 - 1
+		self.myID = nextAvailableID
 		
 	def Evaluate(self, directOrGUI):
 		self.Create_World()
@@ -35,7 +36,7 @@ class SOLUTION:
 		pyrosim.End()
 
 	def Create_Brain(self):
-		pyrosim.Start_NeuralNetwork("brain.nndf")
+		pyrosim.Start_NeuralNetwork("brain" + str(self.myID) + ".nndf")
 		pyrosim.Send_Sensor_Neuron(name = 0 , linkName = "torso")
 		pyrosim.Send_Sensor_Neuron(name = 1 , linkName = "backleg")
 		pyrosim.Send_Sensor_Neuron(name = 2 , linkName = "frontleg")
@@ -50,5 +51,8 @@ class SOLUTION:
 		randomRow = random.randint(0,2)
 		randomColumn = random.randint(0,1)
 		self.weights[randomRow,randomColumn] = random.random() * 2 - 1
+
+	def Set_ID(self):
+		self.childID = self.myID 
 
 	
