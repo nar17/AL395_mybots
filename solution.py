@@ -34,14 +34,14 @@ class SOLUTION:
 		
 
 	def Wait_For_Simulation_To_End(self, directOrGUI):
+		fitnessFile = open("fitness" + str(self.myID) + ".txt", "r")
 		while not os.path.exists("fitness" + str(self.myID) + ".txt"):
 			time.sleep(0.01)
-		fitnessFile = open("fitness" + str(self.myID) + ".txt", "r")
 		self.fitness = float(fitnessFile.read())
-		os.system("del fitness" + str(solutionID) + ".txt")
-		#print(self.fitness.keys())
+		print(self.fitness)
 		fitnessFile.close()
-
+		os.system("del fitness" + str(self.myID) + ".txt")
+		
 
 	def Create_World(self):
 		pyrosim.Start_SDF("world.sdf")
