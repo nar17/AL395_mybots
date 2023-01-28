@@ -37,10 +37,9 @@ class SOLUTION:
 		while not os.path.exists("fitness" + str(self.myID) + ".txt"):
 			time.sleep(0.01)
 		fitnessFile = open("fitness" + str(self.myID) + ".txt", "r")
-		#fitnessFile = "fitness" + str(self.myID) + ".txt"
 		self.fitness = float(fitnessFile.read())
 		fitnessFile.close()
-		print(self.fitness)
+		#print(self.fitness)
 		os.system("del fitness" + str(self.myID) + ".txt")
 		
 
