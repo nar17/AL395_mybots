@@ -26,12 +26,11 @@ class PARALLEL_HILL_CLIMBER:
 
 	def Evolve_For_One_Generation(self):
 		self.Spawn()
-		self.Mutate(self.children)
+		self.Mutate()
 		self.Evaluate(self.children)
-		exit()
 		#self.Select()
-		#self.Print()
-		
+		self.Print()
+		exit()
 
 	def Spawn(self):
 		self.children = {}
@@ -40,24 +39,25 @@ class PARALLEL_HILL_CLIMBER:
 			self.children[parent_key].Set_ID(self.nextAvailableID)
 			self.nextAvailableID = self.nextAvailableID+1
 
-	def Mutate(self, children):
-		self.Mutate(self.children)
+	def Mutate(self):
+		self.children.keys()		#potential
+
+	def Evaluate(self, solutions):
+		self.solutions = solutions	#potential
+		for i in solutions:
+			solutions[i].Start_Simulation('GUI')
+		for i in solutions:
+			solutions[i].Wait_For_Simulation_To_End('GUI')
 
 	def Select(self):
 		if self.parent.fitness > self.child.fitness:
 			self.parent = self.child
 
 	def Print(self):
-		print(self.parent.fitness, self.child.fitness)
+		for i in self.parents.keys():
+			print("Parent fitness:"+str(self.parents[i].fitness)+", Children fitness:"+str(self.children[i].fitness))
 
 	def Show_Best(self):
 		#os.system("py simulate.py GUI")
 		#self.Print()
 		pass
-
-	def Evaluate(self, solutions):
-		self.solutions = solutions
-		for i in solutions:
-			solutions[i].Start_Simulation('GUI')
-		for i in solutions:
-			solutions[i].Wait_For_Simulation_To_End('GUI')
