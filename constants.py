@@ -5,7 +5,7 @@ amplitude = numpy.pi/4
 frequency = 7
 phaseOffset = 0
 
-numberOfGenerations = 10	#found in hillcimber
+numberOfGenerations = 2	#found in hillcimber
 
 populationSize = 2
 
