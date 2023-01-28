@@ -7,7 +7,7 @@ phaseOffset = 0
 
 numberOfGenerations = 10	#found in hillcimber
 
-populationSize = 2			
+populationSize = 2
 
 
 

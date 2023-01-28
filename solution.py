@@ -34,12 +34,13 @@ class SOLUTION:
 		
 
 	def Wait_For_Simulation_To_End(self, directOrGUI):
-		fitnessFile = open("fitness" + str(self.myID) + ".txt", "r")
 		while not os.path.exists("fitness" + str(self.myID) + ".txt"):
 			time.sleep(0.01)
+		fitnessFile = open("fitness" + str(self.myID) + ".txt", "r")
+		#fitnessFile = "fitness" + str(self.myID) + ".txt"
 		self.fitness = float(fitnessFile.read())
-		print(self.fitness)
 		fitnessFile.close()
+		print(self.fitness)
 		os.system("del fitness" + str(self.myID) + ".txt")
 		
 
