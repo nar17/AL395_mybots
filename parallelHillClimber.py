@@ -69,12 +69,11 @@ class PARALLEL_HILL_CLIMBER:
 		bestFitness = parent_fitnesses.index(min(parent_fitnesses))
 		self.parents[bestFitness].Start_Simulation('GUI')
 
-
 		#for i in self.parents:
-		#	peach = self.parents[i].fitness
-		#	apple = self.parents[i].fitness
-		#	if peach < apple:
-		#		yellow = peach
+		#	self.parents[i].fitness = apple
+		#	self.parents[i].fitness = peach
+		#	if apple < peach:
+		#		yellow = apple
 		#self.parents[yellow].Start_Simulation('GUI')
 		
 		#os.system("py simulate.py GUI")
