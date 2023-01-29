@@ -43,16 +43,11 @@ class PARALLEL_HILL_CLIMBER:
 			self.children[child].Mutate()
 
 	def Evaluate(self, solutions):
-		self.solutions = solutions	#potential
+		self.solutions = solutions
 		for i in range(c.populationSize):
 			solutions[i].Start_Simulation('DIRECT')
 		for i in range(c.populationSize):
 			solutions[i].Wait_For_Simulation_To_End('DIRECT')
-
-	def Select(self):
-		for i in self.parents.keys():
-			if self.parents[i].fitness > self.children[i].fitness:
-				self.parents[i] = self.children[i]
 
 	def Print(self):
 		print(" ")
@@ -61,6 +56,11 @@ class PARALLEL_HILL_CLIMBER:
 			print("Parent fitness: "+str(self.parents[i].fitness)+", Children fitness: "+str(self.children[i].fitness))
 		print(" ")
 		print(" ")
+
+	def Select(self):
+		for i in self.parents.keys():
+			if self.parents[i].fitness > self.children[i].fitness:
+				self.parents[i] = self.children[i]
 
 	def Show_Best(self):
 		#os.system("py simulate.py GUI")
