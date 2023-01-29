@@ -63,6 +63,11 @@ class PARALLEL_HILL_CLIMBER:
 				self.parents[i] = self.children[i]
 
 	def Show_Best(self):
+		parent_fitnesses = []
+		for i in self.parents:
+			parent_fitnesses.append(self.parents[i].fitness)
+		bestFitness = parent_fitnesses.index(min(parent_fitnesses))
+		self.parents[bestFitness].Start_Simulation('GUI')
+
 		#os.system("py simulate.py GUI")
 		#self.Print()
-		pass
