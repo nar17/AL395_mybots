@@ -2,6 +2,7 @@ import pybullet as p
 import pyrosim.pyrosim as pyrosim
 import numpy
 import os
+import constants as c
 
 from sensor import SENSOR
 from motor import MOTOR
@@ -36,7 +37,7 @@ class ROBOT:
 		for neuronName in self.nn.Get_Neuron_Names():
 			if self.nn.Is_Motor_Neuron(neuronName):
 				jointName = self.nn.Get_Motor_Neurons_Joint(neuronName)
-				desiredAngle = self.nn.Get_Value_Of(neuronName)
+				desiredAngle = (self.nn.Get_Value_Of(neuronName))*c.motorJointRange
 				self.motors[jointName].Set_Value(desiredAngle, self.robotId)
 				#print(neuronName, jointName, desiredAngle)
 

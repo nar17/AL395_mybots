@@ -5,11 +5,13 @@ amplitude = numpy.pi/4
 frequency = 7
 phaseOffset = 0
 
-numberOfGenerations = 1	#found in hillcimber
-populationSize = 1
+numberOfGenerations = 5	#found in hillcimber
+populationSize = 5
 
-numSensorNeurons = 9
-numMotorNeurons = 8
+numSensorNeurons = 4 #9
+numMotorNeurons = 8 #8
+
+motorJointRange = 0.2
 
 
 #Links
