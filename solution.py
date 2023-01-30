@@ -50,7 +50,7 @@ class SOLUTION:
 
 	def Create_Body(self):
 		pyrosim.Start_URDF("body.urdf")
-		pyrosim.Send_Cube(name="torso", pos=[1.5,0,1.5] , size=[c.length,c.width,c.height])
+		pyrosim.Send_Cube(name="torso", pos=[0,0,1] , size=[c.length,c.width,c.height])
 		pyrosim.Send_Joint( name = "torso_frontleg" , parent= "torso" , child = "frontleg" , type = "revolute", position = [1,0,1])
 		pyrosim.Send_Cube(name="frontleg", pos=[-0.5,0,-0.5] , size=[c.length,c.width,c.height])
 		pyrosim.Send_Joint( name = "torso_backleg" , parent= "torso" , child = "backleg" , type = "revolute", position = [2,0,1])
@@ -59,14 +59,6 @@ class SOLUTION:
 
 	def Create_Brain(self):
 		pyrosim.Start_NeuralNetwork("brain" + str(self.myID) + ".nndf")
-		#pyrosim.Send_Sensor_Neuron(name = c.numSensorNeurons-3, linkName = "torso")
-		#pyrosim.Send_Sensor_Neuron(name = c.numSensorNeurons-2 , linkName = "backleg")
-		#pyrosim.Send_Sensor_Neuron(name = c.numSensorNeurons-1, linkName = "frontleg")
-		#pyrosim.Send_Motor_Neuron(name = c.numMotorNeurons+1, jointName = "torso_backleg")
-		#pyrosim.Send_Motor_Neuron(name = c.numMotorNeurons+2, jointName = "torso_frontleg")
-		#for currentRow in range(c.numSensorNeurons):
-		#	for currentColumn in range(c.numMotorNeurons):
-		#		pyrosim.Send_Synapse( sourceNeuronName = currentRow , targetNeuronName = currentColumn+3 , weight = self.weights[currentRow][currentColumn] ) #weight = random.random() #weight = random.uniform(-1,1)
 		pyrosim.Send_Sensor_Neuron(name = 0 , linkName = "torso")
 		pyrosim.Send_Sensor_Neuron(name = 1 , linkName = "backleg")
 		pyrosim.Send_Sensor_Neuron(name = 2 , linkName = "frontleg")
@@ -75,9 +67,8 @@ class SOLUTION:
 		for currentRow in range(0,c.numSensorNeurons):
 			for currentColumn in range(0,c.numMotorNeurons):
 				pyrosim.Send_Synapse( sourceNeuronName = currentRow , targetNeuronName = currentColumn+3 , weight = self.weights[currentRow][currentColumn] ) #weight = random.random() #weight = random.uniform(-1,1)
-
 		pyrosim.End()
-		exit()
+
 	def Mutate(self):
 		randomRow = random.randint(0,c.numSensorNeurons-1)
 		randomColumn = random.randint(0,c.numMotorNeurons-1)
