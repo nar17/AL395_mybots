@@ -50,11 +50,11 @@
             </geometry>
         </collision>
     </link>
-    <joint name="front_frontlowerleg" type="revolute">
-       <parent link="torso"/>
+    <joint name="frontleg_frontlowerleg" type="revolute">
+       <parent link="frontleg"/>
        <child  link="frontlowerleg"/>
        <origin rpy="0 0 0" xyz="0 1 0" />
-       <axis xyz="1 0 0"/>
+       <axis xyz="0 1 0"/>
        <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
     </joint>
     <link name="frontlowerleg">
@@ -109,10 +109,10 @@
         </collision>
     </link>
     <joint name="backleg_backlowerleg" type="revolute">
-       <parent link="torso"/>
+       <parent link="backleg"/>
        <child  link="backlowerleg"/>
        <origin rpy="0 0 0" xyz="0 -1 0" />
-       <axis xyz="1 0 0"/>
+       <axis xyz="0 1 0"/>
        <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
     </joint>
     <link name="backlowerleg">
@@ -167,7 +167,7 @@
         </collision>
     </link>
     <joint name="leftleg_leftlowerleg" type="revolute">
-       <parent link="torso"/>
+       <parent link="leftleg"/>
        <child  link="leftlowerleg"/>
        <origin rpy="0 0 0" xyz="-1 0 0" />
        <axis xyz="0 1 0"/>
@@ -225,7 +225,7 @@
         </collision>
     </link>
     <joint name="rightleg_rightlowerleg" type="revolute">
-       <parent link="torso"/>
+       <parent link="rightleg"/>
        <child  link="rightlowerleg"/>
        <origin rpy="0 0 0" xyz="1 0 0" />
        <axis xyz="0 1 0"/>
