@@ -6,13 +6,13 @@ from solution import SOLUTION
 
 class PARALLEL_HILL_CLIMBER:
 	def __init__(self):
-		os.system("del brain*.nndf")
-		os.system("del fitness*.nndf")
 		self.parents = {}
 		self.nextAvailableID = 0
 		for i in range(0, c.populationSize):
 			self.parents[i] = SOLUTION(self.nextAvailableID)
 			self.nextAvailableID = self.nextAvailableID+1
+		os.system("del brain" + str(self.nextAvailableID) + ".nndf") #not correct yet
+		os.system("del fitness" + str(self.nextAvailableID) + ".txt") #not correct yet 
 		
 
 	def Evolve(self):
