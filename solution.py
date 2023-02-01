@@ -46,11 +46,12 @@ class SOLUTION:
 	def Create_World(self):
 		pyrosim.Start_SDF("world.sdf")
 		#miniputt platform
-		pyrosim.Send_Cube(name="Box", pos=[0,0,0.5] , size=[16,10,1])
-		pyrosim.Send_Cube(name="Box", pos=[-9,0,0.5] , size=[2,6,1])
-		pyrosim.Send_Cube(name="Box", pos=[-11,2,0.5] , size=[2,2,1])
-		pyrosim.Send_Cube(name="Box", pos=[-11,-2,0.5] , size=[2,2,1])
-		pyrosim.Send_Cube(name="Box", pos=[-11.5,0,0.5] , size=[1,2,1])
+		pyrosim.Send_Cube(name="Box", pos=[0,0,0.5] , size=[16,10,1], mass=1000)
+		pyrosim.Send_Cube(name="Box", pos=[-9,0,0.5] , size=[2,6,1], mass=1000)
+		pyrosim.Send_Cube(name="Box", pos=[-11,2,0.5] , size=[2,2,1], mass=1000)
+		pyrosim.Send_Cube(name="Box", pos=[-11,-2,0.5] , size=[2,2,1], mass=1000)
+		pyrosim.Send_Cube(name="Box", pos=[-11.5,0,0.5] , size=[1,2,1], mass=1000)
+		pyrosim.Send_Sphere(name="BowlingBall" , pos=[-3,+3,1.5] , size=[0.5])
 		pyrosim.End()
 
 	def Create_Body(self):
