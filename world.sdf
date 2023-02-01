@@ -1,7 +1,7 @@
 <sdf>
-    <model name="Box">
+    <model name="largeGreen">
         <pose>0 0 0.5 0 0 0 </pose>
-        <link name="Box">
+        <link name="largeGreen">
             <inertial>
                 <mass>1000</mass>
                 <inertia>
@@ -29,9 +29,9 @@
             </visual>
         </link>
     </model>
-    <model name="Box">
+    <model name="preHoleGreen">
         <pose>-9 0 0.5 0 0 0 </pose>
-        <link name="Box">
+        <link name="preHoleGreen">
             <inertial>
                 <mass>1000</mass>
                 <inertia>
@@ -59,9 +59,9 @@
             </visual>
         </link>
     </model>
-    <model name="Box">
-        <pose>-11 2 0.5 0 0 0 </pose>
-        <link name="Box">
+    <model name="+yBox">
+        <pose>-11.5 2 0.5 0 0 0 </pose>
+        <link name="+yBox">
             <inertial>
                 <mass>1000</mass>
                 <inertia>
@@ -76,22 +76,22 @@
             <collision>
                 <geometry>
                  <box>
-                 <size>2 2 1</size>
+                 <size>3 2 1</size>
                  </box>
                 </geometry>
             </collision>
             <visual>
                 <geometry>
                  <box>
-                 <size>2 2 1</size>
+                 <size>3 2 1</size>
                  </box>
                 </geometry>
             </visual>
         </link>
     </model>
-    <model name="Box">
-        <pose>-11 -2 0.5 0 0 0 </pose>
-        <link name="Box">
+    <model name="-yBox">
+        <pose>-11.5 -2 0.5 0 0 0 </pose>
+        <link name="-yBox">
             <inertial>
                 <mass>1000</mass>
                 <inertia>
@@ -106,22 +106,22 @@
             <collision>
                 <geometry>
                  <box>
-                 <size>2 2 1</size>
+                 <size>3 2 1</size>
                  </box>
                 </geometry>
             </collision>
             <visual>
                 <geometry>
                  <box>
-                 <size>2 2 1</size>
+                 <size>3 2 1</size>
                  </box>
                 </geometry>
             </visual>
         </link>
     </model>
-    <model name="Box">
-        <pose>-11.5 0 0.5 0 0 0 </pose>
-        <link name="Box">
+    <model name="backstopBox">
+        <pose>-12.5 0 0.5 0 0 0 </pose>
+        <link name="backstopBox">
             <inertial>
                 <mass>1000</mass>
                 <inertia>
@@ -149,11 +149,11 @@
             </visual>
         </link>
     </model>
-    <model name="BowlingBall">
-        <pose>-3 3 1.5 0 0 0 </pose>
-        <link name="BowlingBall">
+    <model name="GolfBall">
+        <pose>-0.5 0.3 1.5 0 0 0 </pose>
+        <link name="GolfBall">
             <inertial>
-                <mass>1.0</mass>
+                <mass>50</mass>
                 <inertia>
                     <ixx>0.083</ixx>
                     <ixy>0.0</ixy>

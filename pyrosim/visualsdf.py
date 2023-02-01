@@ -1,10 +1,14 @@
+from pyrosim.material import MATERIAL
+
 from pyrosim.commonFunctions import Save_Whitespace
 
 class VISUAL_SDF: 
 
     def __init__(self,geometry):
 
-        self.geometry = geometry 
+        self.geometry = geometry
+
+        self.material = MATERIAL()
 
         self.depth = 3
 

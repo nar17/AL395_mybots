@@ -2,7 +2,7 @@
     <link name="torso">
         <inertial>
             <origin xyz="0 -3 2.5" rpy="0 0 0"/>
-            <mass value="1000.0" />
+            <mass value="10000.0" />
             <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
         </inertial>
         <visual>
@@ -30,12 +30,12 @@
     </joint>
     <link name="arm">
         <inertial>
-            <origin xyz="0 1.25 0" rpy="0 0 0"/>
+            <origin xyz="0 1.25 -0.16666666666666666" rpy="0 0 0"/>
             <mass value="1.0" />
             <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
         </inertial>
         <visual>
-            <origin xyz="0 1.25 0" rpy="0 0 0"/>
+            <origin xyz="0 1.25 -0.16666666666666666" rpy="0 0 0"/>
             <geometry>
                 <box size="0.3333333333333333 2.5 0.3333333333333333" />
             </geometry>
@@ -44,7 +44,7 @@
             </material>
         </visual>
         <collision>
-            <origin xyz="0 1.25 0" rpy="0 0 0"/>
+            <origin xyz="0 1.25 -0.16666666666666666" rpy="0 0 0"/>
             <geometry>
                 <box size="0.3333333333333333 2.5 0.3333333333333333" />
             </geometry>
@@ -59,23 +59,23 @@
     </joint>
     <link name="club">
         <inertial>
-            <origin xyz="0 0.16666666666666666 -1" rpy="0 0 0"/>
+            <origin xyz="0 0.16666666666666666 -1.5" rpy="0 0 0"/>
             <mass value="1.0" />
             <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
         </inertial>
         <visual>
-            <origin xyz="0 0.16666666666666666 -1" rpy="0 0 0"/>
+            <origin xyz="0 0.16666666666666666 -1.5" rpy="0 0 0"/>
             <geometry>
-                <box size="0.3333333333333333 0.3333333333333333 2.5" />
+                <box size="0.3333333333333333 0.3333333333333333 2.8" />
             </geometry>
             <material name="Cyan">
                 <color rgba="0 1.0 1.0 1.0"/>
             </material>
         </visual>
         <collision>
-            <origin xyz="0 0.16666666666666666 -1" rpy="0 0 0"/>
+            <origin xyz="0 0.16666666666666666 -1.5" rpy="0 0 0"/>
             <geometry>
-                <box size="0.3333333333333333 0.3333333333333333 2.5" />
+                <box size="0.3333333333333333 0.3333333333333333 2.8" />
             </geometry>
         </collision>
     </link>

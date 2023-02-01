@@ -33,7 +33,7 @@ class SIMULATION:
 			self.robot.Think()
 			self.robot.Act(t)
 			if self.directOrGUI != 'DIRECT':
-				time.sleep(1/30)
+				time.sleep(1/100)
 
 	def Get_Fitness(self):
 		self.robot.Get_Fitness()
