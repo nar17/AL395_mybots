@@ -77,7 +77,7 @@ class SOLUTION:
 		#pyrosim.Send_Cube(name="rightlowerleg", pos=[0,0,-0.5] , size=[0.2,0.2,1])	
 		
 		#golfer
-		pyrosim.Send_Cube(name="torso", pos=[0,-3,2.5] , size=[1,1,3])
+		pyrosim.Send_Cube(name="torso", pos=[0,-3,2.5] , size=[1,1,3], mass=1000.0)
 		pyrosim.Send_Joint( name = "torso_arm" , parent= "torso" , child = "arm" , type = "revolute", position = [0,-2.5,4], jointAxis = "0 1 0")
 		pyrosim.Send_Cube(name="arm", pos=[0,1.25,0] , size=[1/3,2.5,1/3])
 		pyrosim.Send_Joint( name = "arm_club" , parent= "arm" , child = "club" , type = "fixed", position = [0,2.5,0], jointAxis = "1 0 0")		

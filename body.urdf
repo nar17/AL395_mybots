@@ -2,7 +2,7 @@
     <link name="torso">
         <inertial>
             <origin xyz="0 -3 2.5" rpy="0 0 0"/>
-            <mass value="1" />
+            <mass value="1000.0" />
             <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
         </inertial>
         <visual>
@@ -31,7 +31,7 @@
     <link name="arm">
         <inertial>
             <origin xyz="0 1.25 0" rpy="0 0 0"/>
-            <mass value="1" />
+            <mass value="1.0" />
             <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
         </inertial>
         <visual>
@@ -60,7 +60,7 @@
     <link name="club">
         <inertial>
             <origin xyz="0 0.16666666666666666 -1" rpy="0 0 0"/>
-            <mass value="1" />
+            <mass value="1.0" />
             <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
         </inertial>
         <visual>
