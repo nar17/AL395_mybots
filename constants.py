@@ -11,7 +11,7 @@ populationSize = 1
 numSensorNeurons = 1 #4 #9
 numMotorNeurons = 1 #8 #8
 
-motorJointRange = 0.3
+motorJointRange = 1
 
 
 #Links

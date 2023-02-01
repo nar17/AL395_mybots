@@ -32,6 +32,7 @@ class SIMULATION:
 			self.robot.Sense(t)
 			self.robot.Think()
 			self.robot.Act(t)
+			self.world.Get_Pos_And_Orientation()
 			if self.directOrGUI != 'DIRECT':
 				time.sleep(1/100)
 

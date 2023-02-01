@@ -6,6 +6,7 @@ import constants as c
 
 from sensor import SENSOR
 from motor import MOTOR
+from world import WORLD
 from pyrosim.neuralNetwork import NEURAL_NETWORK
 
 class ROBOT:
@@ -15,6 +16,7 @@ class ROBOT:
 		self.sensors = {}
 		self.solutionID = solutionID
 		self.robotId = p.loadURDF("body.urdf")
+		#self.objects = p.loadSDF("world.sdf")
 		pyrosim.Prepare_To_Simulate(self.robotId)
 		self.Prepare_To_Sense()
 		self.Prepare_To_Act()
@@ -50,17 +52,25 @@ class ROBOT:
 		#positionOfLinkZero = stateOfLinkZero[0] 
 		#xCoordinateOfLinkZero = str(positionOfLinkZero[0])
 
-		basePositionAndOrientation = p.getBasePositionAndOrientation(self.robotId)
-		basePosition = basePositionAndOrientation[0]
-		xPosition = str(basePosition[0])
+			#quadruped fitness = furthest -x position
+		#basePositionAndOrientation = p.getBasePositionAndOrientation(self.robotId)
+		#basePosition = basePositionAndOrientation[0]
+		#xPosition = str(basePosition[0])
+		#fitnessFile = open("tmp" + str(self.solutionID) + ".txt", "w")
+		#fitnessFile.write(xPosition)
+		#fitnessFile.close()
+		#os.system("rename tmp"+str(self.solutionID)+".txt " + "fitness"+str(self.solutionID)+".txt")
 
+			#golfer; fitness = golf ball coordinates
+		#self.objects.Get_Pos_And_Orientation()
+		posAndOrientation = p.getBasePositionAndOrientation(self.objects[5])
+		position = posAndOrientation[0]
+		xPosition = str(position[0])
+		yPosition = str(position[1])
+		height = str(position[2])
 
-		#print(xCoordinateOfLinkZero)
 		fitnessFile = open("tmp" + str(self.solutionID) + ".txt", "w")
-		fitnessFile.write(xPosition)
+		fitnessFile.write(xPosition + "\n" + yPosition + "\n" + height)
 		fitnessFile.close()
 		os.system("rename tmp"+str(self.solutionID)+".txt " + "fitness"+str(self.solutionID)+".txt")
-
-
-
 
