@@ -13,6 +13,8 @@ numMotorNeurons = 1 #8 #8
 
 motorJointRange = 1
 
+numSteps = 1000
+
 
 #Links
 length = 1

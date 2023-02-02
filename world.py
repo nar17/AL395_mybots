@@ -2,7 +2,7 @@ import pybullet as p
 
 class WORLD:
 
-	def __init__(self, xPosition, yPosition, height):
+	def __init__(self):
 		#p.loadSDF("world.sdf")
 		self.objects = p.loadSDF("world.sdf")
 		self.planeId = p.loadURDF("plane.urdf")
@@ -13,6 +13,8 @@ class WORLD:
 		xPosition = position[0]
 		yPosition = position[1]
 		height = position[2]
+		print(xPosition)
+		
 
 
 

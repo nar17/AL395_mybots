@@ -16,7 +16,7 @@ class ROBOT:
 		self.sensors = {}
 		self.solutionID = solutionID
 		self.robotId = p.loadURDF("body.urdf")
-		self.world = WORLD(xPosition, yPosition, height)
+		self.world = WORLD()
 		pyrosim.Prepare_To_Simulate(self.robotId)
 		self.Prepare_To_Sense()
 		self.Prepare_To_Act()
@@ -62,15 +62,16 @@ class ROBOT:
 		#os.system("rename tmp"+str(self.solutionID)+".txt " + "fitness"+str(self.solutionID)+".txt")
 
 			#golfer; fitness = golf ball coordinates
-		self.world.Get_Pos_And_Orientation(xPosition, yPosition, height)
 		#posAndOrientation = p.getBasePositionAndOrientation(self.objects[5])
 		#position = posAndOrientation[0]
 		#xPosition = str(position[0])
 		#yPosition = str(position[1])
 		#height = str(position[2])
 
+		xPosition = self.world.Get_Pos_And_Orientation()
 		fitnessFile = open("tmp" + str(self.solutionID) + ".txt", "w")
-		fitnessFile.write(str(xPosition) + "\n" + str(yPosition) + "\n" + str(height))
+		fitnessFile.write(str(xPosition))
 		fitnessFile.close()
 		os.system("rename tmp"+str(self.solutionID)+".txt " + "fitness"+str(self.solutionID)+".txt")
 
+		#+ "\n" + str(yPosition) + "\n" + str(height))
