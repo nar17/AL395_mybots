@@ -65,8 +65,9 @@ class ROBOT:
 		#os.system("rename tmp"+str(self.solutionID)+".txt " + "fitness"+str(self.solutionID)+".txt")
 
 			#golfer; fitness = golf ball coordinates
-		xPosition = self.world.Get_Pos_And_Orientation()
+		xPosition = str(self.world.Get_X_Pos_And_Orientation())
+		yPosition = str(self.world.Get_Y_Pos_And_Orientation())
 		fitnessFile = open("tmp" + str(self.solutionID) + ".txt", "w")
-		fitnessFile.write(str(xPosition))
+		fitnessFile.write(xPosition + "\n" + yPosition)
 		fitnessFile.close()
 		os.system("rename tmp"+str(self.solutionID)+".txt " + "fitness"+str(self.solutionID)+".txt")

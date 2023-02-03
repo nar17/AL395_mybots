@@ -37,13 +37,10 @@ class SOLUTION:
 		while not os.path.exists("fitness" + str(self.myID) + ".txt"):
 			time.sleep(0.01)
 		fitnessFile = open("fitness" + str(self.myID) + ".txt", "r")
-		#self.overallFitness = fitnessFile.readlines()
-		self.xfitness = float(fitnessFile.read())
-		#self.xfitness = float(self.overallFitness[0])
-		#self.yfitness = float(self.overallFitness[1])
-		#self.height = float(self.overallFitness[2])
+		self.overallFitness = fitnessFile.readlines()
+		self.xfitness = float(self.overallFitness[0])
+		self.yfitness = float(self.overallFitness[1])
 		fitnessFile.close()
-		#print(self.fitness)
 		os.system("del fitness" + str(self.myID) + ".txt")
 		
 
@@ -55,7 +52,7 @@ class SOLUTION:
 		pyrosim.Send_Cube(name="+yBox", pos=[-11.5,2,0.5] , size=[3,2,1], mass=1000)
 		pyrosim.Send_Cube(name="-yBox", pos=[-11.5,-2,0.5] , size=[3,2,1], mass=1000)
 		pyrosim.Send_Cube(name="backstopBox", pos=[-12.5,0,0.5] , size=[1,2,1], mass=1000)
-		pyrosim.Send_Sphere(name="GolfBall" , pos=[-0.5,0.3,1.5] , size=[0.5], mass = 10)
+		pyrosim.Send_Sphere(name="GolfBall" , pos=[-0.5,0.3,1.5] , size=[0.5], mass = 1)
 		pyrosim.End()
 
 	def Create_Body(self):
@@ -82,7 +79,6 @@ class SOLUTION:
 		
 			#golfer
 		pyrosim.Send_Cube(name="torso", pos=[0,-3,3] , size=[1,1,3], mass=1000.0, materialName="Red", colorString="1 0 0 1")
-
 		pyrosim.Send_Joint( name = "torso_arm" , parent= "torso" , child = "arm" , type = "revolute", position = [0,-2.5,4], jointAxis = "0 1 0")
 		pyrosim.Send_Cube(name="arm", pos=[0,1.25,-1/6] , size=[1/3,2.5,1/3], materialName="Tan", colorString="1.3 0.94 0.92 1")
 		pyrosim.Send_Joint( name = "arm_club" , parent= "arm" , child = "club" , type = "fixed", position = [0,2.5,0], jointAxis = "1 0 0")		
@@ -144,7 +140,6 @@ class SOLUTION:
 		randomRow = random.randint(0,c.numSensorNeurons-1)
 		randomColumn = random.randint(0,c.numMotorNeurons-1)
 		self.weights[randomRow,randomColumn] = random.random() * 2 - 1
-		#exit()
 
 	def Set_ID(self, ID):
 		self.myID = ID

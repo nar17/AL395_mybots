@@ -52,7 +52,7 @@ class PARALLEL_HILL_CLIMBER:
 	def Print(self):
 		print(" ")
 		print(" ")
-		for i in self.parents.keys():	#potential
+		for i in self.parents.keys():
 			print("Parent fitness: "+str(self.parents[i].xfitness)+", Children fitness: "+str(self.children[i].xfitness))
 		print(" ")
 		print(" ")
@@ -63,8 +63,12 @@ class PARALLEL_HILL_CLIMBER:
 		#mini putt
 			if abs(self.parents[i].xfitness+11) > abs(self.children[i].xfitness+11):
 				self.parents[i] = self.children[i]
+			if abs(self.parents[i].yfitness) > abs(self.children[i].yfitness):
+				self.parents[i] = self.children[i]
 		#furthest drive
 			#if self.parents[i].xfitness > self.children[i].xfitness:
+			#	self.parents[i] = self.children[i]
+			#if abs(self.parents[i].yfitness) > abs(self.children[i].yfitness):
 			#	self.parents[i] = self.children[i]
 
 	def Show_First(self):
@@ -75,9 +79,9 @@ class PARALLEL_HILL_CLIMBER:
 		parent_fitnesses = []
 		for i in self.parents:
 				#mini putt
-			parent_fitnesses.append(abs(self.parents[i].xfitness+11))
+			parent_fitnesses.append(abs(self.parents[i].xfitness+11)+abs(self.parents[i].yfitness))
 				#furthest drive
-			#parent_fitnesses.append(self.parents[i].xfitness)
+			#parent_fitnesses.append(self.parents[i].xfitness+abs(self.parents[i].yfitness))
 		bestFitness = parent_fitnesses.index(min(parent_fitnesses))
 		self.parents[bestFitness].Start_Simulation('GUI')
 		
