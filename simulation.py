@@ -18,7 +18,7 @@ class SIMULATION:
 		if directOrGUI == 'DIRECT':
 			self.physicsClient = p.connect(p.DIRECT)
 		else:
-			self.physicsClient = p.connect(p.GUI)
+			self.physicsClient = p.connect(p.GUI, options='--background_color_red=0.537 --background_color_green=0.812 --background_color_blue=0.941')
 
 		p.setAdditionalSearchPath(pybullet_data.getDataPath())
 		p.setGravity(0,0,-9.8)

@@ -10,8 +10,8 @@
             <geometry>
                 <box size="1 1 3" />
             </geometry>
-            <material name="Cyan">
-                <color rgba="0 1.0 1.0 1.0"/>
+            <material name="Red">
+                <color rgba="1 0 0 1"/>
             </material>
         </visual>
         <collision>
@@ -39,8 +39,8 @@
             <geometry>
                 <box size="0.3333333333333333 2.5 0.3333333333333333" />
             </geometry>
-            <material name="Cyan">
-                <color rgba="0 1.0 1.0 1.0"/>
+            <material name="Tan">
+                <color rgba="1.3 0.94 0.92 1"/>
             </material>
         </visual>
         <collision>
@@ -68,8 +68,8 @@
             <geometry>
                 <box size="0.3333333333333333 0.3333333333333333 2.8" />
             </geometry>
-            <material name="Cyan">
-                <color rgba="0 1.0 1.0 1.0"/>
+            <material name="Gray">
+                <color rgba="1 1 1 1"/>
             </material>
         </visual>
         <collision>
