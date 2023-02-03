@@ -50,19 +50,22 @@ class PARALLEL_HILL_CLIMBER:
 			solutions[i].Wait_For_Simulation_To_End('DIRECT')
 
 	def Print(self):
+		print(" ")
+		print(" ")
+		for i in self.parents.keys():	#potential
+			print("Parent fitness: "+str(self.parents[i].xfitness)+", Children fitness: "+str(self.children[i].xfitness))
+		print(" ")
+		print(" ")
 		
-		#for i in self.parents.keys():	#potential
-			#print(" ")
-			#print(" ")
-			#print("Parent fitness: "+str(self.parents[i].xfitness)+", Children fitness: "+str(self.children[i].fitness))
-			#print(" ")
-			#print(" ")
-		pass
 
 	def Select(self):
 		for i in self.parents.keys():
 			if abs(self.parents[i].xfitness+11) > abs(self.children[i].xfitness+11):
 				self.parents[i] = self.children[i]
+
+	def Show_First(self):
+		self.parents[0].Start_Simulation('GUI')
+		self.parents[0].Wait_For_Simulation_To_End('GUI')
 
 	def Show_Best(self):
 		parent_fitnesses = []

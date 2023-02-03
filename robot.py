@@ -67,7 +67,7 @@ class ROBOT:
 		#xPosition = str(position[0])
 		#yPosition = str(position[1])
 		#height = str(position[2])
-
+		
 		xPosition = self.world.Get_Pos_And_Orientation()
 		fitnessFile = open("tmp" + str(self.solutionID) + ".txt", "w")
 		fitnessFile.write(str(xPosition))

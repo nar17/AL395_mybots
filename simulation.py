@@ -23,17 +23,17 @@ class SIMULATION:
 		p.setAdditionalSearchPath(pybullet_data.getDataPath())
 		p.setGravity(0,0,-9.8)
 		
-		self.world = WORLD()		
+		#self.world = WORLD()		
 		self.robot = ROBOT(solutionID)
 		
 	def Run(self):
 		for t in range (c.numSteps):
 			p.stepSimulation()
+			#if t == c.numSteps:
+			#	self.world.Get_Pos_And_Orientation()
 			self.robot.Sense(t)
 			self.robot.Think()
 			self.robot.Act(t)
-			if t == c.numSteps:
-				self.world.Get_Pos_And_Orientation()
 			if self.directOrGUI != 'DIRECT':
 				time.sleep(1/100)
 

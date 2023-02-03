@@ -5,15 +5,15 @@ amplitude = numpy.pi/4
 frequency = 7
 phaseOffset = 0
 
-numberOfGenerations = 1
-populationSize = 1
+numberOfGenerations = 3
+populationSize = 3
 
 numSensorNeurons = 1 #4 #9
 numMotorNeurons = 1 #8 #8
 
 motorJointRange = 1
 
-numSteps = 1000
+numSteps = 1500
 
 
 #Links
