@@ -2,19 +2,20 @@ import numpy
 
 
 amplitude = numpy.pi/4
-frequency = 7
+frequency = 1
 phaseOffset = 0
 
-numberOfGenerations = 5
-populationSize = 5
+numberOfGenerations = 10
+populationSize = 2
 
-numSensorNeurons = 1 #4 #9
-numMotorNeurons = 1 #8 #8
+numSensorNeurons = 2 #4 #9
+numMotorNeurons = 2 #8 #8
 
 motorJointRange = 1
 
 numSteps = 1000
 timeSleep = 1/200
+xNum = numpy.pi
 
 
 #Links

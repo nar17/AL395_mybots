@@ -60,8 +60,12 @@ class PARALLEL_HILL_CLIMBER:
 
 	def Select(self):
 		for i in self.parents.keys():
+		#mini putt
 			if abs(self.parents[i].xfitness+11) > abs(self.children[i].xfitness+11):
 				self.parents[i] = self.children[i]
+		#furthest drive
+			#if self.parents[i].xfitness > self.children[i].xfitness:
+			#	self.parents[i] = self.children[i]
 
 	def Show_First(self):
 		self.parents[0].Start_Simulation('GUI')
@@ -70,16 +74,10 @@ class PARALLEL_HILL_CLIMBER:
 	def Show_Best(self):
 		parent_fitnesses = []
 		for i in self.parents:
+				#mini putt
 			parent_fitnesses.append(abs(self.parents[i].xfitness+11))
+				#furthest drive
+			#parent_fitnesses.append(self.parents[i].xfitness)
 		bestFitness = parent_fitnesses.index(min(parent_fitnesses))
 		self.parents[bestFitness].Start_Simulation('GUI')
-
-		#for i in self.parents:
-		#	self.parents[i].fitness = apple
-		#	self.parents[i].fitness = peach
-		#	if apple < peach:
-		#		yellow = apple
-		#self.parents[yellow].Start_Simulation('GUI')
 		
-		#os.system("py simulate.py GUI")
-		#self.Print()

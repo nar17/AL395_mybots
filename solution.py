@@ -81,12 +81,14 @@ class SOLUTION:
 		#pyrosim.Send_Cube(name="rightlowerleg", pos=[0,0,-0.5] , size=[0.2,0.2,1])	
 		
 			#golfer
-		pyrosim.Send_Cube(name="torso", pos=[0,-3,2.5] , size=[1,1,3], mass=10000.0, materialName="Red", colorString="1 0 0 1")
+		pyrosim.Send_Cube(name="torso", pos=[0,-3,3] , size=[1,1,3], mass=1000.0, materialName="Red", colorString="1 0 0 1")
+
 		pyrosim.Send_Joint( name = "torso_arm" , parent= "torso" , child = "arm" , type = "revolute", position = [0,-2.5,4], jointAxis = "0 1 0")
 		pyrosim.Send_Cube(name="arm", pos=[0,1.25,-1/6] , size=[1/3,2.5,1/3], materialName="Tan", colorString="1.3 0.94 0.92 1")
 		pyrosim.Send_Joint( name = "arm_club" , parent= "arm" , child = "club" , type = "fixed", position = [0,2.5,0], jointAxis = "1 0 0")		
 		pyrosim.Send_Cube(name="club", pos=[0,1/6,-1.5] , size=[1/3,1/3,2.8], materialName="Gray", colorString="1 1 1 1")
-
+		pyrosim.Send_Joint( name = "torso_hip" , parent= "torso" , child = "hip" , type = "revolute", position = [0,-3,1.75], jointAxis = "0 0 1")		
+		pyrosim.Send_Cube(name="hip", pos=[0,0,-0.5] , size=[1, 1, 0.5], mass=10000.0, materialName="Brown", colorString="0.7 0.6 0.5 1")
 		pyrosim.End()
 
 	def Create_Brain(self):
@@ -126,13 +128,16 @@ class SOLUTION:
 
 			#golfer
 		pyrosim.Send_Sensor_Neuron(name = 0 , linkName = "club")
-		pyrosim.Send_Motor_Neuron(name=1, jointName = "torso_arm")
+		pyrosim.Send_Sensor_Neuron(name = 1 , linkName = "hip")
+		pyrosim.Send_Motor_Neuron(name=2, jointName = "torso_arm")
+		pyrosim.Send_Motor_Neuron(name=3, jointName = "torso_hip")
 	
 		for currentRow in range(0,c.numSensorNeurons):
 			for currentColumn in range(0,c.numMotorNeurons):
 				pyrosim.Send_Synapse( sourceNeuronName = currentRow , targetNeuronName = currentColumn+c.numSensorNeurons , weight = self.weights[currentRow][currentColumn] ) #weight = random.random() #weight = random.uniform(-1,1)
 		pyrosim.End()
 		#exit()
+		
 	
 
 	def Mutate(self):

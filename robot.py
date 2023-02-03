@@ -29,6 +29,9 @@ class ROBOT:
 
 	def Sense(self, t):
 		for i in self.sensors:
+			#if self.sensors.keys()==1:
+			#self.sensors[i].Get_Value_Sin(t)
+			#else:
 			self.sensors[i].Get_Value(t)
 
 	def Prepare_To_Act(self):
