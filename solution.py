@@ -35,7 +35,7 @@ class SOLUTION:
 
 	def Wait_For_Simulation_To_End(self, directOrGUI):
 		while not os.path.exists("fitness" + str(self.myID) + ".txt"):
-			time.sleep(0.01)
+			time.sleep(0.02)
 		fitnessFile = open("fitness" + str(self.myID) + ".txt", "r")
 		self.overallFitness = fitnessFile.readlines()
 		self.xfitness = float(self.overallFitness[0])

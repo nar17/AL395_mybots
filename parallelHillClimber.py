@@ -16,10 +16,6 @@ class PARALLEL_HILL_CLIMBER:
 		
 
 	def Evolve(self):
-		#for i in self.parents:
-		#	self.parents[i].Start_Simulation('DIRECT')
-		#for i in self.parents:
-		#	self.parents[i].Wait_For_Simulation_To_End('DIRECT')
 		self.Evaluate(self.parents)
 		for currentGeneration in range(c.numberOfGenerations):
 			self.Evolve_For_One_Generation()
@@ -63,12 +59,8 @@ class PARALLEL_HILL_CLIMBER:
 		#mini putt
 			if abs(self.parents[i].xfitness+11) > abs(self.children[i].xfitness+11) and abs(self.parents[i].yfitness) > abs(self.children[i].yfitness):
 				self.parents[i] = self.children[i]
-			#if abs(self.parents[i].yfitness) > abs(self.children[i].yfitness):
-				#self.parents[i] = self.children[i]
 		#furthest drive
-			#if self.parents[i].xfitness > self.children[i].xfitness:
-			#	self.parents[i] = self.children[i]
-			#if abs(self.parents[i].yfitness) > abs(self.children[i].yfitness):
+			#if self.parents[i].xfitness > self.children[i].xfitness and abs(self.parents[i].yfitness) > abs(self.children[i].yfitness):
 			#	self.parents[i] = self.children[i]
 
 	def Show_First(self):
@@ -78,9 +70,9 @@ class PARALLEL_HILL_CLIMBER:
 	def Show_Best(self):
 		parent_fitnesses = []
 		for i in self.parents:
-				#mini putt
+			#mini putt
 			parent_fitnesses.append(abs(self.parents[i].xfitness+11)+abs(self.parents[i].yfitness))
-				#furthest drive
+			#furthest drive
 			#parent_fitnesses.append(self.parents[i].xfitness+abs(self.parents[i].yfitness))
 		bestFitness = parent_fitnesses.index(min(parent_fitnesses))
 		self.parents[bestFitness].Start_Simulation('GUI')
