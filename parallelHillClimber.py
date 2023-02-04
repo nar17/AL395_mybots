@@ -61,10 +61,10 @@ class PARALLEL_HILL_CLIMBER:
 	def Select(self):
 		for i in self.parents.keys():
 		#mini putt
-			if abs(self.parents[i].xfitness+11) > abs(self.children[i].xfitness+11):
+			if abs(self.parents[i].xfitness+11) > abs(self.children[i].xfitness+11) and abs(self.parents[i].yfitness) > abs(self.children[i].yfitness):
 				self.parents[i] = self.children[i]
-			if abs(self.parents[i].yfitness) > abs(self.children[i].yfitness):
-				self.parents[i] = self.children[i]
+			#if abs(self.parents[i].yfitness) > abs(self.children[i].yfitness):
+				#self.parents[i] = self.children[i]
 		#furthest drive
 			#if self.parents[i].xfitness > self.children[i].xfitness:
 			#	self.parents[i] = self.children[i]
