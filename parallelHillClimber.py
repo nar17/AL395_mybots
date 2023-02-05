@@ -50,8 +50,8 @@ class PARALLEL_HILL_CLIMBER:
 		print(" ")
 		for i in self.parents.keys():
 		#mini putt
-			#print("Parent fitness: "+str(abs(self.parents[i].xfitness+11)+abs(self.parents[i].yfitness))+", Children fitness: "+str(abs(self.children[i].xfitness+11)+abs(self.children[i].yfitness)))
-			print("Parent fitness: "+str(self.parents[i].xfitness+self.parents[i].yfitness)+", Children fitness: "+str(self.children[i].xfitness+self.children[i].yfitness))		
+			print("Parent fitness: "+str(abs(self.parents[i].xfitness+11)+abs(self.parents[i].yfitness))+", Children fitness: "+str(abs(self.children[i].xfitness+11)+abs(self.children[i].yfitness)))
+			#print("Parent fitness: "+str(self.parents[i].xfitness+self.parents[i].yfitness)+", Children fitness: "+str(self.children[i].xfitness+self.children[i].yfitness))	
 		#furthest drive
 			#print("Parent fitness: "+str(self.parents[i].xfitness+abs(self.parents[i].yfitness))+", Children fitness: "+str(self.children[i].xfitness+abs(self.children[i].yfitness)))
 		print(" ")
@@ -61,7 +61,8 @@ class PARALLEL_HILL_CLIMBER:
 	def Select(self):
 		for i in self.parents.keys():
 		#mini putt
-			if abs(self.parents[i].xfitness+11) > abs(self.children[i].xfitness+11) and abs(self.parents[i].yfitness) > abs(self.children[i].yfitness):
+			#if abs(self.parents[i].xfitness+11) > abs(self.children[i].xfitness+11) and abs(self.parents[i].yfitness) > abs(self.children[i].yfitness):
+			if abs(self.parents[i].xfitness+11)+abs(self.parents[i].yfitness) < abs(self.children[i].xfitness+11)+abs(self.children[i].yfitness):
 				self.parents[i] = self.children[i]
 		#furthest drive
 			#if self.parents[i].xfitness > self.children[i].xfitness and abs(self.parents[i].yfitness) > abs(self.children[i].yfitness):

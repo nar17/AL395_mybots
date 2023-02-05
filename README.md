@@ -6,7 +6,8 @@
 # The robot is contructed of four links, the torso, the hip, the arm, and the club. It has three joints, two revolute joints, torso_arm and torso_hip, and one fixed joint between the arm and the club. 
 # I added the state of the world, mass patch, and sphere patch. 
 # For the world, I created a mini putt course with a hole at the end (x = -11.5) and a sphere set right in front of robot's club.
-# The fitness function reads the x position and y position of the sphere, and it's goal is to land closest to the hole's x-coordinate(-11.5) while minimizing the distance from the y=0.
+# The fitness function reads the x position and y position of the sphere, and it's goal is to land closest to the hole's x-coordinate(-11) while minimizing the distance from the y=0.
+# The best fitness value should be the one closest to zero.
 #
 # Takeaways:
 #	- I'm damn proud I was able to achieve this assignment with its minimal instructions and this being my first ever coding class, and I'm thankful for those who helped me through it.
