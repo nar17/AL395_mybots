@@ -10,7 +10,7 @@ from pyrosim.commonFunctions import Save_Whitespace
 
 class LINK_SDF:
 
-    def __init__(self,name,pos,size,objectType,mass,materialName,colorString):
+    def __init__(self,name,pos,size,objectType,mass,materialName,colorString,rpy):
 
         self.name = name
 

@@ -5,8 +5,8 @@ amplitude = numpy.pi/4
 frequency = 1
 phaseOffset = 0
 
-numberOfGenerations = 10
-populationSize = 2
+numberOfGenerations = 1
+populationSize = 1
 
 numSensorNeurons = 2 #4 #9
 numMotorNeurons = 2 #8 #8
