@@ -14,7 +14,7 @@ numMotorNeurons = 2 #8 #8
 motorJointRange = 1
 
 numSteps = 1500
-timeSleep = 1/300
+timeSleep = 1/200
 xNum = numpy.pi
 
 
