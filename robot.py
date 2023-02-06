@@ -71,3 +71,4 @@ class ROBOT:
 		fitnessFile.write(xPosition + "\n" + yPosition)
 		fitnessFile.close()
 		os.system("rename tmp"+str(self.solutionID)+".txt " + "fitness"+str(self.solutionID)+".txt")
+		
