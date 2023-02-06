@@ -9,6 +9,7 @@ class SOLUTION:
 	def __init__(self, nextAvailableID):
 		self.weights = numpy.random.rand(c.numSensorNeurons,c.numMotorNeurons) * 2 - 1
 		self.myID = nextAvailableID
+		self.numLinks = random.randint(1,10)
 		
 	def Evaluate(self, directOrGUI):
 		#self.Create_World()
@@ -89,7 +90,33 @@ class SOLUTION:
 		#pyrosim.Send_Cube(name="hip", pos=[0,0,-0.5] , size=[1, 1, 0.5], mass=10000.0, materialName="Brown", colorString="0.7 0.6 0.5 1")
 		
 			#randomSnake
-		pyrosim.Send_Cube(name="rootLink", pos=[0,0,0.5] , size=[1,1,1], mass=1.0, materialName="Blue", colorString="0 0 1 1", rpy="0 0 0")
+		#self.numLinks is in the constructor
+		print(' ')
+		print('the number of links (including rootLink) is: ' +str(self.numLinks+1))
+		print(' ')
+
+		pyrosim.Send_Cube(name="rootLink", pos=[0,0,6] , size=[1,1,1], mass=1.0, materialName="Blue", colorString="0 0 1 1", rpy="0 0 0")
+		pyrosim.Send_Joint( name = "rootLink_link1" , parent= "rootLink" , child = "link1" , type = "revolute", position = [0.5,0,6], jointAxis = "0 1 0")
+
+		for i in range(1,self.numLinks):
+			if random.random()<0.5:
+				self.randMatName = "Blue"
+				self.randColStr = "0 0 1 1"
+			else:
+				self.randMatName = "Green"
+				self.randColStr = "0 1 0 1"
+			self.randSizeX = random.uniform(0.5,2.5)
+			self.randSizeY = random.uniform(0.5,2.5)
+			self.randSizeZ = random.uniform(0.5,2.5)
+			self.randLinkPosX = self.randSizeX/2
+			self.randJointPosX = self.randSizeX
+			self.randMass = random.uniform(0,5)
+			#pyrosim.Send_Cube(name='link'+str(i), pos=[random.uniform(0,5),0,0] , size=[random.uniform(0,5),random.uniform(0,5),random.uniform(0,5)], mass=random.uniform(0,100), materialName="Blue", colorString="0 0 1 1", rpy="0 0 0")
+			#pyrosim.Send_Joint( name = 'link'+str(i)+'_link'+str(i+1) , parent='link'+str(i), child ='link'+str(i+1), type = "revolute", position = [random.uniform(0,5),random.uniform(0,5),random.uniform(0,5)], jointAxis = "0 1 0")
+			pyrosim.Send_Cube(name='link'+str(i), pos=[self.randLinkPosX,0,0] , size=[self.randSizeX,self.randSizeY,self.randSizeZ], mass=self.randMass, materialName=self.randMatName, colorString=self.randColStr, rpy="0 0 0")
+			pyrosim.Send_Joint( name = 'link'+str(i)+'_link'+str(i+1) , parent='link'+str(i), child ='link'+str(i+1), type = "revolute", position = [self.randJointPosX,0,0], jointAxis = "0 1 0")
+		pyrosim.Send_Cube(name='link'+str(self.numLinks), pos=[self.randLinkPosX,0,0] , size=[self.randSizeX,random.uniform(0.5,2.5),random.uniform(0.5,2.5)], mass=random.uniform(0,5), materialName="Blue", colorString="0 0 1 1", rpy="0 0 0")
+		
 
 		pyrosim.End()
 

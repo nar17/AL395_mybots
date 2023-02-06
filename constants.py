@@ -1,9 +1,7 @@
 import numpy
+import random
 
 
-amplitude = numpy.pi/4
-frequency = 1
-phaseOffset = 0
 
 numberOfGenerations = 1
 populationSize = 1
@@ -14,15 +12,19 @@ numMotorNeurons = 2 #8 #8
 motorJointRange = 1
 
 numSteps = 1500
-timeSleep = 1/200
+timeSleep = 1/60
 xNum = numpy.pi
 
 
+
+
+
+
+#####################################################################
 #Links
 length = 1
 width = 1
 height = 1
-
 
 #backleg
 amplitude_BL = numpy.pi/3
@@ -33,3 +35,7 @@ phaseOffset_BL = numpy.pi/4
 amplitude_FL = numpy.pi/4
 frequency_FL = 10
 phaseOffset_FL = 0
+
+amplitude = numpy.pi/4
+frequency = 1
+phaseOffset = 0
