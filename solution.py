@@ -117,18 +117,28 @@ class SOLUTION:
 			self.randJointPosX = self.randSizeX
 			self.randMass = random.uniform(0,5)
 			#self.randJointType = random.choice(["revolute","prismatic","spherical","fixed"])
-			pyrosim.Send_Cube(name='link'+str(i), pos=[self.randLinkPosX,0,0] , size=[self.randSizeX,self.randSizeY,self.randSizeZ], mass=self.randMass, materialName=self.randMatName, colorString=self.randColStr, rpy="0 0 0")
-			pyrosim.Send_Joint( name = 'link'+str(i)+'_link'+str(i+1) , parent='link'+str(i), child ='link'+str(i+1), type = "revolute", position = [self.randJointPosX,0,0], jointAxis = "0 1 0")
+
+			if i == 1:
+				pyrosim.Send_Cube(name='link1', pos=[self.randLinkPosX,0,self.randSizeZ] , size=[self.randSizeX,self.randSizeY,self.randSizeZ], mass=self.randMass, materialName=self.randMatName, colorString=self.randColStr, rpy="0 0 0")
+				pyrosim.Send_Joint( name = 'link1_link'+str(i+1) , parent='link1', child ='link'+str(i+1), type = "revolute", position = [self.randJointPosX,0,0], jointAxis = "0 1 0")
+
+			if i != 1 and i != self.numLinks:
+				pyrosim.Send_Cube(name='link'+str(i), pos=[self.randLinkPosX,0,0] , size=[self.randSizeX,self.randSizeY,self.randSizeZ], mass=self.randMass, materialName=self.randMatName, colorString=self.randColStr, rpy="0 0 0")
+				pyrosim.Send_Joint( name = 'link'+str(i)+'_link'+str(i+1) , parent='link'+str(i), child ='link'+str(i+1), type = "revolute", position = [self.randJointPosX,0,0], jointAxis = "0 1 0")
 			
-			self.snakeLinks.update(name='link'+str(i), materialName=self.randMatName)
-			self.snakeJoints.update(name = 'link'+str(i)+'_link'+str(i+1) , parent='link'+str(i), child ='link'+str(i+1), type = "revolute", position = [self.randJointPosX,0,0], jointAxis = "0 1 0")
+			if i == self.numLinks:
+				pyrosim.Send_Cube(name='link'+str(i), pos=[self.randLinkPosX,0,0] , size=[self.randSizeX,self.randSizeY,self.randSizeZ], mass=self.randMass, materialName=self.randMatName, colorString=self.randColStr, rpy="0 0 0")
+			
+			#self.snakeLinks.update(name = 'link'+str(i+1), materialName=self.randMatName)
+			#self.snakeJoints.update(name = 'link'+str(i+1)+'_link'+str(i+2) , parent='link'+str(1), child ='link'+str(i+2), type = "revolute", position = [self.randJointPosX,0,0], jointAxis = "0 1 0")
 		
-		pyrosim.Send_Cube(name='link'+str(self.numLinks), pos=[self.randLinkPosX,0,0] , size=[self.randSizeX,random.uniform(0.5,2.5),random.uniform(0.5,2.5)], mass=random.uniform(0,5), materialName="Blue", colorString="0 0 1 1", rpy="0 0 0")
+		#pyrosim.Send_Cube(name='link'+str(self.numLinks), pos=[self.randLinkPosX,0,0] , size=[self.randSizeX,random.uniform(0.5,2.5),random.uniform(0.5,2.5)], mass=random.uniform(0,5), materialName="Blue", colorString="0 0 1 1", rpy="0 0 0")
 		#the only issue with this last link outside the for loop is that it has to be the same width as the second to last link in order that there isn't a gap between the two.
 		
 		# what if we define two dictionaries in the constructor: snakeLinks={} and snakeJoints={}; then after we Send_Cube we add to snakeLinks and after we Send_Joint we add to snakeJoints.
 		# then when we go down to Create_Brain, we pull from the dictionary, query the color, then apply sensorneurons as needed, and we apply motorneurons to all joints. 
 		# then we get into the randomized weights of the sensors
+		# having trouble with this ^^ .. could we have a nested dictionary, where the keys are 'link'+str(i):self.randMatName ??? seems a little overly complicated....
 		
 		#print(self.snakeLinks.keys())
 		#print(self.snakeJoints.keys())
@@ -177,9 +187,9 @@ class SOLUTION:
 		#pyrosim.Send_Motor_Neuron(name=2, jointName = "torso_arm")
 		#pyrosim.Send_Motor_Neuron(name=3, jointName = "torso_hip")
 
-		for i in range(1,self.numLinks):
-			if self.snakeLinks['materialName'] == "Blue":
-				pyrosim.Send_Sensor_Neuron(name = i-1, linkName = self.snakeLinks['name'])
+		#for i in range(1,self.numLinks):
+		#	if self.snakeLinks['materialName'] == "Blue":
+		#		pyrosim.Send_Sensor_Neuron(name = i-1, linkName = self.snakeLinks['name'])
 		#for i in (1,self.numLinks):
 			#pyrosim.Send_Motor_Neuron(name=)
 	
