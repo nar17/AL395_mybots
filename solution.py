@@ -9,7 +9,7 @@ class SOLUTION:
 	def __init__(self, nextAvailableID):
 		self.weights = numpy.random.rand(c.numSensorNeurons,c.numMotorNeurons) * 2 - 1
 		self.myID = nextAvailableID
-		self.numLinks = random.randint(1,10)
+		self.numLinks = random.randint(5,10)
 		
 	def Evaluate(self, directOrGUI):
 		#self.Create_World()
@@ -92,11 +92,11 @@ class SOLUTION:
 			#randomSnake
 		#self.numLinks is in the constructor
 		print(' ')
-		print('the number of links (including rootLink) is: ' +str(self.numLinks+1))
+		print('the number of links is: ' +str(self.numLinks))
 		print(' ')
 
-		pyrosim.Send_Cube(name="rootLink", pos=[0,0,6] , size=[1,1,1], mass=1.0, materialName="Blue", colorString="0 0 1 1", rpy="0 0 0")
-		pyrosim.Send_Joint( name = "rootLink_link1" , parent= "rootLink" , child = "link1" , type = "revolute", position = [0.5,0,6], jointAxis = "0 1 0")
+		#pyrosim.Send_Cube(name="rootLink", pos=[0,0,6] , size=[1,1,1], mass=1.0, materialName="Blue", colorString="0 0 1 1", rpy="0 0 0")
+		#pyrosim.Send_Joint( name = "rootLink_link1" , parent= "rootLink" , child = "link1" , type = "revolute", position = [0.5,0,6], jointAxis = "0 1 0")
 
 		for i in range(1,self.numLinks):
 			if random.random()<0.5:
@@ -111,13 +111,13 @@ class SOLUTION:
 			self.randLinkPosX = self.randSizeX/2
 			self.randJointPosX = self.randSizeX
 			self.randMass = random.uniform(0,5)
-			#pyrosim.Send_Cube(name='link'+str(i), pos=[random.uniform(0,5),0,0] , size=[random.uniform(0,5),random.uniform(0,5),random.uniform(0,5)], mass=random.uniform(0,100), materialName="Blue", colorString="0 0 1 1", rpy="0 0 0")
-			#pyrosim.Send_Joint( name = 'link'+str(i)+'_link'+str(i+1) , parent='link'+str(i), child ='link'+str(i+1), type = "revolute", position = [random.uniform(0,5),random.uniform(0,5),random.uniform(0,5)], jointAxis = "0 1 0")
 			pyrosim.Send_Cube(name='link'+str(i), pos=[self.randLinkPosX,0,0] , size=[self.randSizeX,self.randSizeY,self.randSizeZ], mass=self.randMass, materialName=self.randMatName, colorString=self.randColStr, rpy="0 0 0")
 			pyrosim.Send_Joint( name = 'link'+str(i)+'_link'+str(i+1) , parent='link'+str(i), child ='link'+str(i+1), type = "revolute", position = [self.randJointPosX,0,0], jointAxis = "0 1 0")
 		pyrosim.Send_Cube(name='link'+str(self.numLinks), pos=[self.randLinkPosX,0,0] , size=[self.randSizeX,random.uniform(0.5,2.5),random.uniform(0.5,2.5)], mass=random.uniform(0,5), materialName="Blue", colorString="0 0 1 1", rpy="0 0 0")
-		
-
+		#the only issue with this last link outside the for loop is that it has to be the same width as the second to last link in order that there isn't a gap between the two.
+		# what if we define two dictionaries in the constructor: snakeLinks={} and snakeJoints={}; then after we Send_Cube we add to snakeLinks and after we Send_Joint we add to snakeJoints.
+		# then when we go down to Create_Brain, we pull from the dictionary, query the color, then apply sensorneurons as needed, and we apply motorneurons to all joints. 
+		# then we get into the randomized weights of the sensors
 		pyrosim.End()
 
 
@@ -161,10 +161,18 @@ class SOLUTION:
 		#pyrosim.Send_Sensor_Neuron(name = 1 , linkName = "hip")
 		#pyrosim.Send_Motor_Neuron(name=2, jointName = "torso_arm")
 		#pyrosim.Send_Motor_Neuron(name=3, jointName = "torso_hip")
+
+		#for i in linkNamesToIndices:
+		#	if materialName == "Blue":
+		#		pyrosim.Send_Sensor_Neuron(name = i, linkName = 'link'+str(i))
+		#for i in jointNamesToIndices:
+		#	pyrosim.Send_Motor_Neuron(name=)
 	
 		for currentRow in range(0,c.numSensorNeurons):
 			for currentColumn in range(0,c.numMotorNeurons):
 				pyrosim.Send_Synapse( sourceNeuronName = currentRow , targetNeuronName = currentColumn+c.numSensorNeurons , weight = self.weights[currentRow][currentColumn] ) #weight = random.random() #weight = random.uniform(-1,1)
+		
+
 		pyrosim.End()
 		#exit()
 		
