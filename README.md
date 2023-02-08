@@ -15,12 +15,10 @@ The following image shows an example of a randomized snake robot:
 The resulting robots show small movements with a "wiggle"-like disposition.
 
 The following Youtube link shows various generations of the randomized snake-bodied robots: 
-
 https://youtu.be/O4H-8bwoxNI
 
 
 The following Github link shows the full code repository: 
-
 https://github.com/nar17/AL395_mybots/tree/assignmentSIX
 
 # Acknowledgements:
