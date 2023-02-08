@@ -2,7 +2,7 @@
 	Create a snake-like robot with a randomized body in one dimension and with color-coded, randomized sensor placement.
 
 # Running Instructions:
-	Open search.py and run program.
+Open search.py and run program.
 
 # Essential Code:
 	In solution.py's Create_Body method, the number of links is randomized such that the robot will be between 5-11 links long. The robot 
