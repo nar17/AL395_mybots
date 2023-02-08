@@ -1,6 +1,6 @@
 # AL395_mybots
 #
-# Run in search.py
+    #Run in search.py
 #
 # For Assingment 5, I set out to create a mini-putt robot. 
 # The robot is contructed of four links, the torso, the hip, the arm, and the club. It has three joints, two revolute joints, torso_arm and torso_hip, and one fixed joint between the arm and the club. 
