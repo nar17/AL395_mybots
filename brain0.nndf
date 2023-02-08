@@ -1,6 +1,2 @@
 <neuralNetwork>
-    <synapse sourceNeuronName = "0" targetNeuronName = "2" weight = "-0.12071023935654135" />
-    <synapse sourceNeuronName = "0" targetNeuronName = "3" weight = "0.5300081447673735" />
-    <synapse sourceNeuronName = "1" targetNeuronName = "2" weight = "0.4370803594225392" />
-    <synapse sourceNeuronName = "1" targetNeuronName = "3" weight = "-0.9251143119009992" />
 </neuralNetwork>

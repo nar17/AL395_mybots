@@ -62,39 +62,11 @@ class SOLUTION:
 	def Create_Body(self):
 		pyrosim.Start_URDF("body.urdf")
 		
-			#Quadruped
-		#pyrosim.Send_Cube(name="torso", pos=[0,0,1] , size=[c.length,c.width,c.height])
-		#pyrosim.Send_Joint( name = "torso_frontleg" , parent= "torso" , child = "frontleg" , type = "revolute", position = [0,0.5,1], jointAxis = "1 0 0")
-		#pyrosim.Send_Cube(name="frontleg", pos=[0,0.5,0] , size=[0.2,1,0.2])
-		#pyrosim.Send_Joint( name = "frontleg_frontlowerleg" , parent= "frontleg" , child = "frontlowerleg" , type = "revolute", position = [0,1,0], jointAxis = "0 1 0")
-		#pyrosim.Send_Cube(name="frontlowerleg", pos=[0,0,-0.5] , size=[0.2,0.2,1])				
-		#pyrosim.Send_Joint( name = "torso_backleg" , parent= "torso" , child = "backleg" , type = "revolute", position = [0,-0.5,1], jointAxis = "1 0 0")
-		#pyrosim.Send_Cube(name="backleg", pos=[0,-0.5,0] , size=[0.2,1,0.2])
-		#pyrosim.Send_Joint( name = "backleg_backlowerleg" , parent= "backleg" , child = "backlowerleg" , type = "revolute", position = [0,-1,0], jointAxis = "0 1 0")
-		#pyrosim.Send_Cube(name="backlowerleg", pos=[0,0,-0.5] , size=[0.2,0.2,1])	
-		#pyrosim.Send_Joint( name = "torso_leftleg" , parent= "torso" , child = "leftleg" , type = "revolute", position = [-0.5,0,1], jointAxis = "0 1 0")
-		#pyrosim.Send_Cube(name="leftleg", pos=[-0.5,0,0] , size=[1,0.2,0.2])
-		#pyrosim.Send_Joint( name = "leftleg_leftlowerleg" , parent= "leftleg" , child = "leftlowerleg" , type = "revolute", position = [-1,0,0], jointAxis = "0 1 0")
-		#pyrosim.Send_Cube(name="leftlowerleg", pos=[0,0,-0.5] , size=[0.2,0.2,1])	
-		#pyrosim.Send_Joint( name = "torso_rightleg" , parent= "torso" , child = "rightleg" , type = "revolute", position = [0.5,0,1], jointAxis = "0 1 0")
-		#pyrosim.Send_Cube(name="rightleg", pos=[0.5,0,0] , size=[1,0.2,0.2])
-		#pyrosim.Send_Joint( name = "rightleg_rightlowerleg" , parent= "rightleg" , child = "rightlowerleg" , type = "revolute", position = [1,0,0], jointAxis = "0 1 0")
-		#pyrosim.Send_Cube(name="rightlowerleg", pos=[0,0,-0.5] , size=[0.2,0.2,1])	
-		
-			#golfer
-		#pyrosim.Send_Cube(name="torso", pos=[0,-3,3] , size=[1,1,3], mass=1000.0, materialName="Red", colorString="1 0 0 1", rpy="0 0 0")
-		#pyrosim.Send_Joint( name = "torso_arm" , parent= "torso" , child = "arm" , type = "revolute", position = [0,-2.5,4], jointAxis = "0 1 0")
-		#pyrosim.Send_Cube(name="arm", pos=[0,1.25,-1/6] , size=[1/3,2.5,1/3], materialName="Tan", colorString="1.3 0.94 0.92 1")
-		#pyrosim.Send_Joint( name = "arm_club" , parent= "arm" , child = "club" , type = "fixed", position = [0,2.5,0], jointAxis = "1 0 0")		
-		#pyrosim.Send_Cube(name="club", pos=[0,1/6,-1.5] , size=[1/3,1/3,2.8], materialName="Gray", colorString="1 1 1 1")
-		#pyrosim.Send_Joint( name = "torso_hip" , parent= "torso" , child = "hip" , type = "revolute", position = [0,-3,1.75], jointAxis = "0 0 1")		
-		#pyrosim.Send_Cube(name="hip", pos=[0,0,-0.5] , size=[1, 1, 0.5], mass=10000.0, materialName="Brown", colorString="0.7 0.6 0.5 1")
-		
 			#randomSnake
 		#self.numLinks is in the constructor
 		self.numLinks = random.randint(5,10)
 		print(' ')
-		print('the number of links is: ' +str(self.numLinks))
+		print('the number of links is: ' +str(self.numLinks-1))
 		print(' ')
 
 		self.snakeLinks={}
@@ -121,15 +93,20 @@ class SOLUTION:
 			if i == 1:
 				pyrosim.Send_Cube(name='link1', pos=[self.randLinkPosX,0,self.randSizeZ] , size=[self.randSizeX,self.randSizeY,self.randSizeZ], mass=self.randMass, materialName=self.randMatName, colorString=self.randColStr, rpy="0 0 0")
 				pyrosim.Send_Joint( name = 'link1_link'+str(i+1) , parent='link1', child ='link'+str(i+1), type = "revolute", position = [self.randJointPosX,0,self.randSizeZ], jointAxis = "0 1 0")
-
 			if i != 1 and i != self.numLinks:
 				pyrosim.Send_Cube(name='link'+str(i), pos=[self.randLinkPosX,0,0] , size=[self.randSizeX,self.randSizeY,self.randSizeZ], mass=self.randMass, materialName=self.randMatName, colorString=self.randColStr, rpy="0 0 0")
-			
 			if i != 1 and i != self.numLinks-1:
 				pyrosim.Send_Joint( name = 'link'+str(i)+'_link'+str(i+1) , parent='link'+str(i), child ='link'+str(i+1), type = "revolute", position = [self.randJointPosX,0,0], jointAxis = "0 1 0")
-			
 			if i == self.numLinks:
 				pyrosim.Send_Cube(name='link'+str(i), pos=[self.randLinkPosX,0,0] , size=[self.randSizeX,self.randSizeY,self.randSizeZ], mass=self.randMass, materialName=self.randMatName, colorString=self.randColStr, rpy="0 0 0")
+			
+			self.linkName = {}
+			self.linkName['link'+str(i)] = self.randMatName
+			if self.linkName['link'+str(i)] == 'Green':
+				print('link'+str(i)+' is green')
+			else:
+				print('link'+str(i)+' is blue')
+			print(self.linkName)
 			
 			#self.snakeLinks.update(name = 'link'+str(i+1), materialName=self.randMatName)
 			#self.snakeJoints.update(name = 'link'+str(i+1)+'_link'+str(i+2) , parent='link'+str(1), child ='link'+str(i+2), type = "revolute", position = [self.randJointPosX,0,0], jointAxis = "0 1 0")
@@ -142,15 +119,75 @@ class SOLUTION:
 		# then we get into the randomized weights of the sensors
 		# having trouble with this ^^ .. could we have a nested dictionary, where the keys are 'link'+str(i):self.randMatName ??? seems a little overly complicated....
 		
+		#print(self.snakeLinks)
 		#print(self.snakeLinks.keys())
 		#print(self.snakeJoints.keys())
 
 		pyrosim.End()
-
+	
 
 	def Create_Brain(self):
-		pyrosim.Start_NeuralNetwork("brain" + str(self.myID) + ".nndf")
+		#pyrosim.Start_NeuralNetwork("brain" + str(self.myID) + ".nndf")
+
+		#for i in range(1,self.numLinks):
+		#	if self.snakeLinks['materialName'] == "Blue":
+		#		pyrosim.Send_Sensor_Neuron(name = i-1, linkName = self.snakeLinks)
+		#for i in (1,self.numLinks):
+			#pyrosim.Send_Motor_Neuron(name=)
+	
+		#for currentRow in range(0,c.numSensorNeurons):
+		#	for currentColumn in range(0,c.numMotorNeurons):
+		#		pyrosim.Send_Synapse( sourceNeuronName = currentRow , targetNeuronName = currentColumn+c.numSensorNeurons , weight = self.weights[currentRow][currentColumn] ) #weight = random.random() #weight = random.uniform(-1,1)
+
+		#pyrosim.End()
+		pass
 		
+	
+
+	def Mutate(self):
+		randomRow = random.randint(0,c.numSensorNeurons-1)
+		randomColumn = random.randint(0,c.numMotorNeurons-1)
+		self.weights[randomRow,randomColumn] = random.random() * 2 - 1
+
+	def Set_ID(self, ID):
+		self.myID = ID
+
+
+	
+
+
+
+	#This goes in CREATE Body
+		#Quadruped
+		#pyrosim.Send_Cube(name="torso", pos=[0,0,1] , size=[c.length,c.width,c.height])
+		#pyrosim.Send_Joint( name = "torso_frontleg" , parent= "torso" , child = "frontleg" , type = "revolute", position = [0,0.5,1], jointAxis = "1 0 0")
+		#pyrosim.Send_Cube(name="frontleg", pos=[0,0.5,0] , size=[0.2,1,0.2])
+		#pyrosim.Send_Joint( name = "frontleg_frontlowerleg" , parent= "frontleg" , child = "frontlowerleg" , type = "revolute", position = [0,1,0], jointAxis = "0 1 0")
+		#pyrosim.Send_Cube(name="frontlowerleg", pos=[0,0,-0.5] , size=[0.2,0.2,1])				
+		#pyrosim.Send_Joint( name = "torso_backleg" , parent= "torso" , child = "backleg" , type = "revolute", position = [0,-0.5,1], jointAxis = "1 0 0")
+		#pyrosim.Send_Cube(name="backleg", pos=[0,-0.5,0] , size=[0.2,1,0.2])
+		#pyrosim.Send_Joint( name = "backleg_backlowerleg" , parent= "backleg" , child = "backlowerleg" , type = "revolute", position = [0,-1,0], jointAxis = "0 1 0")
+		#pyrosim.Send_Cube(name="backlowerleg", pos=[0,0,-0.5] , size=[0.2,0.2,1])	
+		#pyrosim.Send_Joint( name = "torso_leftleg" , parent= "torso" , child = "leftleg" , type = "revolute", position = [-0.5,0,1], jointAxis = "0 1 0")
+		#pyrosim.Send_Cube(name="leftleg", pos=[-0.5,0,0] , size=[1,0.2,0.2])
+		#pyrosim.Send_Joint( name = "leftleg_leftlowerleg" , parent= "leftleg" , child = "leftlowerleg" , type = "revolute", position = [-1,0,0], jointAxis = "0 1 0")
+		#pyrosim.Send_Cube(name="leftlowerleg", pos=[0,0,-0.5] , size=[0.2,0.2,1])	
+		#pyrosim.Send_Joint( name = "torso_rightleg" , parent= "torso" , child = "rightleg" , type = "revolute", position = [0.5,0,1], jointAxis = "0 1 0")
+		#pyrosim.Send_Cube(name="rightleg", pos=[0.5,0,0] , size=[1,0.2,0.2])
+		#pyrosim.Send_Joint( name = "rightleg_rightlowerleg" , parent= "rightleg" , child = "rightlowerleg" , type = "revolute", position = [1,0,0], jointAxis = "0 1 0")
+		#pyrosim.Send_Cube(name="rightlowerleg", pos=[0,0,-0.5] , size=[0.2,0.2,1])	
+		
+			#golfer
+		#pyrosim.Send_Cube(name="torso", pos=[0,-3,3] , size=[1,1,3], mass=1000.0, materialName="Red", colorString="1 0 0 1", rpy="0 0 0")
+		#pyrosim.Send_Joint( name = "torso_arm" , parent= "torso" , child = "arm" , type = "revolute", position = [0,-2.5,4], jointAxis = "0 1 0")
+		#pyrosim.Send_Cube(name="arm", pos=[0,1.25,-1/6] , size=[1/3,2.5,1/3], materialName="Tan", colorString="1.3 0.94 0.92 1")
+		#pyrosim.Send_Joint( name = "arm_club" , parent= "arm" , child = "club" , type = "fixed", position = [0,2.5,0], jointAxis = "1 0 0")		
+		#pyrosim.Send_Cube(name="club", pos=[0,1/6,-1.5] , size=[1/3,1/3,2.8], materialName="Gray", colorString="1 1 1 1")
+		#pyrosim.Send_Joint( name = "torso_hip" , parent= "torso" , child = "hip" , type = "revolute", position = [0,-3,1.75], jointAxis = "0 0 1")		
+		#pyrosim.Send_Cube(name="hip", pos=[0,0,-0.5] , size=[1, 1, 0.5], mass=10000.0, materialName="Brown", colorString="0.7 0.6 0.5 1")
+
+
+	#This goes in CREATE Brain
 			#quadruped all sensors 
 		#pyrosim.Send_Sensor_Neuron(name = 0 , linkName = "torso")
 		#pyrosim.Send_Sensor_Neuron(name = 1 , linkName = "backleg")
@@ -182,36 +219,8 @@ class SOLUTION:
 		#pyrosim.Send_Motor_Neuron( name = 9 , jointName = "leftleg_leftlowerleg")
 		#pyrosim.Send_Motor_Neuron( name = 10 , jointName = "torso_rightleg")
 		#pyrosim.Send_Motor_Neuron( name = 11 , jointName = "rightleg_rightlowerleg")
-
 			#golfer
 		#pyrosim.Send_Sensor_Neuron(name = 0 , linkName = "club")
 		#pyrosim.Send_Sensor_Neuron(name = 1 , linkName = "hip")
 		#pyrosim.Send_Motor_Neuron(name=2, jointName = "torso_arm")
 		#pyrosim.Send_Motor_Neuron(name=3, jointName = "torso_hip")
-
-		#for i in range(1,self.numLinks):
-		#	if self.snakeLinks['materialName'] == "Blue":
-		#		pyrosim.Send_Sensor_Neuron(name = i-1, linkName = self.snakeLinks['name'])
-		#for i in (1,self.numLinks):
-			#pyrosim.Send_Motor_Neuron(name=)
-	
-		for currentRow in range(0,c.numSensorNeurons):
-			for currentColumn in range(0,c.numMotorNeurons):
-				pyrosim.Send_Synapse( sourceNeuronName = currentRow , targetNeuronName = currentColumn+c.numSensorNeurons , weight = self.weights[currentRow][currentColumn] ) #weight = random.random() #weight = random.uniform(-1,1)
-		
-
-		pyrosim.End()
-		#exit()
-		
-	
-
-	def Mutate(self):
-		randomRow = random.randint(0,c.numSensorNeurons-1)
-		randomColumn = random.randint(0,c.numMotorNeurons-1)
-		self.weights[randomRow,randomColumn] = random.random() * 2 - 1
-
-	def Set_ID(self, ID):
-		self.myID = ID
-
-
-	
