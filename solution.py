@@ -7,9 +7,12 @@ import time
 
 class SOLUTION:
 	def __init__(self, nextAvailableID):
-		self.weights = numpy.random.rand(c.numSensorNeurons,c.numMotorNeurons) * 2 - 1
 		self.myID = nextAvailableID
+		self.sensorList = {}
+		self.motorList = {}
+		self.neuronId = 0
 		
+
 		
 		
 	def Evaluate(self, directOrGUI):
@@ -68,15 +71,9 @@ class SOLUTION:
 		print(' ')
 		print('the number of links is: ' +str(self.numLinks-1))
 		print(' ')
-
-		self.snakeLinks={}
-		self.snakeJoints={}
-
-		#pyrosim.Send_Cube(name="rootLink", pos=[0,0,6] , size=[1,1,1], mass=1.0, materialName="Blue", colorString="0 0 1 1", rpy="0 0 0")
-		#pyrosim.Send_Joint( name = "rootLink_link1" , parent= "rootLink" , child = "link1" , type = "revolute", position = [0.5,0,6], jointAxis = "0 1 0")
 		
 		for i in range(1,self.numLinks):
-			if random.random()<0.5:
+			if random.random()<0.3:
 				self.randMatName = "Blue"
 				self.randColStr = "0 0 1 1"
 			else:
@@ -89,24 +86,32 @@ class SOLUTION:
 			self.randJointPosX = self.randSizeX
 			self.randMass = random.uniform(0,5)
 			#self.randJointType = random.choice(["revolute","prismatic","spherical","fixed"])
-
+		
 			if i == 1:
 				pyrosim.Send_Cube(name='link1', pos=[self.randLinkPosX,0,self.randSizeZ] , size=[self.randSizeX,self.randSizeY,self.randSizeZ], mass=self.randMass, materialName=self.randMatName, colorString=self.randColStr, rpy="0 0 0")
 				pyrosim.Send_Joint( name = 'link1_link'+str(i+1) , parent='link1', child ='link'+str(i+1), type = "revolute", position = [self.randJointPosX,0,self.randSizeZ], jointAxis = "0 1 0")
+				if self.randMatName == "Green":
+					self.sensorList[i] = 'link'+str(i)
+				self.motorList['joint'+str(i)] = 'link1_link'+str(i+1)
 			if i != 1 and i != self.numLinks:
 				pyrosim.Send_Cube(name='link'+str(i), pos=[self.randLinkPosX,0,0] , size=[self.randSizeX,self.randSizeY,self.randSizeZ], mass=self.randMass, materialName=self.randMatName, colorString=self.randColStr, rpy="0 0 0")
+				if self.randMatName == "Green":
+					self.sensorList[i] = 'link'+str(i)
 			if i != 1 and i != self.numLinks-1:
 				pyrosim.Send_Joint( name = 'link'+str(i)+'_link'+str(i+1) , parent='link'+str(i), child ='link'+str(i+1), type = "revolute", position = [self.randJointPosX,0,0], jointAxis = "0 1 0")
+				self.motorList['joint'+str(i)] = 'link'+str(i)+'_link'+str(i+1)
 			if i == self.numLinks:
 				pyrosim.Send_Cube(name='link'+str(i), pos=[self.randLinkPosX,0,0] , size=[self.randSizeX,self.randSizeY,self.randSizeZ], mass=self.randMass, materialName=self.randMatName, colorString=self.randColStr, rpy="0 0 0")
+				if self.randMatName == "Green":
+					self.sensorList[i] = 'link'+str(i)
 			
-			self.linkName = {}
-			self.linkName['link'+str(i)] = self.randMatName
-			if self.linkName['link'+str(i)] == 'Green':
-				print('link'+str(i)+' is green')
-			else:
-				print('link'+str(i)+' is blue')
-			print(self.linkName)
+			#self.linkName = {}
+			#self.linkName['link'+str(i)] = self.randMatName
+			#if self.linkName['link'+str(i)] == 'Green':
+			#	print('link'+str(i)+' is green')
+			#else:
+			#	print('link'+str(i)+' is blue')
+			#print(self.linkName)
 			
 			#self.snakeLinks.update(name = 'link'+str(i+1), materialName=self.randMatName)
 			#self.snakeJoints.update(name = 'link'+str(i+1)+'_link'+str(i+2) , parent='link'+str(1), child ='link'+str(i+2), type = "revolute", position = [self.randJointPosX,0,0], jointAxis = "0 1 0")
@@ -127,7 +132,8 @@ class SOLUTION:
 	
 
 	def Create_Brain(self):
-		#pyrosim.Start_NeuralNetwork("brain" + str(self.myID) + ".nndf")
+		
+		pyrosim.Start_NeuralNetwork("brain" + str(self.myID) + ".nndf")
 
 		#for i in range(1,self.numLinks):
 		#	if self.snakeLinks['materialName'] == "Blue":
@@ -135,19 +141,40 @@ class SOLUTION:
 		#for i in (1,self.numLinks):
 			#pyrosim.Send_Motor_Neuron(name=)
 	
+
+			#quadruped/golfer
 		#for currentRow in range(0,c.numSensorNeurons):
 		#	for currentColumn in range(0,c.numMotorNeurons):
 		#		pyrosim.Send_Synapse( sourceNeuronName = currentRow , targetNeuronName = currentColumn+c.numSensorNeurons , weight = self.weights[currentRow][currentColumn] ) #weight = random.random() #weight = random.uniform(-1,1)
 
-		#pyrosim.End()
-		pass
-		
-	
+
+
+			#randomSnake
+		for i in self.sensorList:
+			pyrosim.Send_Sensor_Neuron(name = self.neuronId, linkName = str(self.sensorList[i]))
+			self.neuronId +=1
+		for i in self.motorList:
+			pyrosim.Send_Motor_Neuron(name = self.neuronId, jointName = str(self.motorList[i]))
+			self.neuronId +=1
+		self.weights = numpy.random.rand(len(self.sensorList),len(self.motorList)) * 2 - 1
+		for currentRow in range(0,len(self.sensorList)):
+			for currentColumn in range(0,len(self.motorList)):
+				pyrosim.Send_Synapse( sourceNeuronName = currentRow , targetNeuronName = currentColumn+len(self.sensorList) , weight = self.weights[currentRow][currentColumn] ) #weight = random.random() #weight = random.uniform(-1,1)
+
+		print(self.weights)
+
+		pyrosim.End()
 
 	def Mutate(self):
-		randomRow = random.randint(0,c.numSensorNeurons-1)
-		randomColumn = random.randint(0,c.numMotorNeurons-1)
+			#randomSnake
+		randomRow = random.randint(0,len(self.sensorList)-1)
+		randomColumn = random.randint(0,len(self.sensorMotor)-1)
 		self.weights[randomRow,randomColumn] = random.random() * 2 - 1
+		
+			#quadruped/golfer
+		#randomRow = random.randint(0,c.numSensorNeurons-1)
+		#randomColumn = random.randint(0,c.numMotorNeurons-1)
+		#self.weights[randomRow,randomColumn] = random.random() * 2 - 1
 
 	def Set_ID(self, ID):
 		self.myID = ID
