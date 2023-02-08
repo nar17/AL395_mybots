@@ -89,7 +89,7 @@ class SOLUTION:
 		
 			if i == 1:
 				pyrosim.Send_Cube(name='link1', pos=[self.randLinkPosX,0,self.randSizeZ] , size=[self.randSizeX,self.randSizeY,self.randSizeZ], mass=self.randMass, materialName=self.randMatName, colorString=self.randColStr, rpy="0 0 0")
-				pyrosim.Send_Joint( name = 'link1_link'+str(i+1) , parent='link1', child ='link'+str(i+1), type = "revolute", position = [self.randJointPosX,0,self.randSizeZ], jointAxis = "0 0 1")
+				pyrosim.Send_Joint( name = 'link1_link'+str(i+1) , parent='link1', child ='link'+str(i+1), type = "revolute", position = [self.randJointPosX,0,self.randSizeZ], jointAxis = "0 1 0")
 				if self.randMatName == "Green":
 					self.sensorList[i] = 'link'+str(i)
 				self.motorList['joint'+str(i)] = 'link1_link'+str(i+1)
@@ -98,7 +98,7 @@ class SOLUTION:
 				if self.randMatName == "Green":
 					self.sensorList[i] = 'link'+str(i)
 			if i != 1 and i != self.numLinks-1:
-				pyrosim.Send_Joint( name = 'link'+str(i)+'_link'+str(i+1) , parent='link'+str(i), child ='link'+str(i+1), type = "revolute", position = [self.randJointPosX,0,0], jointAxis = "0 0 1")
+				pyrosim.Send_Joint( name = 'link'+str(i)+'_link'+str(i+1) , parent='link'+str(i), child ='link'+str(i+1), type = "revolute", position = [self.randJointPosX,0,0], jointAxis = "0 1 0")
 				self.motorList['joint'+str(i)] = 'link'+str(i)+'_link'+str(i+1)
 			if i == self.numLinks:
 				pyrosim.Send_Cube(name='link'+str(i), pos=[self.randLinkPosX,0,0] , size=[self.randSizeX,self.randSizeY,self.randSizeZ], mass=self.randMass, materialName=self.randMatName, colorString=self.randColStr, rpy="0 0 0")

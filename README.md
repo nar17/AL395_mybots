@@ -10,7 +10,11 @@ In solution.py's Create_Body method, the number of links is randomized such that
 # Result:
 The resulting robots show small movements with a "wiggle"-like disposition.
 
-The following link shows various generations of the randomized snake-bodied robots: 
+The following Youtube link shows various generations of the randomized snake-bodied robots: 
+
+
+The following Github link shows the full code repository: 
+https://github.com/nar17/AL395_mybots/tree/assignmentSIX
 
 # Acknowledgements:
-This assignment was performed for Sam Kriegman's Artificial Life class at Northwestern University. It is based off of Josh Bongard's reddit-based MOOC called 'Ludobots'. Special thanks go out to Donna Hooshmand and the rest of the students in the class for their help in office hours and on Campuswire. 
+This assignment was performed for Sam Kriegman's Artificial Life class at Northwestern University in the Winter 2022 quarter. It is based off of Josh Bongard's reddit-based MOOC called 'Ludobots'. Special thanks to Donna Hooshmand and the rest of the students for their help in office hours and on Campuswire. 
