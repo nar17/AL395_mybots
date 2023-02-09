@@ -11,8 +11,8 @@ class PARALLEL_HILL_CLIMBER:
 		for i in range(0, c.populationSize):
 			self.parents[i] = SOLUTION(self.nextAvailableID)
 			self.nextAvailableID = self.nextAvailableID+1
-		os.system("del brain" + str(self.nextAvailableID) + ".nndf") #not correct yet
-		os.system("del fitness" + str(self.nextAvailableID) + ".txt") #not correct yet 
+		#os.system("del brain" + str(self.nextAvailableID) + ".nndf") #not correct yet
+		#os.system("del fitness" + str(self.nextAvailableID) + ".txt") #not correct yet 
 		
 
 	def Evolve(self):
@@ -48,20 +48,32 @@ class PARALLEL_HILL_CLIMBER:
 	def Print(self):
 		print(" ")
 		print(" ")
+		
+			#quadruped
 		for i in self.parents.keys():
+			print("parent fitness: "+str(self.parents[i].fitness)+", Children fitness: "+str(self.children[i].fitness))
+		
+		#golfer
+		#for i in self.parents.keys():
 		#mini putt
-			print("Parent fitness: "+str(abs(self.parents[i].xfitness+11)+abs(self.parents[i].yfitness))+", Children fitness: "+str(abs(self.children[i].xfitness+11)+abs(self.children[i].yfitness)))
+			#print("Parent fitness: "+str(abs(self.parents[i].xfitness+11)+abs(self.parents[i].yfitness))+", Children fitness: "+str(abs(self.children[i].xfitness+11)+abs(self.children[i].yfitness)))
 		#furthest drive
 			#print("Parent fitness: "+str(self.parents[i].xfitness+abs(self.parents[i].yfitness))+", Children fitness: "+str(self.children[i].xfitness+abs(self.children[i].yfitness)))
+		
 		print(" ")
 		print(" ")
 		
 
 	def Select(self):
 		for i in self.parents.keys():
-		#mini putt
-			if abs(self.parents[i].xfitness+11)+abs(self.parents[i].yfitness) > abs(self.children[i].xfitness+11)+abs(self.children[i].yfitness):
+		
+		#quadruped
+			if self.parents[i].fitness > self.children[i].fitness:
 				self.parents[i] = self.children[i]
+
+		#mini putt
+			#if abs(self.parents[i].xfitness+11)+abs(self.parents[i].yfitness) > abs(self.children[i].xfitness+11)+abs(self.children[i].yfitness):
+			#	self.parents[i] = self.children[i]
 		#furthest drive
 			#if self.parents[i].xfitness > self.children[i].xfitness and abs(self.parents[i].yfitness) > abs(self.children[i].yfitness):
 			#	self.parents[i] = self.children[i]
@@ -72,11 +84,19 @@ class PARALLEL_HILL_CLIMBER:
 
 	def Show_Best(self):
 		parent_fitnesses = []
+		
+			#quadruped fitness
 		for i in self.parents:
-			#mini putt
-			parent_fitnesses.append(abs(self.parents[i].xfitness+11)+abs(self.parents[i].yfitness))
-			#furthest drive
-			#parent_fitnesses.append(self.parents[i].xfitness+abs(self.parents[i].yfitness))
+			parent_fitnesses.append(self.parents[i].fitness)
 		bestFitness = parent_fitnesses.index(min(parent_fitnesses))
 		self.parents[bestFitness].Start_Simulation('GUI')
+
+			#golf fitness
+		#for i in self.parents:
+			#mini putt
+			#parent_fitnesses.append(abs(self.parents[i].xfitness+11)+abs(self.parents[i].yfitness))
+			#furthest drive
+			#parent_fitnesses.append(self.parents[i].xfitness+abs(self.parents[i].yfitness))
+		#bestFitness = parent_fitnesses.index(min(parent_fitnesses))
+		#self.parents[bestFitness].Start_Simulation('GUI')
 		

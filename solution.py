@@ -11,6 +11,8 @@ class SOLUTION:
 		self.sensorList = {}
 		self.motorList = {}
 		self.neuronId = 0
+		#self.weights = numpy.random.rand(len(self.sensorList),len(self.motorList)) * 2 - 1
+
 		
 
 		
@@ -41,10 +43,17 @@ class SOLUTION:
 	def Wait_For_Simulation_To_End(self, directOrGUI):
 		while not os.path.exists("fitness" + str(self.myID) + ".txt"):
 			time.sleep(0.02)
-		fitnessFile = open("fitness" + str(self.myID) + ".txt", "r")
-		self.overallFitness = fitnessFile.readlines()
-		self.xfitness = float(self.overallFitness[0])
-		self.yfitness = float(self.overallFitness[1])
+			
+			#quadruped fitness
+		fitnessFile=open("fitness"+str(self.myID)+".txt","r")
+		self.fitness = float(fitnessFile.read())
+
+			#golf fitness
+		#fitnessFile = open("fitness" + str(self.myID) + ".txt", "r")
+		#self.overallFitness = fitnessFile.readlines()
+		#self.xfitness = float(self.overallFitness[0])
+		#self.yfitness = float(self.overallFitness[1])
+		
 		fitnessFile.close()
 		os.system("del fitness" + str(self.myID) + ".txt")
 		

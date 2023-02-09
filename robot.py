@@ -21,7 +21,7 @@ class ROBOT:
 		self.Prepare_To_Sense()
 		self.Prepare_To_Act()
 		self.nn = NEURAL_NETWORK("brain" + str(solutionID) + ".nndf")
-		#os.system("del brain" + str(solutionID) + ".nndf")
+		os.system("del brain" + str(solutionID) + ".nndf")
 	
 	def Prepare_To_Sense(self):
 		for linkName in pyrosim.linkNamesToIndices:
@@ -56,19 +56,19 @@ class ROBOT:
 		#xCoordinateOfLinkZero = str(positionOfLinkZero[0])
 
 			#quadruped fitness = furthest -x position
-		#basePositionAndOrientation = p.getBasePositionAndOrientation(self.robotId)
-		#basePosition = basePositionAndOrientation[0]
-		#xPosition = str(basePosition[0])
-		#fitnessFile = open("tmp" + str(self.solutionID) + ".txt", "w")
-		#fitnessFile.write(xPosition)
-		#fitnessFile.close()
-		#os.system("rename tmp"+str(self.solutionID)+".txt " + "fitness"+str(self.solutionID)+".txt")
-
-			#golfer; fitness = golf ball coordinates
-		xPosition = str(self.world.Get_X_Pos_And_Orientation())
-		yPosition = str(self.world.Get_Y_Pos_And_Orientation())
+		basePositionAndOrientation = p.getBasePositionAndOrientation(self.robotId)
+		basePosition = basePositionAndOrientation[0]
+		xPosition = str(basePosition[0])
 		fitnessFile = open("tmp" + str(self.solutionID) + ".txt", "w")
-		fitnessFile.write(xPosition + "\n" + yPosition)
+		fitnessFile.write(xPosition)
 		fitnessFile.close()
 		os.system("rename tmp"+str(self.solutionID)+".txt " + "fitness"+str(self.solutionID)+".txt")
+
+			#golfer; fitness = golf ball coordinates
+		#xPosition = str(self.world.Get_X_Pos_And_Orientation())
+		#yPosition = str(self.world.Get_Y_Pos_And_Orientation())
+		#fitnessFile = open("tmp" + str(self.solutionID) + ".txt", "w")
+		#fitnessFile.write(xPosition + "\n" + yPosition)
+		#fitnessFile.close()
+		#os.system("rename tmp"+str(self.solutionID)+".txt " + "fitness"+str(self.solutionID)+".txt")
 		

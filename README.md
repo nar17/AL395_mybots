@@ -1,5 +1,5 @@
-# Assignment 6:
-Create a snake-like robot with a randomized body in one dimension and with color-coded, randomized sensor placement.
+# Assignment 7:
+Expand the morphospace from assignment 6 and create randomly generated robots in multiple dimensions.
 
 # 	Running Instructions:
 Open search.py and run program.
@@ -14,12 +14,12 @@ The following image shows an example of a randomized snake robot:
 # 	Result:
 The resulting robots show small movements with a "wiggle"-like disposition.
 
-The following Youtube link shows various generations of the randomized snake-bodied robots: 
-https://youtu.be/O4H-8bwoxNI
+The following Youtube link shows various generations of the randomized robots: 
+
 
 
 The following Github link shows the full code repository: 
-https://github.com/nar17/AL395_mybots/tree/assignmentSIX
+https://github.com/nar17/AL395_mybots/tree/assignmentSEVEN
 
 # 	Acknowledgements:
 This assignment was performed for Sam Kriegman's Artificial Life class at Northwestern University in the Winter 2022 quarter. It is based off of Josh Bongard's reddit-based MOOC called 'Ludobots'. Special thanks to Donna Hooshmand and the rest of the students for their help in office hours and on Campuswire. 
