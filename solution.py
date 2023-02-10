@@ -93,8 +93,8 @@ class SOLUTION:
 			self.randSizeZ = random.uniform(0.5,2.5)
 			self.randLinkPosX = self.randSizeX/2
 			self.randJointPosX = self.randSizeX
-			self.randMass = random.uniform(0,5)
-			self.randJointType = random.choice(["revolute","prismatic","spherical","fixed"])
+			self.randMass = 1 #random.uniform(0,5)
+			#self.randJointType = random.choice(["revolute","prismatic","spherical","fixed"])
 		
 			if i == 1:
 				pyrosim.Send_Cube(name='link1', pos=[self.randLinkPosX,0,self.randSizeZ] , size=[self.randSizeX,self.randSizeY,self.randSizeZ], mass=self.randMass, materialName=self.randMatName, colorString=self.randColStr, rpy="0 0 0")
