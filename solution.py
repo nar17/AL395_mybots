@@ -72,24 +72,7 @@ class SOLUTION:
 
 		pyrosim.End()
 
-	def Random_Variables(self):
-		if random.random()<0.5:
-			self.randMatName = "Blue"
-			self.randColStr = "0 0 1 1"
-		else:
-			self.randMatName = "Green"
-			self.randColStr = "0 1 0 1"
-		self.randSizeX = random.uniform(0.5,2.5)
-		self.randSizeY = random.uniform(0.5,2.5)
-		self.randSizeZ = random.uniform(0.5,2.5)
-		self.randLinkPosX = self.randSizeX/2
-		self.randLinkPosY = self.randSizeY/2
-		self.randJointPosX = self.randSizeX
-		self.randJointPosY = self.randSizeY
-		self.randMass = 1 #random.uniform(0,5)
-		self.randJointType = random.choice(["revolute","prismatic","spherical","fixed"])
-
-	def Root_Link(self):
+	def Three_Leg_Body(self):
 		pyrosim.Send_Cube(name='rootLink', pos=[0,0,1] , size=[2,2,2], mass=100, materialName="Green", colorString="0 1 0 1", rpy="0 0 0")
 
 		if random.random()<1:
@@ -113,7 +96,6 @@ class SOLUTION:
 			print('the number of links in the neg-X direction is '+ str(self.numLinks_negX))
 			print(' ')
 
-
 	def Links_PlusY(self):
 		self.numLinks_plusY = random.randint(2,4)
 
@@ -129,13 +111,17 @@ class SOLUTION:
 			self.sizeZ_plusY = random.uniform(0.5,1)
 			self.LinkPosY_plusY = self.sizeY_plusY/2
 			self.JointPosY_plusY = self.sizeY_plusY
+			self.randMass = 1 #random.uniform(0,5)
+			self.randJointType = random.choice(["revolute","prismatic","spherical","fixed"])
 			
 			if i==0:
 				pyrosim.Send_Cube(name='link0_plusY', pos=[0,self.LinkPosY_plusY,0] , size=[self.sizeX_plusY,self.sizeY_plusY,self.sizeZ_plusY], mass=self.randMass, materialName=self.randMatName, colorString=self.randColStr, rpy="0 0 0")
 				pyrosim.Send_Joint(name = 'link0_plusY_'+'link1_plusY', parent='link0_plusY', child ='link1_plusY', type = "revolute", position = [0,self.JointPosY_plusY,0], jointAxis = "0 0 1")
+				
 			if i!=0 and i!=self.numLinks_plusY-1:
 				pyrosim.Send_Cube(name='link'+str(i)+'_plusY', pos=[0,self.LinkPosY_plusY*2/3,0] , size=[self.sizeX_plusY*2/3,self.sizeY_plusY*2/3,self.sizeZ_plusY*2/3], mass=self.randMass, materialName=self.randMatName, colorString=self.randColStr, rpy="0 0 0")
 				pyrosim.Send_Joint(name = 'link'+str(i)+'_plusY_'+'link'+str(i+1)+'_plusY', parent='link'+str(i)+'_plusY', child ='link'+str(i+1)+'_plusY', type = "revolute", position = [0,self.JointPosY_plusY*2/3,0], jointAxis = "0 0 1")
+			
 			if i==self.numLinks_plusY-1:
 				pyrosim.Send_Cube(name='link'+str(i)+'_plusY', pos=[0,self.LinkPosY_plusY,0] , size=[self.sizeX_plusY,self.sizeY_plusY,self.sizeZ_plusY], mass=self.randMass, materialName=self.randMatName, colorString=self.randColStr, rpy="0 0 0")
 
@@ -154,6 +140,8 @@ class SOLUTION:
 			self.sizeZ_negY = random.uniform(0.5,1)
 			self.LinkNegY_negY = -self.sizeY_negY/2
 			self.JointNegY_negY = -self.sizeY_negY
+			self.randMass = 1 #random.uniform(0,5)
+			self.randJointType = random.choice(["revolute","prismatic","spherical","fixed"])
 			
 			if i==0:
 				pyrosim.Send_Cube(name='link0_negY', pos=[0,self.LinkNegY_negY,0] , size=[self.sizeX_negY,self.sizeY_negY,self.sizeZ_negY], mass=self.randMass, materialName=self.randMatName, colorString=self.randColStr, rpy="0 0 0")
@@ -163,6 +151,7 @@ class SOLUTION:
 				pyrosim.Send_Joint(name = 'link'+str(i)+'_negY_'+'link'+str(i+1)+'_negY', parent='link'+str(i)+'_negY', child ='link'+str(i+1)+'_negY', type = "revolute", position = [0,self.JointNegY_negY,0], jointAxis = "0 0 1")
 			if i==self.numLinks_negY-1:
 				pyrosim.Send_Cube(name='link'+str(i)+'_negY', pos=[0,self.LinkNegY_negY,0] , size=[self.sizeX_negY,self.sizeY_negY,self.sizeZ_negY], mass=self.randMass, materialName=self.randMatName, colorString=self.randColStr, rpy="0 0 0")
+	
 
 	def Links_NegX(self):
 		self.numLinks_negX = random.randint(2,4)
@@ -179,6 +168,8 @@ class SOLUTION:
 			self.sizeZ_negX = random.uniform(0.5,1)
 			self.LinkNegY_negX = -self.sizeX_negX/2
 			self.JointNegY_negX = -self.sizeX_negX
+			self.randMass = 1 #random.uniform(0,5)
+			self.randJointType = random.choice(["revolute","prismatic","spherical","fixed"])
 			
 			if i==0:
 				pyrosim.Send_Cube(name='link0_negX', pos=[self.LinkNegY_negX,0,0] , size=[self.sizeX_negX,self.sizeY_negX,self.sizeZ_negX], mass=self.randMass, materialName=self.randMatName, colorString=self.randColStr, rpy="0 0 0")
@@ -189,14 +180,30 @@ class SOLUTION:
 			if i==self.numLinks_negX-1:
 				pyrosim.Send_Cube(name='link'+str(i)+'_negX', pos=[self.LinkNegY_negX,0,0] , size=[self.sizeX_negX,self.sizeY_negX,self.sizeZ_negX], mass=self.randMass, materialName=self.randMatName, colorString=self.randColStr, rpy="0 0 0")
 
+	def Crawler(self):
+		self.numLinks_Crawler = random.randint(2,4)
+
+		pyrosim.Send_Cube(name='rootLink', pos=[0,0,1] , size=[2,2,2], mass=100, materialName="Green", colorString="0 1 0 1", rpy="0 0 0")
+		pyrosim.Send_Joint(name = 'rootLink_link0_plusY' , parent='rootLink', child ='link0_plusY' , type = "revolute", position = [0,1,2], jointAxis = "0 0 1")
+		pyrosim.Send_Joint(name = 'rootLink_link0_negY' , parent='rootLink', child ='link0_negY' , type = "revolute", position = [0,-1,2], jointAxis = "0 0 1")
 		
+		#for i in range(0,self.numLinks_Crawler):
+		pyrosim.Send_Cube(name='link0_plusY', pos=[0,0,0.5] , size=[0.5,0.5,1], mass=1, materialName="Green", colorString="0 1 0 1", rpy="0 0 0")
+		pyrosim.Send_Joint(name = 'link0_plusY_link1_plusY' , parent='link0_plusY', child ='link1_plusY' , type = "revolute", position = [0,0,1], jointAxis = "1 0 0")
+		pyrosim.Send_Cube(name='link1_plusY', pos=[0,1,0] , size=[0.5,2,0.5], mass=1, materialName="Green", colorString="0 1 0 1", rpy="0 0 0")
+		pyrosim.Send_Joint(name = 'link1_plusY_link2_plusY' , parent='link1_plusY', child ='link2_plusY' , type = "revolute", position = [0,2,0], jointAxis = "0 1 0")
+		pyrosim.Send_Cube(name='link2_plusY', pos=[0,0,-1.5] , size=[0.5,0.5,3.5], mass=1, materialName="Green", colorString="0 1 0 1", rpy="0 0 0")
+
+		pyrosim.Send_Cube(name='link0_negY', pos=[0,0,0.5] , size=[0.5,0.5,1], mass=1, materialName="Green", colorString="0 1 0 1", rpy="0 0 0")
+		pyrosim.Send_Joint(name = 'link0_negY_link1_negY' , parent='link0_negY', child ='link1_negY' , type = "revolute", position = [0,0,1], jointAxis = "1 0 0")
+		pyrosim.Send_Cube(name='link1_negY', pos=[0,-1,0] , size=[0.5,2,0.5], mass=1, materialName="Green", colorString="0 1 0 1", rpy="0 0 0")
+		pyrosim.Send_Joint(name = 'link1_negY_link2_negY' , parent='link1_negY', child ='link2_negY' , type = "revolute", position = [0,-2,0], jointAxis = "0 1 0")
+		pyrosim.Send_Cube(name='link2_negY', pos=[0,0,-1.5] , size=[0.5,0.5,3.5], mass=1, materialName="Green", colorString="0 1 0 1", rpy="0 0 0")
+
 	def Create_Body(self):
 		pyrosim.Start_URDF("body.urdf")
-		self.Random_Variables()
-		self.Root_Link()
+		self.Crawler()
 		
-		self.movie = random.choice(["gangs of new york", "inside llewyn davis", "dont look up", "casino"])
-		print(self.movie)
 
 		
 		
