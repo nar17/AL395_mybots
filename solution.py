@@ -76,22 +76,22 @@ class SOLUTION:
 		pyrosim.Send_Cube(name='rootLink', pos=[0,0,1] , size=[2,2,2], mass=1, materialName="Green", colorString="0 1 0 1", rpy="0 0 0")
 
 		if random.random()<0.5:
-			pyrosim.Send_Joint(name = 'rootLink_link0_plusY' , parent='rootLink', child ='link0_plusY' , type = "revolute", position = [0,1,1], jointAxis = "0 0 1")
+			pyrosim.Send_Joint(name = 'rootLink_link0_plusY' , parent='rootLink', child ='link0_plusY' , type = "revolute", position = [0,1,1], jointAxis = random.choice(["1 0 0", "0 1 0", "0 0 1"]))
 			self.Links_PlusY()
 			print('the number of links in the plus-Y direction is '+ str(self.numLinks_plusY))
 
 		if random.random()<0.5:
-			pyrosim.Send_Joint(name = 'rootLink_link0_negY' , parent='rootLink', child ='link0_negY' , type = "revolute", position = [0,-1,1], jointAxis = "0 0 1")
+			pyrosim.Send_Joint(name = 'rootLink_link0_negY' , parent='rootLink', child ='link0_negY' , type = "revolute", position = [0,-1,1], jointAxis = random.choice(["1 0 0", "0 1 0", "0 0 1"]))
 			self.Links_NegY()
 			print('the number of links in the neg-Y direction is '+ str(self.numLinks_negY))
 
 		if random.random()<0.5:
-			pyrosim.Send_Joint(name = 'rootLink_link0_negX' , parent='rootLink', child ='link0_negX' , type = "revolute", position = [-1,0,1], jointAxis = "0 0 1")
+			pyrosim.Send_Joint(name = 'rootLink_link0_negX' , parent='rootLink', child ='link0_negX' , type = "revolute", position = [-1,0,1], jointAxis = random.choice(["1 0 0", "0 1 0", "0 0 1"]))
 			self.Links_NegX()
 			print('the number of links in the neg-X direction is '+ str(self.numLinks_negX))
 
 		if random.random()<0.5:
-			pyrosim.Send_Joint(name = 'rootLink_link0_plusZ' , parent='rootLink', child ='link0_plusZ' , type = "revolute", position = [0,0,2], jointAxis = "0 0 1")
+			pyrosim.Send_Joint(name = 'rootLink_link0_plusZ' , parent='rootLink', child ='link0_plusZ' , type = "revolute", position = [0,0,2], jointAxis = random.choice(["1 0 0", "0 1 0", "0 0 1"]))
 			self.Links_PlusZ()
 			print('the number of links in the plus-Z direction is '+ str(self.numLinks_plusZ))
 
@@ -106,9 +106,9 @@ class SOLUTION:
 			else:
 				self.randMatName = "Green"
 				self.randColStr = "0 1 0 1"
-			self.sizeX_plusY = random.uniform(0.5,2.5)
+			self.sizeX_plusY = random.uniform(0.5,1)
 			self.sizeY_plusY = random.uniform(0.5,2.5)
-			self.sizeZ_plusY = random.uniform(0.5,2.5)
+			self.sizeZ_plusY = random.uniform(0.5,1)
 			self.LinkPosY_plusY = self.sizeY_plusY/2
 			self.JointPosY_plusY = self.sizeY_plusY
 			self.randMass = 1 #random.uniform(0,5)
@@ -136,9 +136,9 @@ class SOLUTION:
 			else:
 				self.randMatName = "Green"
 				self.randColStr = "0 1 0 1"
-			self.sizeX_negY = random.uniform(0.5,2.5)
+			self.sizeX_negY = random.uniform(0.5,1)
 			self.sizeY_negY = random.uniform(0.5,2.5)
-			self.sizeZ_negY = random.uniform(0.5,2.5)
+			self.sizeZ_negY = random.uniform(0.5,1)
 			self.LinkPosY_negY = -self.sizeY_negY/2
 			self.JointPosY_negY = -self.sizeY_negY
 			self.randMass = 1 #random.uniform(0,5)
@@ -166,8 +166,8 @@ class SOLUTION:
 				self.randMatName = "Green"
 				self.randColStr = "0 1 0 1"
 			self.sizeX_negX = random.uniform(0.5,2.5)
-			self.sizeY_negX = random.uniform(0.5,2.5)
-			self.sizeZ_negX = random.uniform(0.5,2.5)
+			self.sizeY_negX = random.uniform(0.5,1)
+			self.sizeZ_negX = random.uniform(0.5,1)
 			self.LinkPosX_negX = -self.sizeX_negX/2
 			self.JointPosX_negX = -self.sizeX_negX
 			self.randMass = 1 #random.uniform(0,5)
@@ -193,8 +193,8 @@ class SOLUTION:
 			else:
 				self.randMatName = "Green"
 				self.randColStr = "0 1 0 1"
-			self.sizeX_plusZ = random.uniform(0.5,2.5)
-			self.sizeY_plusZ = random.uniform(0.5,2.5)
+			self.sizeX_plusZ = random.uniform(0.5,1)
+			self.sizeY_plusZ = random.uniform(0.5,1)
 			self.sizeZ_plusZ = random.uniform(0.5,2.5)
 			self.LinkPosZ_plusZ = self.sizeZ_plusZ/2
 			self.JointPosZ_plusZ = self.sizeZ_plusZ
