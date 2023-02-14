@@ -72,34 +72,32 @@ class SOLUTION:
 
 		pyrosim.End()
 
-	def Three_Leg_Body(self):
-		self.numTorso = random.randint(2,3)
-		for i in range(0,self.numTorso):
-			pyrosim.Send_Cube(name='rootLink'+str(i), pos=[0,0,1] , size=[2,2,2], mass=100, materialName="Green", colorString="0 1 0 1", rpy="0 0 0")
+	def Four_Leg_Body(self):
+		pyrosim.Send_Cube(name='rootLink', pos=[0,0,1] , size=[2,2,2], mass=1, materialName="Green", colorString="0 1 0 1", rpy="0 0 0")
 
-			pyrosim.Send_Joint(name = 'rootLink'+str(i)+'_link0_plusY' , parent='rootLink'+str(i), child ='link0_plusY' , type = "revolute", position = [0,1,1], jointAxis = "0 0 1")
+		if random.random()<0.5:
+			pyrosim.Send_Joint(name = 'rootLink_link0_plusY' , parent='rootLink', child ='link0_plusY' , type = "revolute", position = [0,1,1], jointAxis = "0 0 1")
 			self.Links_PlusY()
-			print(' ')
 			print('the number of links in the plus-Y direction is '+ str(self.numLinks_plusY))
-			print(' ')
 
-			pyrosim.Send_Joint(name = 'rootLink'+str(i)+'_link0_negY' , parent='rootLink'+str(i), child ='link0_negY' , type = "revolute", position = [0,-1,1], jointAxis = "0 0 1")
+		if random.random()<0.5:
+			pyrosim.Send_Joint(name = 'rootLink_link0_negY' , parent='rootLink', child ='link0_negY' , type = "revolute", position = [0,-1,1], jointAxis = "0 0 1")
 			self.Links_NegY()
-			print(' ')
 			print('the number of links in the neg-Y direction is '+ str(self.numLinks_negY))
-			print(' ')
 
-			#pyrosim.Send_Joint(name = 'rootLink'+str(i)+'_link0_negX' , parent='rootLink'+str(i), child ='link0_negX' , type = "revolute", position = [-1,0,1], jointAxis = "0 0 1")
-			#self.Links_NegX()
-			#print(' ')
-			#print('the number of links in the neg-X direction is '+ str(self.numLinks_negX))
-			#print(' ')
+		if random.random()<0.5:
+			pyrosim.Send_Joint(name = 'rootLink_link0_negX' , parent='rootLink', child ='link0_negX' , type = "revolute", position = [-1,0,1], jointAxis = "0 0 1")
+			self.Links_NegX()
+			print('the number of links in the neg-X direction is '+ str(self.numLinks_negX))
 
-			if i != self.numTorso:
-				pyrosim.Send_Joint(name = 'rootLink'+str(i)+'rootLink'+str(i+1) , parent='rootLink'+str(i), child ='rootLink'+str(i+1) , type = "revolute", position = [0,1,1], jointAxis = "0 0 1")
+		if random.random()<0.5:
+			pyrosim.Send_Joint(name = 'rootLink_link0_plusZ' , parent='rootLink', child ='link0_plusZ' , type = "revolute", position = [0,0,2], jointAxis = "0 0 1")
+			self.Links_PlusZ()
+			print('the number of links in the plus-Z direction is '+ str(self.numLinks_plusZ))
 
+			
 	def Links_PlusY(self):
-		self.numLinks_plusY = random.randint(1,3)
+		self.numLinks_plusY = random.randint(2,3)
 
 		for i in range(0,self.numLinks_plusY):
 			if random.random()<0.5:
@@ -108,27 +106,28 @@ class SOLUTION:
 			else:
 				self.randMatName = "Green"
 				self.randColStr = "0 1 0 1"
-			self.sizeX_plusY = random.uniform(0.5,1)
+			self.sizeX_plusY = random.uniform(0.5,2.5)
 			self.sizeY_plusY = random.uniform(0.5,2.5)
-			self.sizeZ_plusY = random.uniform(0.5,1)
+			self.sizeZ_plusY = random.uniform(0.5,2.5)
 			self.LinkPosY_plusY = self.sizeY_plusY/2
 			self.JointPosY_plusY = self.sizeY_plusY
 			self.randMass = 1 #random.uniform(0,5)
 			self.randJointType = random.choice(["revolute","prismatic","spherical","fixed"])
+			self.axis = random.choice(["1 0 0", "0 1 0", "0 0 1"])
 			
 			if i==0:
 				pyrosim.Send_Cube(name='link0_plusY', pos=[0,self.LinkPosY_plusY,0] , size=[self.sizeX_plusY,self.sizeY_plusY,self.sizeZ_plusY], mass=self.randMass, materialName=self.randMatName, colorString=self.randColStr, rpy="0 0 0")
-				pyrosim.Send_Joint(name = 'link0_plusY_'+'link1_plusY', parent='link0_plusY', child ='link1_plusY', type = "revolute", position = [0,self.JointPosY_plusY,0], jointAxis = "0 0 1")
+				pyrosim.Send_Joint(name = 'link0_plusY_'+'link1_plusY', parent='link0_plusY', child ='link1_plusY', type = "revolute", position = [0,self.JointPosY_plusY,0], jointAxis = self.axis)
 				
 			if i!=0 and i!=self.numLinks_plusY-1:
 				pyrosim.Send_Cube(name='link'+str(i)+'_plusY', pos=[0,self.LinkPosY_plusY*2/3,0] , size=[self.sizeX_plusY*2/3,self.sizeY_plusY*2/3,self.sizeZ_plusY*2/3], mass=self.randMass, materialName=self.randMatName, colorString=self.randColStr, rpy="0 0 0")
-				pyrosim.Send_Joint(name = 'link'+str(i)+'_plusY_'+'link'+str(i+1)+'_plusY', parent='link'+str(i)+'_plusY', child ='link'+str(i+1)+'_plusY', type = "revolute", position = [0,self.JointPosY_plusY*2/3,0], jointAxis = "0 0 1")
+				pyrosim.Send_Joint(name = 'link'+str(i)+'_plusY_'+'link'+str(i+1)+'_plusY', parent='link'+str(i)+'_plusY', child ='link'+str(i+1)+'_plusY', type = "revolute", position = [0,self.JointPosY_plusY*2/3,0], jointAxis = self.axis)
 			
 			if i==self.numLinks_plusY-1:
 				pyrosim.Send_Cube(name='link'+str(i)+'_plusY', pos=[0,self.LinkPosY_plusY,0] , size=[self.sizeX_plusY,self.sizeY_plusY,self.sizeZ_plusY], mass=self.randMass, materialName=self.randMatName, colorString=self.randColStr, rpy="0 0 0")
 
 	def Links_NegY(self):
-		self.numLinks_negY = random.randint(1,3)
+		self.numLinks_negY = random.randint(2,3)
 
 		for i in range(0,self.numLinks_negY):
 			if random.random()<0.5:
@@ -137,26 +136,27 @@ class SOLUTION:
 			else:
 				self.randMatName = "Green"
 				self.randColStr = "0 1 0 1"
-			self.sizeX_negY = random.uniform(0.5,1)
+			self.sizeX_negY = random.uniform(0.5,2.5)
 			self.sizeY_negY = random.uniform(0.5,2.5)
-			self.sizeZ_negY = random.uniform(0.5,1)
-			self.LinkNegY_negY = -self.sizeY_negY/2
-			self.JointNegY_negY = -self.sizeY_negY
+			self.sizeZ_negY = random.uniform(0.5,2.5)
+			self.LinkPosY_negY = -self.sizeY_negY/2
+			self.JointPosY_negY = -self.sizeY_negY
 			self.randMass = 1 #random.uniform(0,5)
 			self.randJointType = random.choice(["revolute","prismatic","spherical","fixed"])
+			self.axis = random.choice(["1 0 0", "0 1 0", "0 0 1"])
 			
 			if i==0:
-				pyrosim.Send_Cube(name='link0_negY', pos=[0,self.LinkNegY_negY,0] , size=[self.sizeX_negY,self.sizeY_negY,self.sizeZ_negY], mass=self.randMass, materialName=self.randMatName, colorString=self.randColStr, rpy="0 0 0")
-				pyrosim.Send_Joint(name = 'link0_negY_'+'link1_negY', parent='link0_negY', child ='link1_negY', type = "revolute", position = [0,self.JointNegY_negY,0], jointAxis = "0 0 1")
+				pyrosim.Send_Cube(name='link0_negY', pos=[0,self.LinkPosY_negY,0] , size=[self.sizeX_negY,self.sizeY_negY,self.sizeZ_negY], mass=self.randMass, materialName=self.randMatName, colorString=self.randColStr, rpy="0 0 0")
+				pyrosim.Send_Joint(name = 'link0_negY_'+'link1_negY', parent='link0_negY', child ='link1_negY', type = "revolute", position = [0,self.JointPosY_negY,0], jointAxis = self.axis)
 			if i!=0 and i!=self.numLinks_negY-1:
-				pyrosim.Send_Cube(name='link'+str(i)+'_negY', pos=[0,self.LinkNegY_negY,0] , size=[self.sizeX_negY,self.sizeY_negY,self.sizeZ_negY], mass=self.randMass, materialName=self.randMatName, colorString=self.randColStr, rpy="0 0 0")
-				pyrosim.Send_Joint(name = 'link'+str(i)+'_negY_'+'link'+str(i+1)+'_negY', parent='link'+str(i)+'_negY', child ='link'+str(i+1)+'_negY', type = "revolute", position = [0,self.JointNegY_negY,0], jointAxis = "0 0 1")
+				pyrosim.Send_Cube(name='link'+str(i)+'_negY', pos=[0,self.LinkPosY_negY,0] , size=[self.sizeX_negY,self.sizeY_negY,self.sizeZ_negY], mass=self.randMass, materialName=self.randMatName, colorString=self.randColStr, rpy="0 0 0")
+				pyrosim.Send_Joint(name = 'link'+str(i)+'_negY_'+'link'+str(i+1)+'_negY', parent='link'+str(i)+'_negY', child ='link'+str(i+1)+'_negY', type = "revolute", position = [0,self.JointPosY_negY,0], jointAxis = self.axis)
 			if i==self.numLinks_negY-1:
-				pyrosim.Send_Cube(name='link'+str(i)+'_negY', pos=[0,self.LinkNegY_negY,0] , size=[self.sizeX_negY,self.sizeY_negY,self.sizeZ_negY], mass=self.randMass, materialName=self.randMatName, colorString=self.randColStr, rpy="0 0 0")
+				pyrosim.Send_Cube(name='link'+str(i)+'_negY', pos=[0,self.LinkPosY_negY,0] , size=[self.sizeX_negY,self.sizeY_negY,self.sizeZ_negY], mass=self.randMass, materialName=self.randMatName, colorString=self.randColStr, rpy="0 0 0")
 	
 
 	def Links_NegX(self):
-		self.numLinks_negX = random.randint(1,3)
+		self.numLinks_negX = random.randint(2,3)
 
 		for i in range(0,self.numLinks_negX):
 			if random.random()<0.5:
@@ -166,21 +166,50 @@ class SOLUTION:
 				self.randMatName = "Green"
 				self.randColStr = "0 1 0 1"
 			self.sizeX_negX = random.uniform(0.5,2.5)
-			self.sizeY_negX = random.uniform(0.5,1)
-			self.sizeZ_negX = random.uniform(0.5,1)
-			self.LinkNegY_negX = -self.sizeX_negX/2
-			self.JointNegY_negX = -self.sizeX_negX
+			self.sizeY_negX = random.uniform(0.5,2.5)
+			self.sizeZ_negX = random.uniform(0.5,2.5)
+			self.LinkPosX_negX = -self.sizeX_negX/2
+			self.JointPosX_negX = -self.sizeX_negX
 			self.randMass = 1 #random.uniform(0,5)
 			self.randJointType = random.choice(["revolute","prismatic","spherical","fixed"])
+			self.axis = random.choice(["1 0 0", "0 1 0", "0 0 1"])
 			
 			if i==0:
-				pyrosim.Send_Cube(name='link0_negX', pos=[self.LinkNegY_negX,0,0] , size=[self.sizeX_negX,self.sizeY_negX,self.sizeZ_negX], mass=self.randMass, materialName=self.randMatName, colorString=self.randColStr, rpy="0 0 0")
-				pyrosim.Send_Joint(name = 'link0_negX_'+'link1_negX', parent='link0_negX', child ='link1_negX', type = "revolute", position = [self.JointNegY_negX,0,0], jointAxis = "0 0 1")
+				pyrosim.Send_Cube(name='link0_negX', pos=[self.LinkPosX_negX,0,0] , size=[self.sizeX_negX,self.sizeY_negX,self.sizeZ_negX], mass=self.randMass, materialName=self.randMatName, colorString=self.randColStr, rpy="0 0 0")
+				pyrosim.Send_Joint(name = 'link0_negX_'+'link1_negX', parent='link0_negX', child ='link1_negX', type = "revolute", position = [self.JointPosX_negX,0,0], jointAxis = self.axis)
 			if i!=0 and i!=self.numLinks_negX-1:
-				pyrosim.Send_Cube(name='link'+str(i)+'_negX', pos=[self.LinkNegY_negX,0,0] , size=[self.sizeX_negX,self.sizeY_negX,self.sizeZ_negX], mass=self.randMass, materialName=self.randMatName, colorString=self.randColStr, rpy="0 0 0")
-				pyrosim.Send_Joint(name = 'link'+str(i)+'_negX_'+'link'+str(i+1)+'_negX', parent='link'+str(i)+'_negX', child ='link'+str(i+1)+'_negX', type = "revolute", position = [self.JointNegY_negX,0,0], jointAxis = "0 0 1")
+				pyrosim.Send_Cube(name='link'+str(i)+'_negX', pos=[self.LinkPosX_negX,0,0] , size=[self.sizeX_negX,self.sizeY_negX,self.sizeZ_negX], mass=self.randMass, materialName=self.randMatName, colorString=self.randColStr, rpy="0 0 0")
+				pyrosim.Send_Joint(name = 'link'+str(i)+'_negX_'+'link'+str(i+1)+'_negX', parent='link'+str(i)+'_negX', child ='link'+str(i+1)+'_negX', type = "revolute", position = [self.JointPosX_negX,0,0], jointAxis = self.axis)
 			if i==self.numLinks_negX-1:
-				pyrosim.Send_Cube(name='link'+str(i)+'_negX', pos=[self.LinkNegY_negX,0,0] , size=[self.sizeX_negX,self.sizeY_negX,self.sizeZ_negX], mass=self.randMass, materialName=self.randMatName, colorString=self.randColStr, rpy="0 0 0")
+				pyrosim.Send_Cube(name='link'+str(i)+'_negX', pos=[self.LinkPosX_negX,0,0] , size=[self.sizeX_negX,self.sizeY_negX,self.sizeZ_negX], mass=self.randMass, materialName=self.randMatName, colorString=self.randColStr, rpy="0 0 0")
+
+	def Links_PlusZ(self):
+		self.numLinks_plusZ = random.randint(2,3)
+
+		for i in range(0,self.numLinks_plusZ):
+			if random.random()<0.5:
+				self.randMatName = "Blue"
+				self.randColStr = "0 0 1 1"
+			else:
+				self.randMatName = "Green"
+				self.randColStr = "0 1 0 1"
+			self.sizeX_plusZ = random.uniform(0.5,2.5)
+			self.sizeY_plusZ = random.uniform(0.5,2.5)
+			self.sizeZ_plusZ = random.uniform(0.5,2.5)
+			self.LinkPosZ_plusZ = self.sizeZ_plusZ/2
+			self.JointPosZ_plusZ = self.sizeZ_plusZ
+			self.randMass = 1 #random.uniform(0,5)
+			self.randJointType = random.choice(["revolute","prismatic","spherical","fixed"])
+			self.axis = random.choice(["1 0 0", "0 1 0", "0 0 1"])
+			
+			if i==0:
+				pyrosim.Send_Cube(name='link0_plusZ', pos=[0,0,self.LinkPosZ_plusZ] , size=[self.sizeX_plusZ,self.sizeY_plusZ,self.sizeZ_plusZ], mass=self.randMass, materialName=self.randMatName, colorString=self.randColStr, rpy="0 0 0")
+				pyrosim.Send_Joint(name = 'link0_plusZ_'+'link1_plusZ', parent='link0_plusZ', child ='link1_plusZ', type = "revolute", position = [0,0,self.JointPosZ_plusZ], jointAxis = self.axis)
+			if i!=0 and i!=self.numLinks_plusZ-1:
+				pyrosim.Send_Cube(name='link'+str(i)+'_plusZ', pos=[0,0,self.LinkPosZ_plusZ] , size=[self.sizeX_plusZ,self.sizeY_plusZ,self.sizeZ_plusZ], mass=self.randMass, materialName=self.randMatName, colorString=self.randColStr, rpy="0 0 0")
+				pyrosim.Send_Joint(name = 'link'+str(i)+'_plusZ_'+'link'+str(i+1)+'_plusZ', parent='link'+str(i)+'_plusZ', child ='link'+str(i+1)+'_plusZ', type = "revolute", position = [0,0,self.JointPosZ_plusZ], jointAxis = self.axis)
+			if i==self.numLinks_plusZ-1:
+				pyrosim.Send_Cube(name='link'+str(i)+'_plusZ', pos=[0,0,self.LinkPosZ_plusZ] , size=[self.sizeX_plusZ,self.sizeY_plusZ,self.sizeZ_plusZ], mass=self.randMass, materialName=self.randMatName, colorString=self.randColStr, rpy="0 0 0")
 
 	def Crawler(self):
 		self.numLinks_Crawler = random.randint(2,4)
@@ -223,8 +252,8 @@ class SOLUTION:
 	def Create_Body(self):
 		pyrosim.Start_URDF("body.urdf")
 		#self.Crawler()
-		#self.Three_Leg_Body()
-		self.Simple_Bot()
+		self.Four_Leg_Body()
+		#self.Simple_Bot()
 
 		
 		
