@@ -15,7 +15,7 @@ The following picture shows the genotype graph:
 
 
 # 	Ontology:
-In solution.py, the robot is generated from a rootlink of fixed size and position. There is a 50% probability of the robot growing a "leg" in any of the +y, -y, -x, and +z direction. Each of these legs will consist of 2-3 links of random size. Each link is connected to the previous link at its center with a joint that has a randomized axis. Every link has a 50% probability of being green or blue. Green links have a touch sensor neuron, blue links have no neuron, and every joint has a motor neuron. 
+In solution.py, the robot is generated from a rootlink of fixed size and position. There is a 50% probability of the robot growing a "leg" in any of the +y, -y, -x, and +z direction. Each of these legs will consist of 2-3 links of random size. Each link is connected to the previous link at its center with a revolute joint that has a randomized axis. Every link has a 50% probability of being green or blue. Green links have a touch sensor neuron, blue links have no neuron, and every joint has a motor neuron. 
 
 The following images shows a diagram of the robot's ontology and an example of a randomized robot:
 
