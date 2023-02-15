@@ -23,7 +23,9 @@ The following images shows a diagram of the robot's ontology and an example of a
 
 
 #	Neural Network:
-The neural network is constructed with _______
+The neural network is constructed with one layer of sensor neurons, one layer of hidden neurons, and one layer of motor neurons. The sensor neurons detect touch and are located in green links (one sensor neuron per green link). The motor neurons are located on every joint (one motor neuron per joint). Based upon Sandhya Krishnan's Medium post [1], the number of hidden neurons is a randomly selected integer between the number of sensors neurons and the number motor neurons.
+
+The fully integrated neural network is shown in the figure below: 
 
 
 # 	Result:
@@ -38,3 +40,7 @@ https://github.com/nar17/AL395_mybots/tree/assignmentSEVEN
 
 # 	Acknowledgements:
 This assignment was performed for Sam Kriegman's Artificial Life class at Northwestern University in the Winter 2022 quarter. It is based off of Josh Bongard's reddit-based MOOC called 'Ludobots'. Special thanks to Donna Hooshmand and the rest of the students for their help in office hours and on Campuswire. 
+
+
+#	Sources:
+[1] https://medium.com/geekculture/introduction-to-neural-network-2f8b8221fbd3
