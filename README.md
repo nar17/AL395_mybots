@@ -23,7 +23,7 @@ The following images shows a diagram of the robot's ontology and an example of a
 
 
 #	Neural Network:
-The neural network is constructed with one layer of sensor neurons, one layer of hidden neurons, and one layer of motor neurons. The sensor neurons detect touch and are located in green links (one sensor neuron per green link). The motor neurons are located on every joint (one motor neuron per joint). Based upon Sandhya Krishnan's Medium post [1], the number of hidden neurons is a randomly selected integer between the number of sensors neurons and the number motor neurons.
+The neural network is constructed with one layer of sensor neurons, one layer of hidden neurons, and one layer of motor neurons. The sensor neurons detect touch and are located in green links (one sensor neuron per green link). The motor neurons are located on every joint (one motor neuron per joint). Based upon Sandhya Krishnan's Medium post from September 2021 [1], the number of hidden neurons is a randomly selected integer between the number of sensors neurons and the number motor neurons.
 
 The fully integrated neural network is shown in the figure below: 
 
