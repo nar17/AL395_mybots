@@ -12,7 +12,7 @@ class SOLUTION:
 		self.motorList = {}
 		self.neuronId = 0
 		#self.weights = numpy.random.rand(len(self.sensorList),len(self.motorList)) * 2 - 1
-		#random.seed(0)
+		#random.seed(3)
 		#numpy.random.seed(5)
 		#self.New_PlusY()
 		
@@ -80,7 +80,7 @@ class SOLUTION:
 			if self.pickPos[i]=='plusY':#
 				self.JPosList.append([0,self.Y[i]/2,self.Z[i]/2])
 				self.LPosList.append([0,self.Y[i]/2,0])
-			if self.pickPos[i]=='plusX':
+			elif self.pickPos[i]=='plusX':
 				self.JPosList.append([self.X[i]/2,0,self.Z[i]/2])
 				self.LPosList.append([self.X[i]/2,0,0])
 
@@ -89,16 +89,16 @@ class SOLUTION:
 			if self.pickPos[i]=='plusZ':
 				self.JPosList.append([0,self.Y[i]/2,self.Z[i]/2])
 				self.LPosList.append([0,0,self.Z[i]/2])
-			if self.pickPos[i]=='plusX':
+			elif self.pickPos[i]=='plusX':
 				self.JPosList.append([self.X[i]/2,self.Y[i]/2,0])
 				self.LPosList.append([self.X[i]/2,0,0])
 
-		elif self.pickPos[i-1]=='plusX':
+		else:# self.pickPos[i-1]=='plusX':
 			self.pickPos.append(random.choice(['plusZ','plusY']))
 			if self.pickPos[i]=='plusZ':
 				self.JPosList.append([self.X[i]/2,0,self.Z[i]/2])
 				self.LPosList.append([0,0,self.Z[i]/2])
-			if self.pickPos[i]=='plusY':
+			elif self.pickPos[i]=='plusY':
 				self.JPosList.append([self.X[i]/2,self.Y[i]/2,0])
 				self.LPosList.append([0,self.Y[i]/2,0])
 
@@ -107,7 +107,7 @@ class SOLUTION:
 
 
 	def New_PlusY(self):
-		self.numLinks_newPlusY=10	#random.randint(2,3)
+		self.numLinks_newPlusY=8	#random.randint(2,3)
 		
 		self.X=[]
 		self.Y=[]
@@ -131,33 +131,32 @@ class SOLUTION:
 		self.JaxisList=[]
 	
 		#rootlink
-		self.rootSize=1 #random.randint(1,3)
-		self.rootPos=3
-		pyrosim.Send_Cube(name='rootLink', pos=[0,0,self.rootPos], size=[self.rootSize,self.rootSize,self.rootSize], mass=1, materialName="Green", colorString="0 1 0 1", rpy="0 0 0")
-		self.sensorList['rootLink']='rootLink'
+		#self.rootSize=2 #random.randint(1,3)
+		#self.rootPos=3
+		#pyrosim.Send_Cube(name='rootLink', pos=[0,0,self.rootPos], size=[self.rootSize,self.rootSize,self.rootSize], mass=1, materialName="Green", colorString="0 1 0 1", rpy="0 0 0")
+		#self.sensorList['rootLink']='rootLink'
 		
 
-		pyrosim.Send_Joint(name='rootLink_link1', parent='rootLink', child='link1', type="revolute", position=[0,self.rootSize/2,self.rootPos], jointAxis="0 1 0")
-		self.motorList['rootJoint']='rootLink_link1'
+		#pyrosim.Send_Joint(name='rootLink_link1', parent='rootLink', child='link1', type="revolute", position=[0,self.rootSize/2,self.rootPos], jointAxis="0 1 0")
+		#self.motorList['rootJoint']='rootLink_link1'
 		
-		self.pickPos.append('plusY')
-		self.pickAxis.append('none')
+		#self.pickPos.append('plusZ')
+		#self.pickAxis.append('none')
+		#self.X.append(0)
+		#self.Y.append(0)
+		#self.Z.append(self.rootSize)
+		#self.LnameList.append('rootLink')
+		#self.LmatList.append("Green")
+		#self.LcolorStringList.append("0 1 0 1")
+		#self.LPosList.append([0,0,self.rootSize])
+		#self.JnameList.append('rootLink_link1')
+		#self.JparentList.append('rootLink')
+		#self.JchildList.append('link1')
+		#self.JaxisList.append("0 1 0")
+		#self.JPosList.append([0,self.rootSize/2,self.rootSize])
 
-		self.X.append(0)
-		self.Y.append(0)
-		self.Z.append(self.rootSize)
-		self.LnameList.append('rootLink')
-		self.LmatList.append("Green")
-		self.LcolorStringList.append("0 1 0 1")
-		self.LPosList.append([0,0,self.rootSize])
-		self.JnameList.append('rootLink_link1')
-		self.JparentList.append('rootLink')
-		self.JchildList.append('link1')
-		self.JaxisList.append("0 1 0")
-		self.JPosList.append([0,self.rootSize/2,self.rootSize])
-
-		for i in range(1,self.numLinks_newPlusY):
-			self.X.append(1)
+		for i in range(0,self.numLinks_newPlusY):
+			self.X.append(1) #random.uniform(0.5,1))
 			self.Y.append(self.X[i])
 			self.Z.append(self.X[i])
 				#link appends
@@ -172,16 +171,28 @@ class SOLUTION:
 			self.JparentList.append('link'+str(i))
 			self.JchildList.append('link'+str(i+1))
 			self.JaxisList.append(random.choice(["1 0 0", "0 1 0", "0 0 1"]))
+			self.mass=1
 
-			self.Pick_Pos(i)
+			if i==0:
+				self.pickPos.append(random.choice(['plusX','plusY']))
+				self.JPosList.append([0,0,self.Z[i]])
+				self.LPosList.append([0,0,self.Z[i]])
+				self.mass=100
+			else:
+				self.Pick_Pos(i)
 
-			pyrosim.Send_Cube(name=self.LnameList[i], pos=self.LPosList[i], size=[self.X[i],self.Y[i],self.Z[i]], mass=1, materialName=self.LmatList[i], colorString=self.LcolorStringList[i], rpy="0 0 0")
+			pyrosim.Send_Cube(name=self.LnameList[i], pos=self.LPosList[i], size=[self.X[i],self.Y[i],self.Z[i]], mass=self.mass, materialName=self.LmatList[i], colorString=self.LcolorStringList[i], rpy="0 0 0")
 			if self.LmatList[i] == "Green":
 				self.sensorList[str(i)]= 'link'+str(i)
 
 			if i != self.numLinks_newPlusY-1:
 				pyrosim.Send_Joint(name=self.JnameList[i], parent=self.JparentList[i], child=self.JchildList[i], type="revolute", position=self.JPosList[i], jointAxis=self.JaxisList[i]) #[0,self.JposList[i-1],0]
 				self.motorList['joint'+str(i)]=self.JnameList[i]
+		print(self.LnameList)
+		print(self.pickPos)
+		print(self.LPosList)
+		print(self.JPosList)
+
 
 
 
@@ -274,17 +285,17 @@ class SOLUTION:
 		#		pyrosim.Send_Synapse( sourceNeuronName = currentRow , targetNeuronName = currentColumn+len(self.sensorList) , weight = self.weights[currentRow][currentColumn] ) #weight = random.random() #weight = random.uniform(-1,1)
 
 			#Four Leg Body
-		self.numHiddenNeurons = random.randint(len(self.sensorList),len(self.motorList)-1)
+		##self.numHiddenNeurons = random.randint(len(self.sensorList),len(self.motorList)-1)
 		
-		for i in self.sensorList:
-			pyrosim.Send_Sensor_Neuron(name = self.neuronId, linkName = self.sensorList[i])
-			self.neuronId +=1
-		for i in self.motorList:
-			pyrosim.Send_Motor_Neuron(name = self.neuronId, jointName = self.motorList[i])
-			self.neuronId +=1
-		for i in range(self.numHiddenNeurons):
-			pyrosim.Send_Hidden_Neuron(name = self.neuronId)
-			self.neuronId +=1
+		#for i in self.sensorList:
+		#	pyrosim.Send_Sensor_Neuron(name = self.neuronId, linkName = self.sensorList[i])
+		#	self.neuronId +=1
+		#for i in self.motorList:
+		#	pyrosim.Send_Motor_Neuron(name = self.neuronId, jointName = self.motorList[i])
+		#	self.neuronId +=1
+		#for i in range(self.numHiddenNeurons):
+		#	pyrosim.Send_Hidden_Neuron(name = self.neuronId)
+		#	self.neuronId +=1
 
 			#synapse with no hidden neurons
 		#self.weights = numpy.random.rand(len(self.sensorList),len(self.motorList)) * 2 - 1
@@ -306,9 +317,9 @@ class SOLUTION:
 		#		pyrosim.Send_Synapse( sourceNeuronName = currentRow+len(self.sensorList)+len(self.motorList) , targetNeuronName = currentColumn+len(self.sensorList) , weight = self.weights[currentRow][currentColumn] ) #weight = random.random() #weight = random.uniform(-1,1)
 
 
-		print('the number of sensor neurons is '+str(len(self.sensorList)))
-		print('the number of hidden neurons is '+str(self.numHiddenNeurons))
-		print('the number of motor neurons is '+str(len(self.motorList)))
+		#print('the number of sensor neurons is '+str(len(self.sensorList)))
+		#print('the number of hidden neurons is '+str(self.numHiddenNeurons))
+		#print('the number of motor neurons is '+str(len(self.motorList)))
 		pyrosim.End()
 		
 		

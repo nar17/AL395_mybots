@@ -1,25 +1,2 @@
 <neuralNetwork>
-    <neuron name = "0" type = "sensor" linkName = "rootLink" />
-    <neuron name = "1" type = "sensor" linkName = "link1" />
-    <neuron name = "2" type = "sensor" linkName = "link2" />
-    <neuron name = "3" type = "sensor" linkName = "link3" />
-    <neuron name = "4" type = "sensor" linkName = "link7" />
-    <neuron name = "5" type = "sensor" linkName = "link9" />
-    <neuron name = "6" type = "motor"  jointName = "rootLink_link1" />
-    <neuron name = "7" type = "motor"  jointName = "link1_link2" />
-    <neuron name = "8" type = "motor"  jointName = "link2_link3" />
-    <neuron name = "9" type = "motor"  jointName = "link3_link4" />
-    <neuron name = "10" type = "motor"  jointName = "link4_link5" />
-    <neuron name = "11" type = "motor"  jointName = "link5_link6" />
-    <neuron name = "12" type = "motor"  jointName = "link6_link7" />
-    <neuron name = "13" type = "motor"  jointName = "link7_link8" />
-    <neuron name = "14" type = "motor"  jointName = "link8_link9" />
-    <neuron name = "15" type = "hidden" />
-    <neuron name = "16" type = "hidden" />
-    <neuron name = "17" type = "hidden" />
-    <neuron name = "18" type = "hidden" />
-    <neuron name = "19" type = "hidden" />
-    <neuron name = "20" type = "hidden" />
-    <neuron name = "21" type = "hidden" />
-    <neuron name = "22" type = "hidden" />
 </neuralNetwork>
