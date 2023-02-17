@@ -9,7 +9,7 @@ populationSize = 1
 numSensorNeurons = 2 #4 #9
 numMotorNeurons = 2 #8 #8
 
-motorJointRange = 1
+motorJointRange = 0.5
 motormaxForce = 100
 
 numSteps = 1500
