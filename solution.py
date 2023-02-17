@@ -12,7 +12,7 @@ class SOLUTION:
 		self.motorList = {}
 		self.neuronId = 0
 		#self.weights = numpy.random.rand(len(self.sensorList),len(self.motorList)) * 2 - 1
-		#random.seed(1)
+		#random.seed(0)
 		#numpy.random.seed(5)
 		#self.New_PlusY()
 		
@@ -74,6 +74,67 @@ class SOLUTION:
 
 		pyrosim.End()
 
+	def New_New(self):
+		pass
+
+	def New_PlusY(self):
+		self.numLinks_newPlusY=4#random.randint(2,3)
+			#link lists
+		self.LnameList=[]
+		self.LsizeList=[]
+		self.LposList=[]
+		self.LmassList=[]
+		self.LmatList=[]
+		self.LcolorStringList=[]
+		self.LrpyList=[]
+
+			#joint lists
+		self.JnameList=[]
+		self.JparentList=[]
+		self.JchildList=[]
+		self.JtypeList=[]
+		self.JposList=[]
+		self.JaxisList=[]
+	
+		#rootlink
+		self.rootSize=2 #random.randint(1,3)
+		pyrosim.Send_Cube(name='rootLink', pos=[0,0,self.rootSize], size=[self.rootSize,self.rootSize,self.rootSize], mass=1, materialName="Green", colorString="0 1 0 1", rpy="0 0 0")
+		pyrosim.Send_Joint(name='rootLink_link0', parent='rootLink', child='link0', type="revolute", position=[0,self.rootSize/2,self.rootSize], jointAxis="0 1 0")
+
+		for j in range(1,self.numLinks_newPlusY):
+				#link appends
+			i=j-1
+			self.LnameList.append('link'+str(i))
+			self.LsizeList.append(1) #random.randint(1,3))
+			self.LposList.append(self.LsizeList[i])
+			self.LmassList.append(1)
+			self.LmatList.append(random.choice(["Blue","Green"]))
+			if self.LmatList[i]=="Blue":
+				self.LcolorStringList.append("0 0 1 1")
+			if self.LmatList[i]=="Green":
+				self.LcolorStringList.append("0 1 0 1")
+			self.LrpyList.append("0 0 0")
+
+				#joint appends
+			self.JnameList.append('link'+str(i)+'_link'+str(i+1))
+			self.JparentList.append('link'+str(i))
+			self.JchildList.append('link'+str(i+1))
+			self.JtypeList.append("revolute")
+			self.JposList.append(self.LsizeList[i])
+			self.JaxisList.append(random.choice(["1 0 0", "0 1 0", "0 0 1"]))
+		
+			pyrosim.Send_Cube(name=self.LnameList[i], pos=[0,self.LposList[i]/2,0], size=[self.LsizeList[i],self.LsizeList[i],self.LsizeList[i]], mass=self.LmassList[i], materialName=self.LmatList[i], colorString=self.LcolorStringList[i], rpy=self.LrpyList[i])
+			if self.LmatList[i] == "Green":
+				self.sensorList[str(i)]= 'link'+str(i)
+
+			if i != self.numLinks_newPlusY-2:
+				pyrosim.Send_Joint(name=self.JnameList[i], parent=self.JparentList[i], child=self.JchildList[i], type=self.JtypeList[i], position=[0,self.JposList[i-1],0], jointAxis=self.JaxisList[i]) #[0,self.JposList[i-1],0]
+				self.motorList['joint'+str(i)]=self.JnameList[i]
+		print(self.LnameList)
+
+
+
+
 	def Four_Leg_Body(self):
 		self.rootLinkPosZ = 1
 		pyrosim.Send_Cube(name='rootLink', pos=[0,0,self.rootLinkPosZ] , size=[2,2,2], mass=5, materialName="Green", colorString="0 1 0 1", rpy="0 0 0")
@@ -103,53 +164,6 @@ class SOLUTION:
 		#	self.Links_PlusZ()
 		#	print('the number of links in the plus-Z direction is '+ str(self.numLinks_plusZ))
 
-	def New_PlusY(self):
-		self.numLinks_newPlusY=3#random.randint(2,3)
-			#link lists
-		self.LnameList=[]
-		self.LposList=[]
-		self.LsizeList=[]
-		self.LmassList=[]
-		self.LmatList=[]
-		self.LcolorStringList=[]
-		self.LrpyList=[]
-
-			#joint lists
-		self.JnameList=[]
-		self.JparentList=[]
-		self.JchildList=[]
-		self.JtypeList=[]
-		self.JposList=[]
-		self.JaxisList=[]
-
-
-		for i in range(0,self.numLinks_newPlusY):
-			self.Lsize=random.uniform(0.5,1.5)
-				#link appends
-			self.LnameList.append('link'+str(i))
-			self.LposList.append([-random.uniform(0.5,1.5),-random.uniform(0.5,1.5),random.uniform(0.5,1.5)])
-			self.LsizeList.append([self.Lsize,self.Lsize,self.Lsize])
-			self.LmassList.append(1)
-			self.LmatList.append(random.choice(["Blue","Green"]))
-			if self.LmatList[i]=="Blue":
-				self.LcolorStringList.append("0 0 1 1")
-			if self.LmatList[i]=="Green":
-				self.LcolorStringList.append("0 1 0 1")
-			self.LrpyList.append("0 0 0")
-				#joint appends
-			self.JnameList.append('link'+str(i)+'_link'+str(i+1))
-			self.JparentList.append('link'+str(i))
-			self.JchildList.append('link'+str(i+1))
-			self.JtypeList.append("revolute")
-			self.JposList.append([random.uniform(0.5,1.5),random.uniform(0.5,1.5),random.uniform(0.5,1.5)])
-			self.JaxisList.append(random.choice(["1 0 0", "0 1 0", "0 0 1"]))
-				
-			pyrosim.Send_Cube(name=self.LnameList[i], pos=self.LposList[i] , size=self.LsizeList[i], mass=self.LmassList[i], materialName=self.LmatList[i], colorString=self.LcolorStringList[i], rpy=self.LrpyList[i])
-			if self.LmatList[i] == "Green":
-				self.sensorList[str(i)]= 'link'+str(i)
-			if i != self.numLinks_newPlusY-1:
-				pyrosim.Send_Joint(name=self.JnameList[i], parent=self.JparentList[i], child=self.JchildList[i], type=self.JtypeList[i], position=self.JposList[i], jointAxis=self.JaxisList[i])
-				self.motorList['joint'+str(i)]=self.JnameList[i]
 			
 
 			
