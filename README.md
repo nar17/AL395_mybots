@@ -7,7 +7,7 @@ Open search.py and run program.
 
 
 #	Genotype:
-The genotype of the robot is represented by the following graph. The rootlink has the potential to grow up to four legs, and each leg can be 2-3 links long. 
+The genotype of the robot dictates that the rootlink grows two recursive legs in three-dimensional space. 
 
 The following picture shows the genotype graph:
 
@@ -15,7 +15,7 @@ The following picture shows the genotype graph:
 
 
 # 	Ontology:
-In solution.py, the robot is generated from a rootlink of fixed size and position. There is a 50% probability of the robot growing a "leg" in any of the +y, -y, -x, and +z direction. Each of these legs will consist of 2-3 links of random size. Each link is connected to the previous link at its center with a revolute joint that has a randomized axis. Every link has a 50% probability of being green or blue. Green links have a touch sensor neuron, blue links have no neuron, and every joint has a motor neuron. 
+In solution.py, the robot is generated from a rootlink of fixed size and position. From the rootlink, two legs grow from the rootlink origin. Each leg consists of randomly-sized links connected by center-placed, revolute joints with randomized axis. The legs are symmetrical across the X-Z plane, and they grow in the positive-Z, negative-X, and positive- or negative-Y directions. Each link is randomly assigned either a green color, indicating the presence of a sensor neuron, or a blue color, indicated no neurons. 
 
 The following images shows a diagram of the robot's ontology and an example of a randomized robot:
 
@@ -23,13 +23,13 @@ The following images shows a diagram of the robot's ontology and an example of a
 
 
 #	Neural Network:
-The neural network is constructed with one layer of sensor neurons, one layer of hidden neurons, and one layer of motor neurons. The sensor neurons detect touch and are located in green links (one sensor neuron per green link). The motor neurons are located on every joint (one motor neuron per joint). Based upon Sandhya Krishnan's Medium post from September 2021 [1], the number of hidden neurons is a randomly selected integer between the number of sensors neurons and the number motor neurons.
+The neural network is constructed with one layer of sensor neurons, one layer of hidden neurons, and one layer of motor neurons. The sensor neurons detect touch and are located in green links (one sensor neuron per green link). The motor neurons are located on every joint (one motor neuron per joint). Based upon Sandhya Krishnan's Medium post from September 2021 [1], the number of hidden neurons is a randomly selected integer between the number of sensor neurons and the number motor neurons.
 
-The fully integrated neural network is shown in the figure below: 
+The fully-integrated neural network is shown in the figure below: 
 
 
 # 	Result:
-The resulting robots show small movements with a "wiggle"-like disposition.
+The resulting robots loosely resemble a boxer with muscular arms and no legs; their movements are varied based upon the randomized placement of the sensor neurons. 
 
 The following Youtube link shows various generations of the randomized robots: 
 https://github.com/nar17/AL395_mybots/tree/assignmentSEVEN

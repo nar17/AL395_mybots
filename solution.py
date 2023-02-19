@@ -116,7 +116,7 @@ class SOLUTION:
 			
 
 	def RootLink(self):
-		self.rootSize=0.4#random.uniform(0.2,0.8)
+		self.rootSize=1#random.uniform(0.2,0.8)
 		self.rootPos=1
 		pyrosim.Send_Cube(name='rootLink', pos=[0,0,self.rootPos], size=[self.rootSize,self.rootSize,self.rootSize], mass=10, materialName="Green", colorString="0 1 0 1", rpy="0 0 0")
 		self.sensorList['rootLink']='rootLink'
