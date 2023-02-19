@@ -11,7 +11,7 @@ The genotype of the robot dictates that the rootlink grows two recursive legs in
 
 The following picture shows the genotype graph:
 
-![Random_Snake_Screenshot](https://user-images.githubusercontent.com/122194228/217650570-47537373-2a6f-4da9-b711-91a382f188aa.JPG)
+![Assignment_Seven_Robot_Genotype_Graph](https://user-images.githubusercontent.com/122194228/219932836-4f015801-6408-4898-9aba-c6cb0faf3902.JPG)
 
 
 # 	Ontology:
@@ -19,13 +19,15 @@ In solution.py, the robot is generated from a rootlink of fixed size and positio
 
 The following images shows a diagram of the robot's ontology and an example of a randomized robot:
 
-![Random_Snake_Screenshot](https://user-images.githubusercontent.com/122194228/217650570-47537373-2a6f-4da9-b711-91a382f188aa.JPG)	![Random_Snake_Screenshot](https://user-images.githubusercontent.com/122194228/217650570-47537373-2a6f-4da9-b711-91a382f188aa.JPG)
+![Assignment_Seven_Robot_Ontology](https://user-images.githubusercontent.com/122194228/219932846-be060de1-5ed7-4147-8ea5-e90f0a39a56c.JPG)
 
 
 #	Neural Network:
 The neural network is constructed with one layer of sensor neurons, one layer of hidden neurons, and one layer of motor neurons. The sensor neurons detect touch and are located in green links (one sensor neuron per green link). The motor neurons are located on every joint (one motor neuron per joint). Based upon Sandhya Krishnan's Medium post from September 2021 [1], the number of hidden neurons is a randomly selected integer between the number of sensor neurons and the number motor neurons.
 
 The fully-integrated neural network is shown in the figure below: 
+
+![Assignment_Seven_Neural_Network](https://user-images.githubusercontent.com/122194228/219932849-807318e8-3719-4c93-b9ce-182ba16bedb1.JPG)
 
 
 # 	Result:
