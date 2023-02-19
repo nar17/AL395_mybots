@@ -15,7 +15,7 @@ The following picture shows the genotype graph:
 
 
 # 	Ontology:
-In solution.py, the robot is generated from a rootlink of fixed size and position. From the rootlink, two legs grow from the rootlink origin. Each leg consists of randomly-sized links connected by center-placed, revolute joints with randomized axis. The legs are symmetrical across the X-Z plane, and they grow in the positive-Z, negative-X, and positive- or negative-Y directions. Each link is randomly assigned either a green color, indicating the presence of a sensor neuron, or a blue color, indicated no neurons. 
+In solution.py, the robot is generated from a rootlink of fixed size and position, where two legs grow from the rootlink origin. Each leg consists of randomly-sized links connected by center-placed, revolute joints with randomized axis. The legs are symmetrical across the X-Z plane, and they grow in the positive-Z, negative-X, and positive- or negative-Y directions. Each link is randomly assigned either a green color, indicating the presence of a sensor neuron, or a blue color, indicated no neurons. 
 
 The following images shows a diagram of the robot's ontology and an example of a randomized robot:
 
@@ -33,10 +33,10 @@ The fully-integrated neural network is shown in the figure below:
 # 	Result:
 The resulting robots loosely resemble a boxer with muscular arms and no legs; their movements are varied based upon the randomized placement of the sensor neurons. 
 
-The following Youtube link shows various generations of the randomized robots: 
+The following Youtube link shows various generations of the randomized robots:
 https://github.com/nar17/AL395_mybots/tree/assignmentSEVEN
 
-The following Github link shows the full code repository: 
+The following Github link shows the full code repository:
 https://github.com/nar17/AL395_mybots/tree/assignmentSEVEN
 
 

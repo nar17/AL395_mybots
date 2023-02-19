@@ -339,16 +339,16 @@ class SOLUTION:
 
 		#synapse with hidden neurons
 			#sensor to hidden
-		self.weights = numpy.random.rand(len(self.sensorList),self.numHiddenNeurons) * 2 - 1
-		for currentRow in range(0,len(self.sensorList)):
-			for currentColumn in range(0,self.numHiddenNeurons):
-				pyrosim.Send_Synapse( sourceNeuronName = currentRow , targetNeuronName = currentColumn+len(self.sensorList)+len(self.motorList) , weight = self.weights[currentRow][currentColumn] ) #weight = random.random() #weight = random.uniform(-1,1)
+		#self.weights = numpy.random.rand(len(self.sensorList),self.numHiddenNeurons) * 2 - 1
+		#for currentRow in range(0,len(self.sensorList)):
+		#	for currentColumn in range(0,self.numHiddenNeurons):
+		#		pyrosim.Send_Synapse( sourceNeuronName = currentRow , targetNeuronName = currentColumn+len(self.sensorList)+len(self.motorList) , weight = self.weights[currentRow][currentColumn] ) #weight = random.random() #weight = random.uniform(-1,1)
 
 			#hidden to motor
-		self.weights = numpy.random.rand(self.numHiddenNeurons,len(self.motorList)) * 2 - 1
-		for currentRow in range(0,self.numHiddenNeurons):
-			for currentColumn in range(0,len(self.motorList)):
-				pyrosim.Send_Synapse( sourceNeuronName = currentRow+len(self.sensorList)+len(self.motorList) , targetNeuronName = currentColumn+len(self.sensorList) , weight = self.weights[currentRow][currentColumn] ) #weight = random.random() #weight = random.uniform(-1,1)
+		#self.weights = numpy.random.rand(self.numHiddenNeurons,len(self.motorList)) * 2 - 1
+		#for currentRow in range(0,self.numHiddenNeurons):
+		#	for currentColumn in range(0,len(self.motorList)):
+		#		pyrosim.Send_Synapse( sourceNeuronName = currentRow+len(self.sensorList)+len(self.motorList) , targetNeuronName = currentColumn+len(self.sensorList) , weight = self.weights[currentRow][currentColumn] ) #weight = random.random() #weight = random.uniform(-1,1)
 
 
 		print('the number of sensor neurons is '+str(len(self.sensorList)))
