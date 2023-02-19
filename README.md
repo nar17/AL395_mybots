@@ -35,7 +35,7 @@ The fully-integrated neural network is shown in the figure below:
 # 	Result:
 The resulting robots loosely resemble a boxer with muscular arms and no legs; their movements are varied based upon the randomized placement of the sensor neurons. 
 
-The following Youtube link shows various generations of the randomized robots: https://github.com/nar17/AL395_mybots/tree/assignmentSEVEN
+The following Youtube link shows various generations of the randomized robots: https://youtu.be/a72AuPSN7uQ
 
 The following Github link shows the full code repository: https://github.com/nar17/AL395_mybots/tree/assignmentSEVEN
 
