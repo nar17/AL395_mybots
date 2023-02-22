@@ -1,5 +1,5 @@
-# Assignment 7:
-Expand the morphospace from assignment 6 and create randomly generated robots in multiple dimensions.
+# Assignment 8:
+Utilize the parallel hillclimber algorithm to design morphology and behavior for locomotion.
 
 
 # 	Running Instructions:
@@ -32,12 +32,16 @@ The fully-integrated neural network is shown in the figure below:
 ![Assignment_Seven_Neural_Network](https://user-images.githubusercontent.com/122194228/219932849-807318e8-3719-4c93-b9ce-182ba16bedb1.JPG)
 
 
+#	Evolutionary Algorithm:
+...........parallel hillclimber..........
+
+
 # 	Result:
 The resulting robots loosely resemble a boxer with muscular arms and no legs; their movements are varied based upon the randomized placement of the sensor neurons. 
 
-The following Youtube link shows various generations of the randomized robots: https://youtu.be/a72AuPSN7uQ
+The following Youtube link shows various generations of the randomized robots: 
 
-The following Github link shows the full code repository: https://github.com/nar17/AL395_mybots/tree/assignmentSEVEN
+The following Github link shows the full code repository: 
 
 
 # 	Acknowledgements:

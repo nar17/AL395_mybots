@@ -9,10 +9,10 @@ populationSize = 1
 numSensorNeurons = 2 #4 #9
 numMotorNeurons = 2 #8 #8
 
-motorJointRange = 0.8
+motorJointRange = 1
 motormaxForce = 1000
 
-numSteps = 1500
+numSteps = 1000
 timeSleep = 1/60
 xNum = numpy.pi
 
