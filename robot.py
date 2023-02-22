@@ -15,8 +15,8 @@ class ROBOT:
 		self.motors = {}
 		self.sensors = {}
 		self.solutionID = solutionID
-		self.robotId = p.loadURDF("body.urdf")
-		self.world = WORLD()
+		self.robotId = p.loadURDF("body"+str(solutionID)+".urdf")
+		#self.world = WORLD()
 		pyrosim.Prepare_To_Simulate(self.robotId)
 		self.Prepare_To_Sense()
 		self.Prepare_To_Act()

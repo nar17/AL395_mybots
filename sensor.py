@@ -10,6 +10,7 @@ class SENSOR:
 
 	def Get_Value(self, t):
 		self.values[t] = pyrosim.Get_Touch_Sensor_Value_For_Link(self.linkName)
+		#self.values[t] = c.amplitude + numpy.sin(c.frequency*t+c.phaseOffset)
 		#print(self.values[t])
 
 	#def Get_Value_Sin(self, t):

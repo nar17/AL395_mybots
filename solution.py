@@ -12,8 +12,8 @@ class SOLUTION:
 		self.motorList = {}
 		self.neuronId = 0
 		#self.weights = numpy.random.rand(len(self.sensorList),len(self.motorList)) * 2 - 1
-		random.seed(0)
-		numpy.random.seed(0)
+		random.seed(2)
+		numpy.random.seed(2)
 		#self.New_PlusY()
 		
 
@@ -38,6 +38,7 @@ class SOLUTION:
 		self.Create_World()
 		self.Create_Body()
 		self.Create_Brain()
+		self.Clear_Lists()
 		self.directOrGUI = directOrGUI
 		os.system("start /B py simulate.py " + str(self.directOrGUI) + " " + str(self.myID))
 		
@@ -230,16 +231,38 @@ class SOLUTION:
 		for i in range(1,self.numJoints_A7):
 			pyrosim.Send_Joint(name=self.JnameListNNP[i], parent=self.JparentListNNP[i], child=self.JchildListNNP[i], type="revolute", position=self.JPosListNNP[i], jointAxis=self.JaxisList[i]) #[0,self.JposList[i-1],0]
 			self.motorList['joint'+str(i)+'NNP']=self.JnameListNNP[i]
-		
-		print(self.LnameListNPP) 
-		print(self.LnameListNNP)
 
-		print(self.JnameListNPP)
-		print(self.JnameListNNP)
+	def Clear_Lists(self):
+		self.X.clear()
+		self.Y.clear()
+		self.Z.clear()
+
+		self.pickPos.clear()
+
+			#link lists
+		self.LnameListNPP.clear()
+		self.LnameListNNP.clear()
+		self.LPosListNPP.clear()
+		self.LPosListNNP.clear()
+		self.LmatList.clear()
+		self.LcolorStringList.clear()
+			#joint lists
+		self.JnameListNPP.clear()
+		self.JnameListNNP.clear()
+		self.JparentListNPP.clear()
+		self.JparentListNNP.clear()
+		self.JchildListNPP.clear()
+		self.JchildListNNP.clear()
+		self.JPosListNPP.clear()
+		self.JPosListNNP.clear()
+		self.JaxisList.clear()
+
+		self.sensorList.clear()
+		self.motorList.clear()
 
 
 	def Create_Body(self):
-		pyrosim.Start_URDF("body.urdf")
+		pyrosim.Start_URDF("body"+str(self.myID)+".urdf")
 		self.New_A7()
 		pyrosim.End()
 
@@ -312,10 +335,10 @@ class SOLUTION:
 		#self.weights[randomRow,randomColumn] = random.random() * 2 - 1
 		
 			#quadruped/golfer
-		#randomRow = random.randint(0,c.numSensorNeurons-1)
-		#randomColumn = random.randint(0,c.numMotorNeurons-1)
-		#self.weights[randomRow,randomColumn] = random.random() * 2 - 1
-		pass
+		randomRow = random.randint(0,c.numSensorNeurons-1)
+		randomColumn = random.randint(0,c.numMotorNeurons-1)
+		self.weights[randomRow,randomColumn] = random.random() * 2 - 1
+		
 
 	def Set_ID(self, ID):
 		self.myID = ID

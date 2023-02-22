@@ -36,6 +36,10 @@ The fully-integrated neural network is shown in the figure below:
 ...........parallel hillclimber..........
 
 
+#	Fitness Curves:
+...........fitness curves............
+
+
 # 	Result:
 The resulting robots loosely resemble a boxer with muscular arms and no legs; their movements are varied based upon the randomized placement of the sensor neurons. 
 
