@@ -13,7 +13,7 @@ class PARALLEL_HILL_CLIMBER:
 			self.nextAvailableID = self.nextAvailableID+1
 		#os.system("del brain" + str(self.nextAvailableID) + ".nndf") #not correct yet; for this maybe put it in a for loop with a variable that iterates over every ID
 		#os.system("del fitness" + str(self.nextAvailableID) + ".txt") #not correct yet 
-		print(self.parents)
+		#print(self.parents)
 		
 
 	def Evolve(self):
