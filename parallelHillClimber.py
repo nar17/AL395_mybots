@@ -6,13 +6,15 @@ from solution import SOLUTION
 
 class PARALLEL_HILL_CLIMBER:
 	def __init__(self):
+		os.system("del body*.urdf")
+		os.system("del brain*.nndf")
+		os.system("del fitness*.txt")
+		
 		self.parents = {}
 		self.nextAvailableID = 0
 		for i in range(0, c.populationSize):
 			self.parents[i] = SOLUTION(self.nextAvailableID)
 			self.nextAvailableID = self.nextAvailableID+1
-		#os.system("del brain" + str(self.nextAvailableID) + ".nndf") #not correct yet; for this maybe put it in a for loop with a variable that iterates over every ID
-		#os.system("del fitness" + str(self.nextAvailableID) + ".txt") #not correct yet 
 		#print(self.parents)
 		
 

@@ -9,12 +9,12 @@ class SOLUTION:
 	def __init__(self, nextAvailableID):
 		self.myID = nextAvailableID
 		self.listID = 0
-		self.sensorList = {}
-		self.motorList = {}
-		self.neuronId = 0
-		#self.weights = numpy.random.rand(len(self.sensorList),len(self.motorList)) * 2 - 1
+		#self.sensorList = {}
+		#self.motorList = {}
+		#self.neuronId = 0
 		random.seed(3)
 		numpy.random.seed(3)
+		#self.weights = numpy.random.rand(len(self.sensorList),len(self.motorList)) * 2 - 1
 		
 
 	def Start_Simulation(self, directOrGUI):
@@ -99,6 +99,10 @@ class SOLUTION:
 				self.JPosListNNP.append([-self.X[i-1]/2,-self.Y[i-1]/2,0])
 		
 	def New_A7_Lists(self):
+		self.sensorList = {}
+		self.motorList = {}
+		self.neuronId = 0
+
 		self.numLinks_A7=random.randint(4,8)+1
 		self.numJoints_A7=self.numLinks_A7-1
 		
@@ -148,9 +152,9 @@ class SOLUTION:
 		self.JPosListNPP.append([0,self.rootPos,self.rootPos])
 		self.JPosListNNP.append([0,self.rootPos,self.rootPos])
 		self.JaxisList.append("0 1 0")
-		self.sensorList['rootLink']='rootLink'
-		self.motorList['rootJointNPP']='rootLink_link1NPP'
-		self.motorList['rootJointNNP']='rootLink_link1NNP'
+		#self.sensorList['rootLink']='rootLink'
+		#self.motorList['rootJointNPP']='rootLink_link1NPP'
+		#self.motorList['rootJointNNP']='rootLink_link1NNP'
 		
 		#link lists appends
 		for i in range(1,self.numLinks_A7):
@@ -166,10 +170,10 @@ class SOLUTION:
 			else:
 				self.LmatList[i]=="Green"
 				self.LcolorStringList.append("0 1 0 1")
-			if self.LmatList[i] == "Green":
-				self.sensorList[str(i)+'NPP']= 'link'+str(i)+'NPP'
-			if self.LmatList[i] == "Green":
-				self.sensorList[str(i)+'NNP']= 'link'+str(i)+'NNP'
+			#if self.LmatList[i] == "Green":
+			#	self.sensorList[str(i)+'NPP']= 'link'+str(i)+'NPP'
+			#if self.LmatList[i] == "Green":
+			#	self.sensorList[str(i)+'NNP']= 'link'+str(i)+'NNP'
 		#joint list appends
 		for i in range(1,self.numJoints_A7):
 				#joint appends
@@ -180,8 +184,8 @@ class SOLUTION:
 			self.JchildListNPP.append('link'+str(i+1)+'NPP')
 			self.JchildListNNP.append('link'+str(i+1)+'NNP')
 			self.JaxisList.append(random.choice(["1 0 0", "0 1 0", "0 0 1"]))
-			self.motorList['joint'+str(i)+'NPP']=self.JnameListNPP[i]
-			self.motorList['joint'+str(i)+'NNP']=self.JnameListNNP[i]
+			#self.motorList['joint'+str(i)+'NPP']=self.JnameListNPP[i]
+			#self.motorList['joint'+str(i)+'NNP']=self.JnameListNNP[i]
 
 		for i in range(1,self.numLinks_A7):
 			self.Pick_Pos(i)
@@ -191,24 +195,32 @@ class SOLUTION:
 
 	def New_A7_Generator(self):
 		#rootlink
-		self.rootSize=1#random.uniform(0.2,0.8)
+		self.rootSize=1
 		self.rootPos=1
 		pyrosim.Send_Cube(name='rootLink', pos=[0,0,self.rootPos], size=[self.rootSize,self.rootSize,self.rootSize], mass=10, materialName="Green", colorString="0 1 0 1", rpy="0 0 0")
 		pyrosim.Send_Joint(name='rootLink_link1NPP', parent='rootLink', child='link1NPP', type="revolute", position=[0,self.rootSize/2,self.rootPos/2], jointAxis="0 1 0")
 		pyrosim.Send_Joint(name='rootLink_link1NNP', parent='rootLink', child='link1NNP', type="revolute", position=[0,-self.rootSize/2,self.rootPos/2], jointAxis="0 1 0")
+		self.sensorList['rootLink']='rootLink'
+		self.motorList['rootJointNPP']='rootLink_link1NPP'
+		self.motorList['rootJointNNP']='rootLink_link1NNP'
 		#NPPlinks
 		for i in range(1,self.numLinks_A7):
 			pyrosim.Send_Cube(name=self.LnameListNPP[i], pos=self.LPosListNPP[i-1], size=[self.X[i-1],self.Y[i-1],self.Z[i-1]], mass=1, materialName=self.LmatList[i], colorString=self.LcolorStringList[i], rpy="0 0 0")
+			if self.LmatList[i] == "Green":
+				self.sensorList[str(i)+'NPP']= 'link'+str(i)+'NPP'
 		#NNPlinks
 		for i in range(1,self.numLinks_A7):
 			pyrosim.Send_Cube(name=self.LnameListNNP[i], pos=self.LPosListNNP[i-1], size=[self.X[i-1],self.Y[i-1],self.Z[i-1]], mass=1, materialName=self.LmatList[i], colorString=self.LcolorStringList[i], rpy="0 0 0")
+			if self.LmatList[i] == "Green":
+				self.sensorList[str(i)+'NNP']= 'link'+str(i)+'NNP'
 		#NPPjoints
 		for i in range(1,self.numJoints_A7):
 			pyrosim.Send_Joint(name=self.JnameListNPP[i], parent=self.JparentListNPP[i], child=self.JchildListNPP[i], type="revolute", position=self.JPosListNPP[i], jointAxis=self.JaxisList[i]) #[0,self.JposList[i-1],0]
+			self.motorList['joint'+str(i)+'NPP']=self.JnameListNPP[i]
 		#NNPjoints
 		for i in range(1,self.numJoints_A7):
 			pyrosim.Send_Joint(name=self.JnameListNNP[i], parent=self.JparentListNNP[i], child=self.JchildListNNP[i], type="revolute", position=self.JPosListNNP[i], jointAxis=self.JaxisList[i]) #[0,self.JposList[i-1],0]
-
+			self.motorList['joint'+str(i)+'NNP']=self.JnameListNNP[i]
 
 
 
@@ -243,7 +255,6 @@ class SOLUTION:
 
 	def Create_Body(self):
 		pyrosim.Start_URDF("body"+str(self.myID)+".urdf")
-		
 		if self.listID==0:
 			self.New_A7_Lists()
 		self.New_A7_Generator()
@@ -275,7 +286,7 @@ class SOLUTION:
 
 			#New_A7
 		#self.numHiddenNeurons = 3 #random.randint(len(self.sensorList),len(self.motorList)-1)
-		
+
 		for i in self.sensorList:
 			pyrosim.Send_Sensor_Neuron(name = self.neuronId, linkName = self.sensorList[i])
 			self.neuronId +=1
@@ -290,7 +301,7 @@ class SOLUTION:
 		self.weights = numpy.random.rand(len(self.sensorList),len(self.motorList)) * 2 - 1
 		for currentRow in range(0,len(self.sensorList)):
 			for currentColumn in range(0,len(self.motorList)):
-				pyrosim.Send_Synapse( sourceNeuronName = currentRow , targetNeuronName = currentColumn+len(self.sensorList) , weight = self.weights[currentRow][currentColumn] ) #weight = random.random() #weight = random.uniform(-1,1)
+				pyrosim.Send_Synapse(sourceNeuronName = currentRow , targetNeuronName = currentColumn+len(self.sensorList) , weight = self.weights[currentRow][currentColumn]) #weight = random.random() #weight = random.uniform(-1,1)
 
 		#synapse with hidden neurons
 			#sensor to hidden
@@ -310,16 +321,32 @@ class SOLUTION:
 		print('the number of motor neurons is '+str(len(self.motorList)))
 		pyrosim.End()
 
-		self.neuronId=self.neuronId-len(self.sensorList)-len(self.motorList)
-		print(self.neuronId)
+		self.neuronId=self.neuronId-len(self.sensorList)-len(self.motorList)		
 		
 
 	def Mutate(self):
-			#randomSnake
+		self.linkListIndex = random.randint(0,self.numLinks_A7)
+		print(self.LmatList)
+		print(self.sensorList)
+		print(self.linkListIndex)
+
+			#new_A7 child bodies
+		if self.LmatList[self.linkListIndex] == "Green":
+			self.LmatList[self.linkListIndex] = "Blue"
+			self.LcolorStringList[self.linkListIndex] = "0 0 1 1"
+		else:
+			self.LmatList[self.linkListIndex] = "Green"
+			self.LcolorStringList[self.linkListIndex] = "0 1 0 1"
+
+			#randomSnake/new_A7 brain weights
 		randomRow = random.randint(0,len(self.sensorList)-1)
 		randomColumn = random.randint(0,len(self.motorList)-1)
 		self.weights[randomRow,randomColumn] = random.random() * 2 - 1
-		
+			
+
+		print(self.LmatList)
+		print(self.sensorList)
+	
 			#quadruped/golfer
 		#randomRow = random.randint(0,c.numSensorNeurons-1)
 		#randomColumn = random.randint(0,c.numMotorNeurons-1)
