@@ -254,6 +254,7 @@ class SOLUTION:
 	def Create_Brain(self):
 		pyrosim.Start_NeuralNetwork("brain" + str(self.myID) + ".nndf")	
 
+		self.neuronId=0
 			#quadruped/golfer
 		#for currentRow in range(0,c.numSensorNeurons):
 		#	for currentColumn in range(0,c.numMotorNeurons):
@@ -308,7 +309,8 @@ class SOLUTION:
 		print('the number of motor neurons is '+str(len(self.motorList)))
 
 		self.neuronId = 0
-
+		print(len(self.sensorList))
+		print(len(self.motorList))
 		pyrosim.End()
 
 		#self.neuronId=self.neuronId-len(self.sensorList)-len(self.motorList)		
