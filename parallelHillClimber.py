@@ -16,6 +16,9 @@ class PARALLEL_HILL_CLIMBER:
 			self.parents[i] = SOLUTION(self.nextAvailableID)
 			self.nextAvailableID = self.nextAvailableID+1
 		#print(self.parents)
+
+		
+		self.bestGenFitnessList = []
 		
 
 	def Evolve(self):
@@ -68,11 +71,18 @@ class PARALLEL_HILL_CLIMBER:
 		
 
 	def Select(self):
+		self.parentsFitnessesList = []
 		for i in self.parents.keys():
 		
 		#quadruped
 			if self.parents[i].fitness > self.children[i].fitness:
 				self.parents[i] = self.children[i]
+			self.parentsFitnessesList.append(self.parents[i].fitness)
+			self.bestGenFitness = min(self.parentsFitnessesList)
+		self.bestGenFitnessList.append(self.bestGenFitness)
+		print(self.parentsFitnessesList)
+		print(self.bestGenFitness)
+		print(self.bestGenFitnessList)
 
 		#mini putt
 			#if abs(self.parents[i].xfitness+11)+abs(self.parents[i].yfitness) > abs(self.children[i].xfitness+11)+abs(self.children[i].yfitness):

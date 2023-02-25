@@ -134,8 +134,8 @@
             <geometry>
                 <box size="0.4063849804728039 0.46881649326134284 0.8231780685582655" />
             </geometry>
-            <material name="Green">
-                <color rgba="0 1 0 1"/>
+            <material name="Blue">
+                <color rgba="0 0 1 1"/>
             </material>
         </visual>
         <collision>
@@ -288,8 +288,8 @@
             <geometry>
                 <box size="0.4063849804728039 0.46881649326134284 0.8231780685582655" />
             </geometry>
-            <material name="Green">
-                <color rgba="0 1 0 1"/>
+            <material name="Blue">
+                <color rgba="0 0 1 1"/>
             </material>
         </visual>
         <collision>

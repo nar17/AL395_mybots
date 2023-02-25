@@ -317,11 +317,7 @@ class SOLUTION:
 
 	def Mutate(self):
 		self.linkListIndex = random.randint(0,self.numLinks_A7)
-		print(self.LmatList)
-		print(self.sensorList)
-		print(self.motorList)
-		print(self.linkListIndex)
-
+		
 			#new_A7 child bodies
 		if self.LmatList[self.linkListIndex] == "Green":
 			self.LmatList[self.linkListIndex] = "Blue"
@@ -334,12 +330,7 @@ class SOLUTION:
 		randomRow = random.randint(0,len(self.sensorList)-1)
 		randomColumn = random.randint(0,len(self.motorList)-1)
 		self.weights[randomRow,randomColumn] = random.random() * 2 - 1
-			
-
-		print(self.LmatList)
-		print(self.sensorList)
-		print(self.motorList)
-	
+		
 			#quadruped/golfer
 		#randomRow = random.randint(0,c.numSensorNeurons-1)
 		#randomColumn = random.randint(0,c.numMotorNeurons-1)

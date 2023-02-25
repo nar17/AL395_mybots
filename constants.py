@@ -3,8 +3,8 @@ import random
 
 
 
-numberOfGenerations = 1
-populationSize = 1
+numberOfGenerations = 4
+populationSize = 3
 
 numSensorNeurons = 2 #4 #9
 numMotorNeurons = 2 #8 #8
