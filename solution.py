@@ -9,9 +9,7 @@ class SOLUTION:
 	def __init__(self, nextAvailableID):
 		self.myID = nextAvailableID
 		self.listID = 0
-		self.sensorList = []
-		self.motorList = []
-		self.neuronId = 0
+	
 		random.seed(3)
 		numpy.random.seed(3)
 		#self.weights = numpy.random.rand(len(self.sensorList),len(self.motorList)) * 2 - 1
@@ -101,7 +99,7 @@ class SOLUTION:
 	def New_A7_Lists(self):
 		self.numLinks_A7=random.randint(4,8)+1
 		self.numJoints_A7=self.numLinks_A7-1
-		
+
 		self.X=[]
 		self.Y=[]
 		self.Z=[]
@@ -182,6 +180,10 @@ class SOLUTION:
 		
 
 	def New_A7_Generator(self):
+		self.sensorList = []
+		self.motorList = []
+		self.neuronId = 0
+
 		#rootlink
 		self.rootSize=1
 		self.rootPos=1
@@ -254,7 +256,6 @@ class SOLUTION:
 	def Create_Brain(self):
 		pyrosim.Start_NeuralNetwork("brain" + str(self.myID) + ".nndf")	
 
-		self.neuronId=0
 			#quadruped/golfer
 		#for currentRow in range(0,c.numSensorNeurons):
 		#	for currentColumn in range(0,c.numMotorNeurons):
@@ -309,8 +310,6 @@ class SOLUTION:
 		print('the number of motor neurons is '+str(len(self.motorList)))
 
 		self.neuronId = 0
-		print(len(self.sensorList))
-		print(len(self.motorList))
 		pyrosim.End()
 
 		#self.neuronId=self.neuronId-len(self.sensorList)-len(self.motorList)		
@@ -320,6 +319,7 @@ class SOLUTION:
 		self.linkListIndex = random.randint(0,self.numLinks_A7)
 		print(self.LmatList)
 		print(self.sensorList)
+		print(self.motorList)
 		print(self.linkListIndex)
 
 			#new_A7 child bodies
@@ -338,6 +338,7 @@ class SOLUTION:
 
 		print(self.LmatList)
 		print(self.sensorList)
+		print(self.motorList)
 	
 			#quadruped/golfer
 		#randomRow = random.randint(0,c.numSensorNeurons-1)
