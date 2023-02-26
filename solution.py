@@ -10,8 +10,8 @@ class SOLUTION:
 		self.myID = nextAvailableID
 		self.listID = 0
 	
-		random.seed(3)
-		numpy.random.seed(3)
+		random.seed(c.randomSeed)
+		numpy.random.seed(c.numpyRandomSeed)
 		#self.weights = numpy.random.rand(len(self.sensorList),len(self.motorList)) * 2 - 1
 		
 
@@ -316,7 +316,7 @@ class SOLUTION:
 		
 
 	def Mutate(self):
-		self.linkListIndex = random.randint(0,self.numLinks_A7)
+		self.linkListIndex = random.randint(0,self.numLinks_A7-1)
 		
 			#new_A7 child bodies
 		if self.LmatList[self.linkListIndex] == "Green":

@@ -82,9 +82,9 @@ class PARALLEL_HILL_CLIMBER:
 			self.parentsFitnessesList.append(self.parents[i].fitness)
 			self.bestGenFitness = min(self.parentsFitnessesList)
 		self.bestGenFitnessList.append(self.bestGenFitness)
-		print(self.parentsFitnessesList)
-		print(self.bestGenFitness)
-		print(self.bestGenFitnessList)
+		#print(self.parentsFitnessesList)
+		#print(self.bestGenFitness)
+		#print(self.bestGenFitnessList)
 
 		#mini putt
 			#if abs(self.parents[i].xfitness+11)+abs(self.parents[i].yfitness) > abs(self.children[i].xfitness+11)+abs(self.children[i].yfitness):
@@ -93,13 +93,24 @@ class PARALLEL_HILL_CLIMBER:
 			#if self.parents[i].xfitness > self.children[i].xfitness and abs(self.parents[i].yfitness) > abs(self.children[i].yfitness):
 			#	self.parents[i] = self.children[i]
 
-	def Send_Fitness_Data(self):
-		self.fitness_First_Seed = numpy.array(self.bestGenFitnessList)
-		numpy.save(os.path.join('EightData','fitness_First_Seed'), self.fitness_First_Seed)
-		fitnessPlot = numpy.load("EightData/fitness_First_Seed.npy")
-		matplotlib.pyplot.plot(fitnessPlot, linewidth=3, linestyle='dashed', label='Back Leg')
-		matplotlib.pyplot.legend(loc=0, shadow=True)
-		matplotlib.pyplot.show()
+	def Save_Fitness_Data(self):
+		if c.randomSeed == 0:
+			self.fitness_Zero_Seed = numpy.array(self.bestGenFitnessList)*-1
+			numpy.save(os.path.join('EightData','fitness_Zero_Seed'), self.fitness_Zero_Seed)
+		elif c.randomSeed == 1:
+			self.fitness_First_Seed = numpy.array(self.bestGenFitnessList)*-1
+			numpy.save(os.path.join('EightData','fitness_First_Seed'), self.fitness_First_Seed)
+		elif c.randomSeed == 2:
+			self.fitness_Second_Seed = numpy.array(self.bestGenFitnessList)*-1
+			numpy.save(os.path.join('EightData','fitness_Second_Seed'), self.fitness_Second_Seed)
+		elif c.randomSeed == 3:
+			self.fitness_Third_Seed = numpy.array(self.bestGenFitnessList)*-1
+			numpy.save(os.path.join('EightData','fitness_Third_Seed'), self.fitness_Third_Seed)
+		else:
+			self.fitness_Fourth_Seed = numpy.array(self.bestGenFitnessList)*-1
+			numpy.save(os.path.join('EightData','fitness_Fourth_Seed'), self.fitness_Fourth_Seed)
+
+		
 
 
 	def Show_First(self):
