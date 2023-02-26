@@ -3,7 +3,7 @@ import random
 
 
 
-numberOfGenerations = 4
+numberOfGenerations = 5
 populationSize = 3
 
 numSensorNeurons = 2 #4 #9

@@ -305,9 +305,9 @@ class SOLUTION:
 		#	for currentColumn in range(0,len(self.motorList)):
 		#		pyrosim.Send_Synapse( sourceNeuronName = currentRow+len(self.sensorList)+len(self.motorList) , targetNeuronName = currentColumn+len(self.sensorList) , weight = self.weights[currentRow][currentColumn] ) #weight = random.random() #weight = random.uniform(-1,1)
 
-		print('the number of sensor neurons is '+str(len(self.sensorList)))
+		#print('the number of sensor neurons is '+str(len(self.sensorList)))
 		#print('the number of hidden neurons is '+str(self.numHiddenNeurons))
-		print('the number of motor neurons is '+str(len(self.motorList)))
+		#print('the number of motor neurons is '+str(len(self.motorList)))
 
 		self.neuronId = 0
 		pyrosim.End()

@@ -1,6 +1,8 @@
 import constants as c
 import copy
 import os
+import numpy
+import matplotlib.pyplot
 from solution import SOLUTION
 
 
@@ -15,10 +17,10 @@ class PARALLEL_HILL_CLIMBER:
 		for i in range(0, c.populationSize):
 			self.parents[i] = SOLUTION(self.nextAvailableID)
 			self.nextAvailableID = self.nextAvailableID+1
-		#print(self.parents)
+
+		self.bestGenFitnessList = []
 
 		
-		self.bestGenFitnessList = []
 		
 
 	def Evolve(self):
@@ -91,6 +93,15 @@ class PARALLEL_HILL_CLIMBER:
 			#if self.parents[i].xfitness > self.children[i].xfitness and abs(self.parents[i].yfitness) > abs(self.children[i].yfitness):
 			#	self.parents[i] = self.children[i]
 
+	def Send_Fitness_Data(self):
+		self.fitness_First_Seed = numpy.array(self.bestGenFitnessList)
+		numpy.save(os.path.join('EightData','fitness_First_Seed'), self.fitness_First_Seed)
+		fitnessPlot = numpy.load("EightData/fitness_First_Seed.npy")
+		matplotlib.pyplot.plot(fitnessPlot, linewidth=3, linestyle='dashed', label='Back Leg')
+		matplotlib.pyplot.legend(loc=0, shadow=True)
+		matplotlib.pyplot.show()
+
+
 	def Show_First(self):
 		self.parents[0].Start_Simulation('GUI')
 		self.parents[0].Wait_For_Simulation_To_End('GUI')
@@ -113,3 +124,4 @@ class PARALLEL_HILL_CLIMBER:
 		#bestFitness = parent_fitnesses.index(min(parent_fitnesses))
 		#self.parents[bestFitness].Start_Simulation('GUI')
 		
+
