@@ -1,11 +1,11 @@
 import numpy
 import random
 
-randomSeed = 4
-numpyRandomSeed = 4
+randomSeed = 0
+numpyRandomSeed = 0
 
 
-numberOfGenerations = 5
+numberOfGenerations = 20
 populationSize = 3
 
 numSensorNeurons = 2 #4 #9
