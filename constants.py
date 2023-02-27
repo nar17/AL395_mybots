@@ -1,12 +1,12 @@
 import numpy
 import random
 
-randomSeed = 0
-numpyRandomSeed = 0
+randomSeed = 17
+numpyRandomSeed = 17
 
 
-numberOfGenerations = 1
-populationSize = 1
+numberOfGenerations = 10
+populationSize = 3
 
 numSensorNeurons = 2 #4 #9
 numMotorNeurons = 2 #8 #8

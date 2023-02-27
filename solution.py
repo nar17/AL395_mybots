@@ -12,7 +12,9 @@ class SOLUTION:
 	
 		random.seed(c.randomSeed)
 		numpy.random.seed(c.numpyRandomSeed)
-		#self.weights = numpy.random.rand(len(self.sensorList),len(self.motorList)) * 2 - 1
+
+		#self.Neurons_Work()
+		#self.weights = numpy.random.rand(self.newSensorList,len(self.newMotorList)) * 2 - 1
 		
 
 	def Start_Simulation(self, directOrGUI):
@@ -97,7 +99,7 @@ class SOLUTION:
 				self.JPosListNNP.append([-self.X[i-1]/2,-self.Y[i-1]/2,0])
 		
 	def New_A7_Lists(self):
-		self.numLinks_A7=random.randint(2,3)+1
+		self.numLinks_A7=random.randint(3,4)+1
 		self.numJoints_A7=self.numLinks_A7-1
 
 		self.X=[]
@@ -222,6 +224,10 @@ class SOLUTION:
 			self.New_A7_Lists()
 		self.New_A7_Generator()
 		pyrosim.End()
+
+	def Neurons_Work(self):
+		self.newSensorList = self.sensorList
+		self.newMotorList = self.motorList
 
 
 	def Create_Brain(self):

@@ -128,7 +128,7 @@ class PARALLEL_HILL_CLIMBER:
 			parent_fitnesses.append(self.parents[i].fitness)
 		bestFitness = parent_fitnesses.index(min(parent_fitnesses))
 		self.parents[bestFitness].Start_Simulation('GUI')
-		print(parent_fitnesses)
+		print(bestFitness)
 
 			#golf fitness
 		#for i in self.parents:
