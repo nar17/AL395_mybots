@@ -5,17 +5,17 @@ randomSeed = 0
 numpyRandomSeed = 0
 
 
-numberOfGenerations = 20
-populationSize = 3
+numberOfGenerations = 1
+populationSize = 1
 
 numSensorNeurons = 2 #4 #9
 numMotorNeurons = 2 #8 #8
 
-motorJointRange = 1
+motorJointRange = 0.5
 motormaxForce = 1000
 
 numSteps = 1000
-timeSleep = 1/60
+timeSleep = 1/250
 xNum = numpy.pi
 
 

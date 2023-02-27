@@ -97,7 +97,7 @@ class SOLUTION:
 				self.JPosListNNP.append([-self.X[i-1]/2,-self.Y[i-1]/2,0])
 		
 	def New_A7_Lists(self):
-		self.numLinks_A7=random.randint(4,8)+1
+		self.numLinks_A7=random.randint(2,3)+1
 		self.numJoints_A7=self.numLinks_A7-1
 
 		self.X=[]
@@ -171,7 +171,10 @@ class SOLUTION:
 			self.JparentListNNP.append('link'+str(i)+'NNP')
 			self.JchildListNPP.append('link'+str(i+1)+'NPP')
 			self.JchildListNNP.append('link'+str(i+1)+'NNP')
-			self.JaxisList.append(random.choice(["1 0 0", "0 1 0", "0 0 1"]))
+			if i == 1:
+				self.JaxisList.append("0 1 0")
+			else:
+				self.JaxisList.append(random.choice(["1 0 0", "0 1 0", "0 0 1"]))
 
 		for i in range(1,self.numLinks_A7):
 			self.Pick_Pos(i)
@@ -213,44 +216,12 @@ class SOLUTION:
 			self.motorList.append(self.JnameListNNP[i])
 
 
-
-	def Clear_Lists(self):
-		self.sensorList.clear()
-		self.motorList.clear()
-		
-		self.X.clear()
-		self.Y.clear()
-		self.Z.clear()
-
-		self.pickPos.clear()
-
-			#link lists
-		self.LnameListNPP.clear()
-		self.LnameListNNP.clear()
-		self.LPosListNPP.clear()
-		self.LPosListNNP.clear()
-		self.LmatList.clear()
-		self.LcolorStringList.clear()
-			#joint lists
-		self.JnameListNPP.clear()
-		self.JnameListNNP.clear()
-		self.JparentListNPP.clear()
-		self.JparentListNNP.clear()
-		self.JchildListNPP.clear()
-		self.JchildListNNP.clear()
-		self.JPosListNPP.clear()
-		self.JPosListNNP.clear()
-		self.JaxisList.clear()
-
-
 	def Create_Body(self):
 		pyrosim.Start_URDF("body"+str(self.myID)+".urdf")
 		if self.listID==0:
 			self.New_A7_Lists()
 		self.New_A7_Generator()
 		pyrosim.End()
-
-
 
 
 	def Create_Brain(self):
@@ -274,7 +245,7 @@ class SOLUTION:
 		#		pyrosim.Send_Synapse( sourceNeuronName = currentRow , targetNeuronName = currentColumn+len(self.sensorList) , weight = self.weights[currentRow][currentColumn] ) #weight = random.random() #weight = random.uniform(-1,1)
 
 			#New_A7
-		#self.numHiddenNeurons = 3 #random.randint(len(self.sensorList),len(self.motorList)-1)
+		self.numHiddenNeurons = 3 #random.randint(len(self.sensorList),len(self.motorList)-1)
 
 		for i in range(len(self.sensorList)):
 			pyrosim.Send_Sensor_Neuron(name = self.neuronId, linkName = self.sensorList[i])
@@ -311,14 +282,28 @@ class SOLUTION:
 
 		self.neuronId = 0
 		pyrosim.End()
-
-		#self.neuronId=self.neuronId-len(self.sensorList)-len(self.motorList)		
 		
 
 	def Mutate(self):
-		self.linkListIndex = random.randint(0,self.numLinks_A7-1)
+		self.randMut = random.random()
 		
-			#new_A7 child bodies
+		if self.randMut<0.33:
+			self.Mutate_Add_Link()
+		elif 0.33<self.randMut<0.66:
+			self.Mutate_Joint_Axis()
+		else:
+			self.Mutate_Sensor_Placement()
+		
+		self.Mutate_Synapses()
+
+	
+	def Mutate_Joint_Axis(self):
+		self.linkListIndex = random.randint(0,self.numLinks_A7-2) #having error here.. just subtracted another 1 ?
+		self.JaxisList[self.linkListIndex]=random.choice(["1 0 0", "0 1 0", "0 0 1"])
+
+	def Mutate_Sensor_Placement(self):
+		self.linkListIndex = random.randint(0,self.numLinks_A7-1)
+
 		if self.LmatList[self.linkListIndex] == "Green":
 			self.LmatList[self.linkListIndex] = "Blue"
 			self.LcolorStringList[self.linkListIndex] = "0 0 1 1"
@@ -326,16 +311,92 @@ class SOLUTION:
 			self.LmatList[self.linkListIndex] = "Green"
 			self.LcolorStringList[self.linkListIndex] = "0 1 0 1"
 
-			#randomSnake/new_A7 brain weights
+	def Mutate_Add_Link(self):
+		self.new = self.numLinks_A7
+		i = self.numLinks_A7
+
+		self.X.append(random.uniform(0.2,1))
+		self.Y.append(random.uniform(0.2,0.6))
+		self.Z.append(random.uniform(0.2,1))
+			#link appends
+		self.LnameListNPP.append('link'+str(self.new)+'NPP')
+		self.LnameListNNP.append('link'+str(self.new)+'NNP')
+		self.LmatList.append(random.choice(["Blue","Green"]))
+		if self.LmatList[self.new]=="Blue":
+			self.LcolorStringList.append("0 0 1 1")
+		else:
+			self.LmatList[self.new]=="Green"
+			self.LcolorStringList.append("0 1 0 1")
+		self.JnameListNPP.append('link'+str(self.new-1)+'NPP'+'_link'+str(self.new)+'NPP')
+		self.JnameListNNP.append('link'+str(self.new-1)+'NNP'+'_link'+str(self.new)+'NNP')
+		self.JparentListNPP.append('link'+str(self.new-1)+'NPP')
+		self.JparentListNNP.append('link'+str(self.new-1)+'NNP')
+		self.JchildListNPP.append('link'+str(self.new)+'NPP')
+		self.JchildListNNP.append('link'+str(self.new)+'NNP')
+		self.JaxisList.append(random.choice(["1 0 0", "0 1 0", "0 0 1"]))
+
+		if self.pickPos[i-1]=='Z':
+			self.pickPos.append(random.choice(['Y','X']))
+			if self.pickPos[i]=='Y':#
+				self.LPosListNPP.append([0,self.Y[i]/2,0])
+				self.JPosListNPP.append([0,self.Y[i-1]/2,self.Z[i-1]/2])
+				self.LPosListNNP.append([0,-self.Y[i]/2,0])
+				self.JPosListNNP.append([0,-self.Y[i-1]/2,self.Z[i-1]/2])
+			elif self.pickPos[i]=='X':
+				self.LPosListNPP.append([-self.X[i]/2,0,0])
+				self.JPosListNPP.append([-self.X[i-1]/2,0,self.Z[i-1]/2])
+				self.LPosListNNP.append([-self.X[i]/2,0,0])
+				self.JPosListNNP.append([-self.X[i-1]/2,0,self.Z[i-1]/2])
+
+		elif self.pickPos[i-1]=='Y':
+			self.pickPos.append(random.choice(['Z','X']))
+			if self.pickPos[i]=='Z':
+				self.LPosListNPP.append([0,0,self.Z[i]/2])
+				self.JPosListNPP.append([0,self.Y[i-1]/2,self.Z[i-1]/2])
+				self.LPosListNNP.append([0,0,self.Z[i]/2])
+				self.JPosListNNP.append([0,-self.Y[i-1]/2,self.Z[i-1]/2])
+			elif self.pickPos[i]=='X':
+				self.LPosListNPP.append([-self.X[i]/2,0,0])
+				self.JPosListNPP.append([-self.X[i-1]/2,self.Y[i-1]/2,0])
+				self.LPosListNNP.append([-self.X[i]/2,0,0])
+				self.JPosListNNP.append([-self.X[i-1]/2,-self.Y[i-1]/2,0])
+
+		elif self.pickPos[i-1]=='X':
+			self.pickPos.append(random.choice(['Z','Y']))
+			if self.pickPos[i]=='Z':
+				self.LPosListNPP.append([0,0,self.Z[i]/2])
+				self.JPosListNPP.append([-self.X[i-1]/2,0,self.Z[i-1]/2])
+				self.LPosListNNP.append([0,0,self.Z[i]/2])
+				self.JPosListNNP.append([-self.X[i-1]/2,0,self.Z[i-1]/2])
+			elif self.pickPos[i]=='Y':
+				self.LPosListNPP.append([0,self.Y[i]/2,0])
+				self.JPosListNPP.append([-self.X[i-1]/2,self.Y[i-1]/2,0])
+				self.LPosListNNP.append([0,-self.Y[i]/2,0])
+				self.JPosListNNP.append([-self.X[i-1]/2,-self.Y[i-1]/2,0])
+
+		self.numLinks_A7 = self.numLinks_A7+1
+		self.numJoints_A7 = self.numJoints_A7+1
+
+	def Mutate_Synapses(self):
+			#newA7 synapses no hidden
 		randomRow = random.randint(0,len(self.sensorList)-1)
 		randomColumn = random.randint(0,len(self.motorList)-1)
 		self.weights[randomRow,randomColumn] = random.random() * 2 - 1
+
+			#newA7 synapses with hidden
+		#randomRowStH = random.randint(0,len(self.sensorList)-1)
+		#randomColumnStH = random.randint(0,self.numHiddenNeurons-1)
+		#self.weights[randomRowStH,randomColumnStH] = random.random() * 2 - 1
+
+		#randomRowHtM = random.randint(0,self.numHiddenNeurons-1)
+		#randomColumnHtM = random.randint(0,len(self.motorList)-1)
+		#self.weights[randomRowHtM,randomColumnHtM] = random.random() * 2 - 1
 		
 			#quadruped/golfer
 		#randomRow = random.randint(0,c.numSensorNeurons-1)
 		#randomColumn = random.randint(0,c.numMotorNeurons-1)
 		#self.weights[randomRow,randomColumn] = random.random() * 2 - 1
-		
+
 
 	def Set_ID(self, ID):
 		self.myID = ID
@@ -358,7 +419,33 @@ class SOLUTION:
 
 
 #############################################################################IGNORE################################################################################################
+	def Clear_Lists(self):
+		self.sensorList.clear()
+		self.motorList.clear()
+		
+		self.X.clear()
+		self.Y.clear()
+		self.Z.clear()
 
+		self.pickPos.clear()
+
+			#link lists
+		self.LnameListNPP.clear()
+		self.LnameListNNP.clear()
+		self.LPosListNPP.clear()
+		self.LPosListNNP.clear()
+		self.LmatList.clear()
+		self.LcolorStringList.clear()
+			#joint lists
+		self.JnameListNPP.clear()
+		self.JnameListNNP.clear()
+		self.JparentListNPP.clear()
+		self.JparentListNNP.clear()
+		self.JchildListNPP.clear()
+		self.JchildListNNP.clear()
+		self.JPosListNPP.clear()
+		self.JPosListNNP.clear()
+		self.JaxisList.clear()
 
 
 	#This goes in CREATE Body

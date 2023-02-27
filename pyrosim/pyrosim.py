@@ -195,6 +195,22 @@ def Start_NeuralNetwork(filename):
 
     nndf.Save_Start_Tag(f)
 
+def Read_NeuralNetwork(filename):
+
+    global filetype
+
+    filetype = NNDF_FILETYPE
+
+    global f
+
+    f = open(filename,"r")
+
+    global nndf
+
+    nndf = NNDF()
+
+    nndf.Save_Start_Tag(f)
+
 def Start_SDF(filename):
 
     global availableLinkIndex
@@ -240,6 +256,34 @@ def Start_URDF(filename):
     global f
 
     f = open(filename,"w")
+
+    global urdf 
+
+    urdf = URDF()
+
+    urdf.Save_Start_Tag(f)
+
+    global links
+
+    links = []
+
+def Read_URDF(filename):
+
+    global availableLinkIndex
+
+    availableLinkIndex = -1
+
+    global linkNamesToIndices
+
+    linkNamesToIndices = {}
+
+    global filetype
+
+    filetype = URDF_FILETYPE
+
+    global f
+
+    f = open(filename,"r")
 
     global urdf 
 

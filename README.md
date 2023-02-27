@@ -3,7 +3,8 @@ Utilize the parallel hillclimber algorithm to design morphology and behavior for
 
 
 # 	Running Instructions:
-Open search.py and run program.
+To run the evolution, open and start search.py.
+To generate the fitness curves, open and start EightFitnessPlots.py.
 
 
 #	Genotype:

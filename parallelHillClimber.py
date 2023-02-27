@@ -82,9 +82,7 @@ class PARALLEL_HILL_CLIMBER:
 			self.parentsFitnessesList.append(self.parents[i].fitness)
 			self.bestGenFitness = min(self.parentsFitnessesList)
 		self.bestGenFitnessList.append(self.bestGenFitness)
-		#print(self.parentsFitnessesList)
-		#print(self.bestGenFitness)
-		#print(self.bestGenFitnessList)
+		
 
 		#mini putt
 			#if abs(self.parents[i].xfitness+11)+abs(self.parents[i].yfitness) > abs(self.children[i].xfitness+11)+abs(self.children[i].yfitness):
@@ -114,10 +112,15 @@ class PARALLEL_HILL_CLIMBER:
 
 
 	def Show_First(self):
-		self.parents[0].Start_Simulation('GUI')
-		self.parents[0].Wait_For_Simulation_To_End('GUI')
+		self.parents[3].Start_Simulation('GUI')
+		self.parents[3].Wait_For_Simulation_To_End('GUI')
 
 	def Show_Best(self):
+		#print(self.parents)
+		#print(self.bestGenFitnessList)
+		#self.bestParentGen = self.bestGenFitnessList.index(min(self.bestGenFitnessList))
+		#self.parents[self.bestParentGen].Start_Simulation('GUI')
+
 		parent_fitnesses = []
 		
 			#quadruped fitness
@@ -125,6 +128,7 @@ class PARALLEL_HILL_CLIMBER:
 			parent_fitnesses.append(self.parents[i].fitness)
 		bestFitness = parent_fitnesses.index(min(parent_fitnesses))
 		self.parents[bestFitness].Start_Simulation('GUI')
+		print(parent_fitnesses)
 
 			#golf fitness
 		#for i in self.parents:
@@ -134,5 +138,3 @@ class PARALLEL_HILL_CLIMBER:
 			#parent_fitnesses.append(self.parents[i].xfitness+abs(self.parents[i].yfitness))
 		#bestFitness = parent_fitnesses.index(min(parent_fitnesses))
 		#self.parents[bestFitness].Start_Simulation('GUI')
-		
-
