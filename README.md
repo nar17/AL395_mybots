@@ -30,7 +30,7 @@ The neural network is constructed with one layer of sensor neurons and one layer
 
 The fully-integrated neural network is shown in the figure below: 
 
-
+![Assignment_Eight_Neural_Network](https://user-images.githubusercontent.com/122194228/221723846-f64d6eda-c2ab-4d65-8238-eea1ad40fc5e.JPG)
 
 
 #	Evolutionary Algorithm:
@@ -42,7 +42,7 @@ The fitness definition was movement in the -x direction. The best fitness out of
 
 The fitness curve plot is shown in the figure below: 
 
-
+![Assignment_Eight_Robot_Evolution_Fitness_Curves](https://user-images.githubusercontent.com/122194228/221723812-ada48555-33b5-4785-a45c-00be3602b9bc.jpg)
 
 
 # 	Results:
