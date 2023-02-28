@@ -49,9 +49,9 @@ class PARALLEL_HILL_CLIMBER:
 	def Evaluate(self, solutions):
 		self.solutions = solutions
 		for i in range(c.populationSize):
-			solutions[i].Start_Simulation('DIRECT')
+			solutions[i].Start_Simulation('GUI')
 		for i in range(c.populationSize):
-			solutions[i].Wait_For_Simulation_To_End('DIRECT')
+			solutions[i].Wait_For_Simulation_To_End('GUI')
 
 	def Print(self):
 		print(" ")
@@ -94,19 +94,19 @@ class PARALLEL_HILL_CLIMBER:
 	def Save_Fitness_Data(self):
 		if c.randomSeed == 0:
 			self.fitness_Zero_Seed = numpy.array(self.bestGenFitnessList)*-1
-			numpy.save(os.path.join('EightData','fitness_Zero_Seed'), self.fitness_Zero_Seed)
+			numpy.save(os.path.join('EightData','fitness_Zero_Seedzz'), self.fitness_Zero_Seed)
 		elif c.randomSeed == 1:
 			self.fitness_First_Seed = numpy.array(self.bestGenFitnessList)*-1
-			numpy.save(os.path.join('EightData','fitness_First_Seed'), self.fitness_First_Seed)
+			numpy.save(os.path.join('EightData','fitness_First_Seedzz'), self.fitness_First_Seed)
 		elif c.randomSeed == 2:
 			self.fitness_Second_Seed = numpy.array(self.bestGenFitnessList)*-1
-			numpy.save(os.path.join('EightData','fitness_Second_Seed'), self.fitness_Second_Seed)
+			numpy.save(os.path.join('EightData','fitness_Second_Seedzz'), self.fitness_Second_Seed)
 		elif c.randomSeed == 3:
 			self.fitness_Third_Seed = numpy.array(self.bestGenFitnessList)*-1
-			numpy.save(os.path.join('EightData','fitness_Third_Seed'), self.fitness_Third_Seed)
+			numpy.save(os.path.join('EightData','fitness_Third_Seedzz'), self.fitness_Third_Seed)
 		else:
 			self.fitness_Fourth_Seed = numpy.array(self.bestGenFitnessList)*-1
-			numpy.save(os.path.join('EightData','fitness_Fourth_Seed'), self.fitness_Fourth_Seed)
+			numpy.save(os.path.join('EightData','fitness_Fourth_Seedzz'), self.fitness_Fourth_Seed)
 
 		
 

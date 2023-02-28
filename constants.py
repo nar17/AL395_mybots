@@ -1,21 +1,21 @@
 import numpy
 import random
 
-randomSeed = 17
-numpyRandomSeed = 17
+randomSeed = 5678
+numpyRandomSeed = 5678
 
 
-numberOfGenerations = 10
-populationSize = 3
+numberOfGenerations = 11
+populationSize = 1
 
 numSensorNeurons = 2 #4 #9
 numMotorNeurons = 2 #8 #8
 
-motorJointRange = 0.5
-motormaxForce = 1000
+motorJointRange = 0.8
+motormaxForce = 750
 
 numSteps = 1000
-timeSleep = 1/250
+timeSleep = 1/100
 xNum = numpy.pi
 
 

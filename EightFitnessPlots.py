@@ -19,6 +19,7 @@ seedFour = numpy.load("EightData/fitness_Fourth_Seed.npy")
 matplotlib.pyplot.plot(seedFour, linewidth=3, label='Seed 4')
 
 
+
 font = {'family':'MingLiU-ExtB', 'color':'black', 'weight':'normal', 'size': 16}
 matplotlib.pyplot.title('Assignment 8: Robot Evolution Fitness', fontdict=font)
 matplotlib.pyplot.xlabel('Number of Generations = '+str(c.numberOfGenerations), fontdict=font)
