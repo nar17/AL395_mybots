@@ -1,11 +1,11 @@
 import numpy
 import random
 
-randomSeed = 5678
-numpyRandomSeed = 5678
+randomSeed = 0 #5678
+numpyRandomSeed = 0 #5678
 
 
-numberOfGenerations = 11
+numberOfGenerations = 1 #9
 populationSize = 1
 
 numSensorNeurons = 2 #4 #9
@@ -15,7 +15,7 @@ motorJointRange = 0.8
 motormaxForce = 750
 
 numSteps = 1000
-timeSleep = 1/100
+timeSleep = 1/60
 xNum = numpy.pi
 
 

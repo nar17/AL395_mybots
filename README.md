@@ -48,7 +48,7 @@ The fitness curve plot is shown in the figure below:
 # 	Results:
 The resulting robots loosely resemble a boxer with muscular arms and no legs; their movements are varied based upon the randomized placement of the sensor neurons.
 
-The following Youtube link shows one example of the evolution of one random robot: 
+The following Youtube link shows one example of the evolution of a random robot: https://www.youtube.com/watch?v=u5Gyj6IEQg0
 
 The following Github link shows the full code repository: https://github.com/nar17/AL395_mybots/tree/assignmentEIGHT
 
