@@ -26,32 +26,33 @@ The following images shows a diagram of the robot's ontology and an example of a
 
 
 #	Neural Network:
-The neural network is constructed with one layer of sensor neurons, one layer of hidden neurons, and one layer of motor neurons. The sensor neurons detect touch and are located in green links (one sensor neuron per green link). The motor neurons are located on every joint (one motor neuron per joint). Based upon Sandhya Krishnan's Medium post from September 2021 [1], the number of hidden neurons is a randomly selected integer between the number of sensor neurons and the number of motor neurons.
+The neural network is constructed with one layer of sensor neurons and one layer of motor neurons. The sensor neurons detect touch and are located in green links (one sensor neuron per green link). The motor neurons are located on every joint (one motor neuron per joint). 
 
 The fully-integrated neural network is shown in the figure below: 
 
-![Assignment_Seven_Neural_Network](https://user-images.githubusercontent.com/122194228/219932849-807318e8-3719-4c93-b9ce-182ba16bedb1.JPG)
+
 
 
 #	Evolutionary Algorithm:
-...........parallel hillclimber..........
+The evolutionary algorithm utilized is the 'parallel hillclimber' as taught in Josh Bongard's 'Ludobots' MOOC. Each parent's brain was mutated by assigning random weights to each synapse in the fully-integrated neural network. The body was mutated by a random choice between changing one sensor neuron location, changing one joint's axis, or adding an extra link of random size to each leg. If the child performs better in terms of -x movement fitness it will replace its parent. This algorithm was run with a population size of 10 over 50 generations. 
 
 
 #	Fitness Curves:
-...........fitness curves............
+The fitness definition was movement in the -x direction. The best fitness out of the population for each generation was plotted on the fitness curve, and the simulation was run with five different seeds.
+
+The fitness curve plot is shown in the figure below: 
 
 
-# 	Result:
-The resulting robots loosely resemble a boxer with muscular arms and no legs; their movements are varied based upon the randomized placement of the sensor neurons. 
 
-The following Youtube link shows various generations of the randomized robots: 
 
-The following Github link shows the full code repository: 
+# 	Results:
+The resulting robots loosely resemble a boxer with muscular arms and no legs; their movements are varied based upon the randomized placement of the sensor neurons.
+
+The following Youtube link shows one example of the evolution of one random robot: 
+
+The following Github link shows the full code repository: https://github.com/nar17/AL395_mybots/tree/assignmentEIGHT
 
 
 # 	Acknowledgements:
 This assignment was performed for Sam Kriegman's Artificial Life class at Northwestern University in the Winter 2023 quarter. It is based off of Josh Bongard's reddit-based MOOC called 'Ludobots'. Special thanks to Donna Hooshmand and the rest of the students for their help in office hours and on Campuswire. 
 
-
-#	Sources:
-[1] https://medium.com/geekculture/introduction-to-neural-network-2f8b8221fbd3
