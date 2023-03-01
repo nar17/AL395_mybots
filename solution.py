@@ -201,21 +201,21 @@ class SOLUTION:
 		self.motorList.append('rootLink_link1NPP')
 		self.motorList.append('rootLink_link1NNP')
 		#NPPlinks
-		for i in range(1,self.numLinks_A7):
+		for i in range(1,len(self.LnameListNPP)):
 			pyrosim.Send_Cube(name=self.LnameListNPP[i], pos=self.LPosListNPP[i-1], size=[self.X[i-1],self.Y[i-1],self.Z[i-1]], mass=1, materialName=self.LmatList[i], colorString=self.LcolorStringList[i], rpy="0 0 0")
 			if self.LmatList[i] == "Green":
 				self.sensorList.append(self.LnameListNPP[i])
 		#NNPlinks
-		for i in range(1,self.numLinks_A7):
+		for i in range(1,len(self.LnameListNNP)):
 			pyrosim.Send_Cube(name=self.LnameListNNP[i], pos=self.LPosListNNP[i-1], size=[self.X[i-1],self.Y[i-1],self.Z[i-1]], mass=1, materialName=self.LmatList[i], colorString=self.LcolorStringList[i], rpy="0 0 0")
 			if self.LmatList[i] == "Green":
 				self.sensorList.append(self.LnameListNNP[i])
 		#NPPjoints
-		for i in range(1,self.numJoints_A7):
+		for i in range(1,len(self.JnameListNPP)):
 			pyrosim.Send_Joint(name=self.JnameListNPP[i], parent=self.JparentListNPP[i], child=self.JchildListNPP[i], type="revolute", position=self.JPosListNPP[i], jointAxis=self.JaxisList[i]) #[0,self.JposList[i-1],0]
 			self.motorList.append(self.JnameListNPP[i])
 		#NNPjoints
-		for i in range(1,self.numJoints_A7):
+		for i in range(1,len(self.JnameListNNP)):
 			pyrosim.Send_Joint(name=self.JnameListNNP[i], parent=self.JparentListNNP[i], child=self.JchildListNNP[i], type="revolute", position=self.JPosListNNP[i], jointAxis=self.JaxisList[i]) #[0,self.JposList[i-1],0]
 			self.motorList.append(self.JnameListNNP[i])
 
@@ -266,7 +266,7 @@ class SOLUTION:
 		#self.weights = numpy.random.rand(len(self.sensorList),len(self.motorList)) * 2 - 1
 		for currentRow in range(len(self.sensorList)):
 			for currentColumn in range(len(self.motorList)):
-				pyrosim.Send_Synapse(sourceNeuronName = currentRow , targetNeuronName = currentColumn+len(self.sensorList) , weight = self.weights[currentRow][currentColumn]) #weight = random.random() #weight = random.uniform(-1,1)
+				pyrosim.Send_Synapse(sourceNeuronName = currentRow , targetNeuronName = currentColumn+len(self.sensorList) , weight = self.weights[currentRow][currentColumn]) 
 
 		#synapse with hidden neurons
 			#sensor to hidden
@@ -292,27 +292,39 @@ class SOLUTION:
 	def Mutate(self):
 		self.randMut = random.random()
 		
-		if self.randMut<0.5:
-			self.Mutate_Add_Link()
+		#if self.randMut<0.5:
+		#self.Mutate_Add_Link()
 		#elif 0.33<self.randMut<0.66:
 		#	self.Mutate_Joint_Axis()
-		else:
-			self.Mutate_Sensor_Placement()
+		#else:
+		self.Mutate_Sensor_Placement()
 		
+
+		#self.countSensors = self.LmatList.count("Green")*2-1
+		#self.countMotors = self.numJoints_A7*2
+		#print(self.LmatList)
+		#print(len(self.sensorList))
+		#print(len(self.motorList))
+		#print(self.countSensors)
+		#print(self.countMotors)
 		self.Mutate_Synapses()
 
 
 	def Mutate_Synapses(self):
 			#newA7 synapses no hidden
-
 		self.countSensors = self.LmatList.count("Green")*2-1
 		self.countMotors = self.numJoints_A7*2
+		print(self.LmatList)
+		print(self.sensorList)
+		print(self.countSensors)
+		print(self.countMotors)
+		self.weights = numpy.random.rand(self.countSensors,self.countMotors) * 2 - 1
 		
-		randomRow = random.randint(0,self.countSensors-1)
-		randomColumn = random.randint(0,self.countMotors+1)
+		#randomRow = random.randint(0,self.countSensors-1)
+		#randomColumn = random.randint(0,self.countMotors-1)
 
-		self.weights[randomRow,randomColumn] = random.random() * 2 - 1
-
+		#self.weights[randomRow,randomColumn] = random.random() * 2 - 1
+#
 			#newA7 synapses with hidden
 		#randomRowStH = random.randint(0,len(self.sensorList)-1)
 		#randomColumnStH = random.randint(0,self.numHiddenNeurons-1)
@@ -338,9 +350,11 @@ class SOLUTION:
 		if self.LmatList[self.linkListIndex] == "Green":
 			self.LmatList[self.linkListIndex] = "Blue"
 			self.LcolorStringList[self.linkListIndex] = "0 0 1 1"
+			self.sensorList.remove(self.sensorList[0])
 		else:
 			self.LmatList[self.linkListIndex] = "Green"
 			self.LcolorStringList[self.linkListIndex] = "0 1 0 1"
+			self.sensorList.append("Green")
 
 	def Mutate_Add_Link(self):
 		self.new = self.numLinks_A7
