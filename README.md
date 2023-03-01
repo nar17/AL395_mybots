@@ -1,5 +1,5 @@
-# Assignment 8:
-Utilize the parallel hillclimber algorithm to design morphology and behavior for locomotion.
+# Final Project:
+Optimize morphology and behavior for a task of your choice
 
 
 # 	Running Instructions:
@@ -55,4 +55,7 @@ The following Github link shows the full code repository: https://github.com/nar
 
 # 	Acknowledgements:
 This assignment was performed for Sam Kriegman's Artificial Life class at Northwestern University in the Winter 2023 quarter. It is based off of Josh Bongard's reddit-based MOOC called 'Ludobots'. Special thanks to Donna Hooshmand and the rest of the students for their help in office hours and on Campuswire. 
+
+#	Sources:
+
 
