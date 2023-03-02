@@ -123,6 +123,28 @@
             </geometry>
         </collision>
     </link>
+    <link name="link5NPP">
+        <inertial>
+            <origin xyz="0 0.25116084083144474 0" rpy="0 0 0"/>
+            <mass value="1" />
+            <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0.25116084083144474 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="0.4254702755197631 0.5023216816628895 0.6946951973402653" />
+            </geometry>
+            <material name="Blue">
+                <color rgba="0 0 1 1"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0.25116084083144474 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="0.4254702755197631 0.5023216816628895 0.6946951973402653" />
+            </geometry>
+        </collision>
+    </link>
     <link name="link1NNP">
         <inertial>
             <origin xyz="0 1 1" rpy="0 0 0"/>
@@ -211,6 +233,28 @@
             </geometry>
         </collision>
     </link>
+    <link name="link5NNP">
+        <inertial>
+            <origin xyz="0 -0.25116084083144474 0" rpy="0 0 0"/>
+            <mass value="1" />
+            <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
+        </inertial>
+        <visual>
+            <origin xyz="0 -0.25116084083144474 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="0.4254702755197631 0.5023216816628895 0.6946951973402653" />
+            </geometry>
+            <material name="Blue">
+                <color rgba="0 0 1 1"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 -0.25116084083144474 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="0.4254702755197631 0.5023216816628895 0.6946951973402653" />
+            </geometry>
+        </collision>
+    </link>
     <joint name="link1NPP_link2NPP" type="revolute">
        <parent link="link1NPP"/>
        <child  link="link2NPP"/>
@@ -232,6 +276,13 @@
        <axis xyz="0 0 1"/>
        <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
     </joint>
+    <joint name="link4NPP_link5NPP" type="revolute">
+       <parent link="link4NPP"/>
+       <child  link="link5NPP"/>
+       <origin rpy="0 0 0" xyz="0 0.2783321319641365 0.18737709076609269" />
+       <axis xyz="1 0 0"/>
+       <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
+    </joint>
     <joint name="link1NNP_link2NNP" type="revolute">
        <parent link="link1NNP"/>
        <child  link="link2NNP"/>
@@ -251,6 +302,13 @@
        <child  link="link4NNP"/>
        <origin rpy="0 0 0" xyz="-0.2619736549801657 0 0.221325090431571" />
        <axis xyz="0 0 1"/>
+       <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
+    </joint>
+    <joint name="link4NNP_link5NNP" type="revolute">
+       <parent link="link4NNP"/>
+       <child  link="link5NNP"/>
+       <origin rpy="0 0 0" xyz="0 -0.2783321319641365 0.18737709076609269" />
+       <axis xyz="1 0 0"/>
        <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
     </joint>
 </robot>

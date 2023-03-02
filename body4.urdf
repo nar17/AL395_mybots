@@ -215,7 +215,7 @@
        <parent link="link1NPP"/>
        <child  link="link2NPP"/>
        <origin rpy="0 0 0" xyz="0 0.0 0.5" />
-       <axis xyz="0 1 0"/>
+       <axis xyz="0 0 1"/>
        <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
     </joint>
     <joint name="link2NPP_link3NPP" type="revolute">
@@ -236,7 +236,7 @@
        <parent link="link1NNP"/>
        <child  link="link2NNP"/>
        <origin rpy="0 0 0" xyz="0 0.0 0.5" />
-       <axis xyz="0 1 0"/>
+       <axis xyz="0 0 1"/>
        <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
     </joint>
     <joint name="link2NNP_link3NNP" type="revolute">

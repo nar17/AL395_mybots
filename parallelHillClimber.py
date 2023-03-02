@@ -112,8 +112,8 @@ class PARALLEL_HILL_CLIMBER:
 
 
 	def Show_First(self):
-		self.parents[3].Start_Simulation('GUI')
-		self.parents[3].Wait_For_Simulation_To_End('GUI')
+		self.parents[0].Start_Simulation('GUI')
+		self.parents[0].Wait_For_Simulation_To_End('GUI')
 
 	def Show_Best(self):
 		#print(self.parents)

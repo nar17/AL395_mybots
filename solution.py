@@ -292,21 +292,13 @@ class SOLUTION:
 	def Mutate(self):
 		self.randMut = random.random()
 		
-		#if self.randMut<0.5:
-		#self.Mutate_Add_Link()
-		#elif 0.33<self.randMut<0.66:
-		#	self.Mutate_Joint_Axis()
-		#else:
-		self.Mutate_Sensor_Placement()
+		if self.randMut<0.33:
+			self.Mutate_Add_Link()
+		elif 0.33<self.randMut<0.66:
+			self.Mutate_Joint_Axis()
+		else:
+			self.Mutate_Sensor_Placement()
 		
-
-		#self.countSensors = self.LmatList.count("Green")*2-1
-		#self.countMotors = self.numJoints_A7*2
-		#print(self.LmatList)
-		#print(len(self.sensorList))
-		#print(len(self.motorList))
-		#print(self.countSensors)
-		#print(self.countMotors)
 		self.Mutate_Synapses()
 
 
@@ -314,17 +306,19 @@ class SOLUTION:
 			#newA7 synapses no hidden
 		self.countSensors = self.LmatList.count("Green")*2-1
 		self.countMotors = self.numJoints_A7*2
-		print(self.LmatList)
-		print(self.sensorList)
-		print(self.countSensors)
-		print(self.countMotors)
+		#print('')
+		#print(self.LmatList)
+		#print(self.sensorList)
+		#print(self.countSensors)
+		#print(self.countMotors)
+		#print('')
 		self.weights = numpy.random.rand(self.countSensors,self.countMotors) * 2 - 1
 		
 		#randomRow = random.randint(0,self.countSensors-1)
 		#randomColumn = random.randint(0,self.countMotors-1)
 
 		#self.weights[randomRow,randomColumn] = random.random() * 2 - 1
-#
+
 			#newA7 synapses with hidden
 		#randomRowStH = random.randint(0,len(self.sensorList)-1)
 		#randomColumnStH = random.randint(0,self.numHiddenNeurons-1)
@@ -345,7 +339,7 @@ class SOLUTION:
 		self.JaxisList[self.linkListIndex]=random.choice(["1 0 0", "0 1 0", "0 0 1"])
 
 	def Mutate_Sensor_Placement(self):
-		self.linkListIndex = random.randint(0,self.numLinks_A7-1)
+		self.linkListIndex = random.randint(1,self.numLinks_A7-1)
 
 		if self.LmatList[self.linkListIndex] == "Green":
 			self.LmatList[self.linkListIndex] = "Blue"

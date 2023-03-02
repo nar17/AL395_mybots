@@ -6,7 +6,7 @@ numpyRandomSeed = 0 #5678
 
 
 numberOfGenerations = 10
-populationSize = 1
+populationSize = 2
 
 numSensorNeurons = 2 #4 #9
 numMotorNeurons = 2 #8 #8
