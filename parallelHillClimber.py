@@ -19,6 +19,8 @@ class PARALLEL_HILL_CLIMBER:
 			self.nextAvailableID = self.nextAvailableID+1
 
 		self.bestGenFitnessList = []
+		self.bestGenFitnessList.append(0)
+
 
 		
 		
@@ -74,9 +76,9 @@ class PARALLEL_HILL_CLIMBER:
 
 	def Select(self):
 		self.parentsFitnessesList = []
-		for i in self.parents.keys():
 		
-		#quadruped
+		for i in self.parents.keys():
+		#newA7
 			if self.parents[i].fitness > self.children[i].fitness:
 				self.parents[i] = self.children[i]
 			self.parentsFitnessesList.append(self.parents[i].fitness)
@@ -90,6 +92,7 @@ class PARALLEL_HILL_CLIMBER:
 		#furthest drive
 			#if self.parents[i].xfitness > self.children[i].xfitness and abs(self.parents[i].yfitness) > abs(self.children[i].yfitness):
 			#	self.parents[i] = self.children[i]
+
 
 	def Save_Fitness_Data(self):
 		if c.randomSeed == 0:

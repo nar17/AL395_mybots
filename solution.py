@@ -30,7 +30,7 @@ class SOLUTION:
 
 	def Wait_For_Simulation_To_End(self, directOrGUI):
 		while not os.path.exists("fitness" + str(self.myID) + ".txt"):
-			time.sleep(0.02)
+			time.sleep(0.03)
 			
 			#quadruped fitness
 		fitnessFile=open("fitness"+str(self.myID)+".txt","r")
