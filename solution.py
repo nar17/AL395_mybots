@@ -18,8 +18,9 @@ class SOLUTION:
 		#self.weights = numpy.random.rand(self.countSensors,self.countMotors) * 2 - 1
 
 		#Experi (with hidden layer)
-		self.weights_Sensors2Hidden = numpy.random.rand(self.countSensors,self.countHidden) * 2 - 1
-		self.weights_Hidden2Motor = numpy.random.rand(self.countHidden,self.countMotors) * 2 - 1
+		self.weights_Sensors2HiddenOne = numpy.random.rand(self.countSensors,self.countHidden) * 2 - 1
+		self.weights_HiddenOne2HiddenTwo = numpy.random.rand(self.countHidden,self.countHidden) * 2 - 1
+		self.weights_HiddenTwo2Motor = numpy.random.rand(self.countHidden,self.countMotors) * 2 - 1
 		
 
 	def Start_Simulation(self, directOrGUI):
@@ -261,20 +262,32 @@ class SOLUTION:
 		for i in range(len(self.motorList)):
 			pyrosim.Send_Motor_Neuron(name = self.neuronId, jointName = self.motorList[i])
 			self.neuronId +=1
+		#hiddenOne
+		for i in range(self.numHiddenNeurons):
+			pyrosim.Send_Hidden_Neuron(name = self.neuronId)
+			self.neuronId +=1
+		#hiddenTwo
 		for i in range(self.numHiddenNeurons):
 			pyrosim.Send_Hidden_Neuron(name = self.neuronId)
 			self.neuronId +=1
 
 		#synapses with hidden neurons
-			#sensor to hidden
+			#sensor to hiddenOne
 		for currentRow in range(len(self.sensorList)):
 			for currentColumn in range(self.numHiddenNeurons):
-				pyrosim.Send_Synapse( sourceNeuronName = currentRow , targetNeuronName = currentColumn+len(self.sensorList)+len(self.motorList) , weight = self.weights_Sensors2Hidden[currentRow][currentColumn] ) #weight = random.random() #weight = random.uniform(-1,1)
+				pyrosim.Send_Synapse( sourceNeuronName = currentRow , targetNeuronName = currentColumn+len(self.sensorList)+len(self.motorList) , weight = self.weights_Sensors2HiddenOne[currentRow][currentColumn] )
 
-			#hidden to motor
+			#hiddenOne to hiddenTwo
+		for currentRow in range(self.numHiddenNeurons):
+			for currentColumn in range(self.numHiddenNeurons):
+				pyrosim.Send_Synapse( sourceNeuronName = currentRow+len(self.sensorList)+len(self.motorList) , targetNeuronName = currentColumn+len(self.sensorList)+len(self.motorList)+self.numHiddenNeurons , weight = self.weights_HiddenOne2HiddenTwo[currentRow][currentColumn] ) 
+
+			#hiddenTwo to Motor
 		for currentRow in range(self.numHiddenNeurons):
 			for currentColumn in range(len(self.motorList)):
-				pyrosim.Send_Synapse( sourceNeuronName = currentRow+len(self.sensorList)+len(self.motorList) , targetNeuronName = currentColumn+len(self.sensorList) , weight = self.weights_Hidden2Motor[currentRow][currentColumn] ) #weight = random.random() #weight = random.uniform(-1,1)
+				pyrosim.Send_Synapse( sourceNeuronName = currentRow+len(self.sensorList)+len(self.motorList)+self.numHiddenNeurons , targetNeuronName = currentColumn+len(self.sensorList) , weight = self.weights_HiddenTwo2Motor[currentRow][currentColumn] ) 
+
+
 
 		self.neuronId = 0
 		pyrosim.End()
@@ -306,8 +319,9 @@ class SOLUTION:
 		self.countSensors = self.LmatList.count("Green")*2-1
 		self.countHidden = self.countSensors
 		self.countMotors = self.numJoints_A7*2
-		self.weights_Sensors2Hidden = numpy.random.rand(self.countSensors,self.countHidden) * 2 - 1
-		self.weights_Hidden2Motor = numpy.random.rand(self.countHidden,self.countMotors) * 2 - 1
+		self.weights_Sensors2HiddenOne = numpy.random.rand(self.countSensors,self.countHidden) * 2 - 1
+		self.weights_HiddenOne2HiddenTwo = numpy.random.rand(self.countHidden,self.countHidden) * 2 - 1
+		self.weights_HiddenTwo2Motor = numpy.random.rand(self.countHidden,self.countMotors) * 2 - 1
 
 	
 	def Mutate_Joint_Axis(self):

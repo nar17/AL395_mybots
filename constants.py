@@ -1,11 +1,11 @@
 import numpy
 import random
 
-randomSeed = 1
-numpyRandomSeed = 1
+randomSeed = 0
+numpyRandomSeed = 0
 
 
-numberOfGenerations = 25
+numberOfGenerations = 10
 populationSize = 5
 
 motorJointRange = 0.8
