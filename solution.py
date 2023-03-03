@@ -8,12 +8,6 @@ import time
 class SOLUTION:
 	def __init__(self, nextAvailableID):
 		self.myID = nextAvailableID
-		#self.listID = 0
-		#seedCounter=0
-		#random.seed(c.randomSeed*c.populationSize+seedCounter)
-		#print(c.randomSeed*c.populationSize+seedCounter)
-		#seedCounter+=1
-		#numpy.random.seed(c.numpyRandomSeed)
 		self.New_A7_Lists()
 
 		self.countSensors = self.LmatList.count("Green")*2-1
