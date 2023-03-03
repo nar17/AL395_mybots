@@ -64,13 +64,6 @@ class PARALLEL_HILL_CLIMBER:
 		for i in self.parents.keys():
 			print("parent fitness: "+str(self.parents[i].fitness)+", Children fitness: "+str(self.children[i].fitness))
 		
-		#golfer
-		#for i in self.parents.keys():
-		#mini putt
-			#print("Parent fitness: "+str(abs(self.parents[i].xfitness+11)+abs(self.parents[i].yfitness))+", Children fitness: "+str(abs(self.children[i].xfitness+11)+abs(self.children[i].yfitness)))
-		#furthest drive
-			#print("Parent fitness: "+str(self.parents[i].xfitness+abs(self.parents[i].yfitness))+", Children fitness: "+str(self.children[i].xfitness+abs(self.children[i].yfitness)))
-		
 		print(" ")
 		print(" ")
 		

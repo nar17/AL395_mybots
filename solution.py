@@ -24,7 +24,8 @@ class SOLUTION:
 		
 
 	def Start_Simulation(self, directOrGUI):
-		self.Create_World()
+		if self.myID == 0:
+			self.Create_World()
 		self.Create_Body()
 		#self.Create_Brain_Control()
 		self.Create_Brain_Experi()
@@ -184,7 +185,7 @@ class SOLUTION:
 		#rootlink
 		self.rootSize=1
 		self.rootPos=1
-		pyrosim.Send_Cube(name='rootLink', pos=[0,0,self.rootPos], size=[self.rootSize,self.rootSize,self.rootSize], mass=10, materialName="Green", colorString="0 1 0 1", rpy="0 0 0")
+		pyrosim.Send_Cube(name='rootLink', pos=[0,0,self.rootPos], size=[self.rootSize,self.rootSize,self.rootSize], mass=1, materialName="Green", colorString="0 1 0 1", rpy="0 0 0")
 		pyrosim.Send_Joint(name='rootLink_link1NPP', parent='rootLink', child='link1NPP', type="revolute", position=[0,self.rootSize/2,self.rootPos/2], jointAxis="0 1 0")
 		pyrosim.Send_Joint(name='rootLink_link1NNP', parent='rootLink', child='link1NNP', type="revolute", position=[0,-self.rootSize/2,self.rootPos/2], jointAxis="0 1 0")
 		self.sensorList.append('rootLink')

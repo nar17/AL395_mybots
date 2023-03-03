@@ -5,11 +5,11 @@ randomSeed = 0
 numpyRandomSeed = 0
 
 
-numberOfGenerations = 25
-populationSize = 10
+numberOfGenerations = 3
+populationSize = 2
 
 motorJointRange = 0.8
-motormaxForce = 750
+motormaxForce = 60
 
 numSteps = 1000
 timeSleep = 1/100
