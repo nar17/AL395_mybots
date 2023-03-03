@@ -1,15 +1,12 @@
 import numpy
 import random
 
-randomSeed = 4 #5678
-numpyRandomSeed = 4 #5678
+randomSeed = 0
+numpyRandomSeed = 0
 
 
 numberOfGenerations = 1
 populationSize = 1
-
-numSensorNeurons = 2 #4 #9
-numMotorNeurons = 2 #8 #8
 
 motorJointRange = 0.8
 motormaxForce = 750

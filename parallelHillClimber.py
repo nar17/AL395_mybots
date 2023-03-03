@@ -94,22 +94,40 @@ class PARALLEL_HILL_CLIMBER:
 			#	self.parents[i] = self.children[i]
 
 
-	def Save_Fitness_Data(self):
+	def Save_Fitness_Data_CONTROL(self):
 		if c.randomSeed == 0:
 			self.fitness_Zero_Seed = numpy.array(self.bestGenFitnessList)*-1
-			numpy.save(os.path.join('finalProjectData','fitness_Zero_Seed'), self.fitness_Zero_Seed)
+			numpy.save(os.path.join('finalProjectData_CONTROL','fitness_Zero_Seed_CONTROL'), self.fitness_Zero_Seed)
 		elif c.randomSeed == 1:
 			self.fitness_First_Seed = numpy.array(self.bestGenFitnessList)*-1
-			numpy.save(os.path.join('finalProjectData','fitness_First_Seed'), self.fitness_First_Seed)
+			numpy.save(os.path.join('finalProjectData_CONTROL','fitness_First_Seed_CONTROL'), self.fitness_First_Seed)
 		elif c.randomSeed == 2:
 			self.fitness_Second_Seed = numpy.array(self.bestGenFitnessList)*-1
-			numpy.save(os.path.join('finalProjectData','fitness_Second_Seed'), self.fitness_Second_Seed)
+			numpy.save(os.path.join('finalProjectData_CONTROL','fitness_Second_Seed_CONTROL'), self.fitness_Second_Seed)
 		elif c.randomSeed == 3:
 			self.fitness_Third_Seed = numpy.array(self.bestGenFitnessList)*-1
-			numpy.save(os.path.join('finalProjectData','fitness_Third_Seed'), self.fitness_Third_Seed)
+			numpy.save(os.path.join('finalProjectData_CONTROL','fitness_Third_Seed_CONTROL'), self.fitness_Third_Seed)
 		else:
 			self.fitness_Fourth_Seed = numpy.array(self.bestGenFitnessList)*-1
-			numpy.save(os.path.join('finalProjectData','fitness_Fourth_Seed'), self.fitness_Fourth_Seed)
+			numpy.save(os.path.join('finalProjectData_CONTROL','fitness_Fourth_Seed_CONTROL'), self.fitness_Fourth_Seed)
+
+
+	def Save_Fitness_Data_EXPERI(self):
+		if c.randomSeed == 0:
+			self.fitness_Zero_Seed = numpy.array(self.bestGenFitnessList)*-1
+			numpy.save(os.path.join('finalProjectData_EXPERI','fitness_Zero_Seed_EXPERI'), self.fitness_Zero_Seed)
+		elif c.randomSeed == 1:
+			self.fitness_First_Seed = numpy.array(self.bestGenFitnessList)*-1
+			numpy.save(os.path.join('finalProjectData_EXPERI','fitness_First_Seed_EXPERI'), self.fitness_First_Seed)
+		elif c.randomSeed == 2:
+			self.fitness_Second_Seed = numpy.array(self.bestGenFitnessList)*-1
+			numpy.save(os.path.join('finalProjectData_EXPERI','fitness_Second_Seed_EXPERI'), self.fitness_Second_Seed)
+		elif c.randomSeed == 3:
+			self.fitness_Third_Seed = numpy.array(self.bestGenFitnessList)*-1
+			numpy.save(os.path.join('finalProjectData_EXPERI','fitness_Third_Seed_EXPERI'), self.fitness_Third_Seed)
+		else:
+			self.fitness_Fourth_Seed = numpy.array(self.bestGenFitnessList)*-1
+			numpy.save(os.path.join('finalProjectData_EXPERI','fitness_Fourth_Seed_EXPERI'), self.fitness_Fourth_Seed)
 
 		
 
