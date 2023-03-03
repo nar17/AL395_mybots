@@ -1,12 +1,12 @@
 import numpy
 import random
 
-randomSeed = 0
-numpyRandomSeed = 0
+randomSeed = 1
+numpyRandomSeed = 1
 
 
-numberOfGenerations = 1
-populationSize = 1
+numberOfGenerations = 25
+populationSize = 5
 
 motorJointRange = 0.8
 motormaxForce = 750

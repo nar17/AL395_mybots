@@ -15,10 +15,10 @@ class WORLD:
 		height = position[2]
 		return xPosition
 
-	def Get_Y_Pos_And_Orientation(self):
-		posAndOrientation = p.getBasePositionAndOrientation(self.objects[5])
-		position = posAndOrientation[0]
-		xPosition = position[0]
-		yPosition = position[1]
-		height = position[2]
-		return yPosition
+	#def Get_Y_Pos_And_Orientation(self):
+	#	posAndOrientation = p.getBasePositionAndOrientation(self.objects[5])
+	#	position = posAndOrientation[0]
+	#	xPosition = position[0]
+	#	yPosition = position[1]
+	#	height = position[2]
+	#	return yPosition

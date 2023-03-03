@@ -11,15 +11,22 @@ class SOLUTION:
 		self.New_A7_Lists()
 
 		self.countSensors = self.LmatList.count("Green")*2-1
+		self.countHidden = self.countSensors
 		self.countMotors = self.numJoints_A7*2
 
-		self.weights = numpy.random.rand(self.countSensors,self.countMotors) * 2 - 1
+		#Control
+		#self.weights = numpy.random.rand(self.countSensors,self.countMotors) * 2 - 1
+
+		#Experi (with hidden layer)
+		self.weights_Sensors2Hidden = numpy.random.rand(self.countSensors,self.countHidden) * 2 - 1
+		self.weights_Hidden2Motor = numpy.random.rand(self.countHidden,self.countMotors) * 2 - 1
 		
 
 	def Start_Simulation(self, directOrGUI):
 		self.Create_World()
 		self.Create_Body()
-		self.Create_Brain()
+		#self.Create_Brain_Control()
+		self.Create_Brain_Experi()
 		self.directOrGUI = directOrGUI
 		os.system("start /B py simulate.py " + str(self.directOrGUI) + " " + str(self.myID))
 		
@@ -39,7 +46,9 @@ class SOLUTION:
 		#self.yfitness = float(self.overallFitness[1])
 		
 		fitnessFile.close()
-		#os.system("del fitness" + str(self.myID) + ".txt")
+		os.system("del fitness" + str(self.myID) + ".txt")
+		#os.system("del body" + str(self.myID) + ".urdf")
+		#os.system("del brain" + str(self.myID) + ".nndf")
 		
 
 	def Create_World(self):
@@ -223,29 +232,8 @@ class SOLUTION:
 		self.New_A7_Generator()
 		pyrosim.End()
 
-
-	def Create_Brain(self):
+	def Create_Brain_Control(self):
 		pyrosim.Start_NeuralNetwork("brain" + str(self.myID) + ".nndf")	
-
-			#quadruped/golfer
-		#for currentRow in range(0,c.numSensorNeurons):
-		#	for currentColumn in range(0,c.numMotorNeurons):
-		#		pyrosim.Send_Synapse( sourceNeuronName = currentRow , targetNeuronName = currentColumn+c.numSensorNeurons , weight = self.weights[currentRow][currentColumn] ) #weight = random.random() #weight = random.uniform(-1,1)
-
-			#randomSnake
-		#for i in self.sensorList:
-		#	pyrosim.Send_Sensor_Neuron(name = self.neuronId, linkName = str(self.sensorList[i]))
-		#	self.neuronId +=1
-		#for i in self.motorList:
-		#	pyrosim.Send_Motor_Neuron(name = self.neuronId, jointName = str(self.motorList[i]))
-		#	self.neuronId +=1
-		#self.weights = numpy.random.rand(len(self.sensorList),len(self.motorList)) * 2 - 1
-		#for currentRow in range(0,len(self.sensorList)):
-		#	for currentColumn in range(0,len(self.motorList)):
-		#		pyrosim.Send_Synapse( sourceNeuronName = currentRow , targetNeuronName = currentColumn+len(self.sensorList) , weight = self.weights[currentRow][currentColumn] ) #weight = random.random() #weight = random.uniform(-1,1)
-
-			#New_A7
-		#self.numHiddenNeurons = 3 #random.randint(len(self.sensorList),len(self.motorList)-1)
 
 		for i in range(len(self.sensorList)):
 			pyrosim.Send_Sensor_Neuron(name = self.neuronId, linkName = self.sensorList[i])
@@ -253,37 +241,44 @@ class SOLUTION:
 		for i in range(len(self.motorList)):
 			pyrosim.Send_Motor_Neuron(name = self.neuronId, jointName = self.motorList[i])
 			self.neuronId +=1
-		#for i in range(self.numHiddenNeurons):
-		#	pyrosim.Send_Hidden_Neuron(name = self.neuronId)
-		#	self.neuronId +=1
-
 
 			#synapse with no hidden neurons
-		#self.weights = numpy.random.rand(len(self.sensorList),len(self.motorList)) * 2 - 1
 		for currentRow in range(len(self.sensorList)):
 			for currentColumn in range(len(self.motorList)):
-				pyrosim.Send_Synapse(sourceNeuronName = currentRow , targetNeuronName = currentColumn+len(self.sensorList) , weight = self.weights[currentRow][currentColumn]) 
-
-		#synapse with hidden neurons
-			#sensor to hidden
-		#self.weights = numpy.random.rand(len(self.sensorList),self.numHiddenNeurons) * 2 - 1
-		#for currentRow in range(0,len(self.sensorList)):
-		#	for currentColumn in range(0,self.numHiddenNeurons):
-		#		pyrosim.Send_Synapse( sourceNeuronName = currentRow , targetNeuronName = currentColumn+len(self.sensorList)+len(self.motorList) , weight = self.weights[currentRow][currentColumn] ) #weight = random.random() #weight = random.uniform(-1,1)
-
-			#hidden to motor
-		#self.weights = numpy.random.rand(self.numHiddenNeurons,len(self.motorList)) * 2 - 1
-		#for currentRow in range(0,self.numHiddenNeurons):
-		#	for currentColumn in range(0,len(self.motorList)):
-		#		pyrosim.Send_Synapse( sourceNeuronName = currentRow+len(self.sensorList)+len(self.motorList) , targetNeuronName = currentColumn+len(self.sensorList) , weight = self.weights[currentRow][currentColumn] ) #weight = random.random() #weight = random.uniform(-1,1)
-
-		#print('the number of sensor neurons is '+str(len(self.sensorList)))
-		#print('the number of hidden neurons is '+str(self.numHiddenNeurons))
-		#print('the number of motor neurons is '+str(len(self.motorList)))
+				pyrosim.Send_Synapse(sourceNeuronName = currentRow , targetNeuronName = currentColumn+len(self.sensorList) , weight = self.weights[currentRow][currentColumn])
 
 		self.neuronId = 0
 		pyrosim.End()
-		
+
+	def Create_Brain_Experi(self):
+		pyrosim.Start_NeuralNetwork("brain" + str(self.myID) + ".nndf")	
+
+		self.numHiddenNeurons = len(self.sensorList)
+
+		for i in range(len(self.sensorList)):
+			pyrosim.Send_Sensor_Neuron(name = self.neuronId, linkName = self.sensorList[i])
+			self.neuronId +=1
+		for i in range(len(self.motorList)):
+			pyrosim.Send_Motor_Neuron(name = self.neuronId, jointName = self.motorList[i])
+			self.neuronId +=1
+		for i in range(self.numHiddenNeurons):
+			pyrosim.Send_Hidden_Neuron(name = self.neuronId)
+			self.neuronId +=1
+
+		#synapses with hidden neurons
+			#sensor to hidden
+		for currentRow in range(len(self.sensorList)):
+			for currentColumn in range(self.numHiddenNeurons):
+				pyrosim.Send_Synapse( sourceNeuronName = currentRow , targetNeuronName = currentColumn+len(self.sensorList)+len(self.motorList) , weight = self.weights_Sensors2Hidden[currentRow][currentColumn] ) #weight = random.random() #weight = random.uniform(-1,1)
+
+			#hidden to motor
+		for currentRow in range(self.numHiddenNeurons):
+			for currentColumn in range(len(self.motorList)):
+				pyrosim.Send_Synapse( sourceNeuronName = currentRow+len(self.sensorList)+len(self.motorList) , targetNeuronName = currentColumn+len(self.sensorList) , weight = self.weights_Hidden2Motor[currentRow][currentColumn] ) #weight = random.random() #weight = random.uniform(-1,1)
+
+		self.neuronId = 0
+		pyrosim.End()
+
 
 	def Mutate(self):
 		self.randMut = random.random()
@@ -295,44 +290,30 @@ class SOLUTION:
 		else:
 			self.Mutate_Sensor_Placement()
 		
-		self.Mutate_Synapses()
+		#self.Mutate_Synapses_Control()
+		self.Mutate_Synapses_Experi()
 
 
-	def Mutate_Synapses(self):
-			#newA7 synapses no hidden
+	def Mutate_Synapses_Control(self):
+
 		self.countSensors = self.LmatList.count("Green")*2-1
 		self.countMotors = self.numJoints_A7*2
-		#print('')
-		#print(self.LmatList)
-		#print(self.sensorList)
-		#print(self.countSensors)
-		#print(self.countMotors)
-		#print('')
 		self.weights = numpy.random.rand(self.countSensors,self.countMotors) * 2 - 1
 		
-		#randomRow = random.randint(0,self.countSensors-1)
-		#randomColumn = random.randint(0,self.countMotors-1)
 
-		#self.weights[randomRow,randomColumn] = random.random() * 2 - 1
-
-			#newA7 synapses with hidden
-		#randomRowStH = random.randint(0,len(self.sensorList)-1)
-		#randomColumnStH = random.randint(0,self.numHiddenNeurons-1)
-		#self.weights[randomRowStH,randomColumnStH] = random.random() * 2 - 1
-
-		#randomRowHtM = random.randint(0,self.numHiddenNeurons-1)
-		#randomColumnHtM = random.randint(0,len(self.motorList)-1)
-		#self.weights[randomRowHtM,randomColumnHtM] = random.random() * 2 - 1
+	def Mutate_Synapses_Experi(self):
 		
-			#quadruped/golfer
-		#randomRow = random.randint(0,c.numSensorNeurons-1)
-		#randomColumn = random.randint(0,c.numMotorNeurons-1)
-		#self.weights[randomRow,randomColumn] = random.random() * 2 - 1
+		self.countSensors = self.LmatList.count("Green")*2-1
+		self.countHidden = self.countSensors
+		self.countMotors = self.numJoints_A7*2
+		self.weights_Sensors2Hidden = numpy.random.rand(self.countSensors,self.countHidden) * 2 - 1
+		self.weights_Hidden2Motor = numpy.random.rand(self.countHidden,self.countMotors) * 2 - 1
 
 	
 	def Mutate_Joint_Axis(self):
 		self.linkListIndex = random.randint(0,self.numLinks_A7-2) #having error here.. just subtracted another 1 ?
 		self.JaxisList[self.linkListIndex]=random.choice(["1 0 0", "0 1 0", "0 0 1"])
+
 
 	def Mutate_Sensor_Placement(self):
 		self.linkListIndex = random.randint(1,self.numLinks_A7-1)
@@ -345,6 +326,7 @@ class SOLUTION:
 			self.LmatList[self.linkListIndex] = "Green"
 			self.LcolorStringList[self.linkListIndex] = "0 1 0 1"
 			self.sensorList.append("Green")
+
 
 	def Mutate_Add_Link(self):
 		self.new = self.numLinks_A7

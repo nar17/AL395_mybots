@@ -36,6 +36,7 @@ class PARALLEL_HILL_CLIMBER:
 		self.Evaluate(self.children)
 		self.Print()
 		self.Select()
+		#self.Delete()
 
 	def Spawn(self):
 		self.children = {}
@@ -92,6 +93,11 @@ class PARALLEL_HILL_CLIMBER:
 		#furthest drive
 			#if self.parents[i].xfitness > self.children[i].xfitness and abs(self.parents[i].yfitness) > abs(self.children[i].yfitness):
 			#	self.parents[i] = self.children[i]
+
+	def Delete(self):
+		os.system("del body*.urdf")
+		os.system("del brain*.nndf")
+		os.system("del fitness*.txt")
 
 
 	def Save_Fitness_Data_CONTROL(self):

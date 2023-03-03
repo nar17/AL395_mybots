@@ -21,14 +21,14 @@ class ROBOT:
 		self.Prepare_To_Sense()
 		self.Prepare_To_Act()
 		self.nn = NEURAL_NETWORK("brain" + str(solutionID) + ".nndf")
-		#os.system("del brain" + str(solutionID) + ".nndf")
-
+		os.system("del brain" + str(solutionID) + ".nndf")
+		os.system("del body" + str(solutionID) + ".urdf")
 
 	
 	def Prepare_To_Sense(self):
 		for linkName in pyrosim.linkNamesToIndices:
 			self.sensors[linkName] = SENSOR(linkName)
-		#print(self.sensors)
+
 
 	def Sense(self, t):
 		for i in self.sensors:
