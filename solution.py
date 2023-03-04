@@ -20,7 +20,8 @@ class SOLUTION:
 		#Experi (with hidden layer)
 		self.weights_Sensors2HiddenOne = numpy.random.rand(self.countSensors,self.countHidden) * 2 - 1
 		self.weights_HiddenOne2HiddenTwo = numpy.random.rand(self.countHidden,self.countHidden) * 2 - 1
-		self.weights_HiddenTwo2Motor = numpy.random.rand(self.countHidden,self.countMotors) * 2 - 1
+		self.weights_HiddenTwo2HiddenThree = numpy.random.rand(self.countHidden,self.countHidden) * 2 - 1
+		self.weights_HiddenThree2Motor = numpy.random.rand(self.countHidden,self.countMotors) * 2 - 1
 		
 
 	def Start_Simulation(self, directOrGUI):
@@ -38,13 +39,19 @@ class SOLUTION:
 			time.sleep(0.03)
 			
 			#quadruped fitness
-		fitnessFile=open("fitness"+str(self.myID)+".txt","r")
-		self.fitness = float(fitnessFile.read())
-		
+		while True:
+			try:
+				fitnessFile=open("fitness"+str(self.myID)+".txt","r")
+				self.fitness = float(fitnessFile.read())
+				break
+			except:
+				pass
 		fitnessFile.close()
-		os.system("del fitness" + str(self.myID) + ".txt")
-		#os.system("del body" + str(self.myID) + ".urdf")
-		#os.system("del brain" + str(self.myID) + ".nndf")
+
+		if (self.myID >= 50 and self.myID <= 2475) or (self.myID>=2525 and self.myID<=4975):
+			os.system("del fitness" + str(self.myID) + ".txt")
+			os.system("del brain" + str(self.myID) + ".nndf")
+			os.system("del body" + str(self.myID) + ".urdf")
 		
 
 	def Create_World(self):
@@ -257,6 +264,10 @@ class SOLUTION:
 		for i in range(self.numHiddenNeurons):
 			pyrosim.Send_Hidden_Neuron(name = self.neuronId)
 			self.neuronId +=1
+		#hiddenThree
+		for i in range(self.numHiddenNeurons):
+			pyrosim.Send_Hidden_Neuron(name = self.neuronId)
+			self.neuronId +=1
 
 		#synapses with hidden neurons
 			#sensor to hiddenOne
@@ -269,10 +280,15 @@ class SOLUTION:
 			for currentColumn in range(self.numHiddenNeurons):
 				pyrosim.Send_Synapse( sourceNeuronName = currentRow+len(self.sensorList)+len(self.motorList) , targetNeuronName = currentColumn+len(self.sensorList)+len(self.motorList)+self.numHiddenNeurons , weight = self.weights_HiddenOne2HiddenTwo[currentRow][currentColumn] ) 
 
-			#hiddenTwo to Motor
+			#hiddenTwo to hiddenThree
+		for currentRow in range(self.numHiddenNeurons):
+			for currentColumn in range(self.numHiddenNeurons):
+				pyrosim.Send_Synapse( sourceNeuronName = currentRow+len(self.sensorList)+len(self.motorList)+self.numHiddenNeurons , targetNeuronName = currentColumn+len(self.sensorList)+len(self.motorList)+self.numHiddenNeurons+self.numHiddenNeurons , weight = self.weights_HiddenTwo2HiddenThree[currentRow][currentColumn] ) 
+
+			#hiddenThree to Motor
 		for currentRow in range(self.numHiddenNeurons):
 			for currentColumn in range(len(self.motorList)):
-				pyrosim.Send_Synapse( sourceNeuronName = currentRow+len(self.sensorList)+len(self.motorList)+self.numHiddenNeurons , targetNeuronName = currentColumn+len(self.sensorList) , weight = self.weights_HiddenTwo2Motor[currentRow][currentColumn] ) 
+				pyrosim.Send_Synapse( sourceNeuronName = currentRow+len(self.sensorList)+len(self.motorList)+self.numHiddenNeurons+self.numHiddenNeurons , targetNeuronName = currentColumn+len(self.sensorList) , weight = self.weights_HiddenThree2Motor[currentRow][currentColumn] ) 
 
 
 		self.neuronId = 0
@@ -282,15 +298,19 @@ class SOLUTION:
 	def Mutate(self):
 		self.randMut = random.random()
 		
-		if self.randMut<0.33:
+		#if self.myID<(c.populationSize*c.numberOfGenerations/2):
+		if self.randMut<0.5:
 			self.Mutate_Add_Link()
-		elif 0.33<self.randMut<0.66:
-			self.Mutate_Joint_Axis()
+			#elif (self.randMut>0.33 and self.randMut<0.66):
+			#	self.Mutate_Joint_Axis()
 		else:
 			self.Mutate_Sensor_Placement()
-		
 		#self.Mutate_Synapses_Control()
 		self.Mutate_Synapses_Experi()
+		#else:
+			#self.Mutate_Synapses_Control()
+			#self.Mutate_Synapses_Experi()
+
 
 
 	def Mutate_Synapses_Control(self):
@@ -305,9 +325,11 @@ class SOLUTION:
 		self.countSensors = self.LmatList.count("Green")*2-1
 		self.countHidden = self.countSensors
 		self.countMotors = self.numJoints_A7*2
+
 		self.weights_Sensors2HiddenOne = numpy.random.rand(self.countSensors,self.countHidden) * 2 - 1
 		self.weights_HiddenOne2HiddenTwo = numpy.random.rand(self.countHidden,self.countHidden) * 2 - 1
-		self.weights_HiddenTwo2Motor = numpy.random.rand(self.countHidden,self.countMotors) * 2 - 1
+		self.weights_HiddenTwo2HiddenThree = numpy.random.rand(self.countHidden,self.countHidden) * 2 - 1
+		self.weights_HiddenThree2Motor = numpy.random.rand(self.countHidden,self.countMotors) * 2 - 1
 
 	
 	def Mutate_Joint_Axis(self):

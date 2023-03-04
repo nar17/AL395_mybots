@@ -4,8 +4,8 @@ import matplotlib.pyplot
 import constants as c
 
 #CONTROL
-seedZero = numpy.load("finalProjectData_CONTROL/fitness_Zero_Seed_CONTROL.npy")
-matplotlib.pyplot.plot(seedZero, linewidth=3, label='Seed 0', color='y')
+#seedZero = numpy.load("finalProjectData_CONTROL/fitness_Zero_Seed_CONTROL.npy")
+#matplotlib.pyplot.plot(seedZero, linewidth=3, label='Seed 0', color='y')
 
 seedOne = numpy.load("finalProjectData_CONTROL/fitness_First_Seed_CONTROL.npy")
 matplotlib.pyplot.plot(seedOne, linewidth=3, label='Seed 1', color='g')
@@ -20,8 +20,8 @@ seedFour = numpy.load("finalProjectData_CONTROL/fitness_Fourth_Seed_CONTROL.npy"
 matplotlib.pyplot.plot(seedFour, linewidth=3, label='Seed 4', color='k')
 
 #EXPERIMENTAL
-seedZero = numpy.load("finalProjectData_EXPERI/fitness_Zero_Seed_EXPERI.npy")
-matplotlib.pyplot.plot(seedZero, linewidth=3, label='Seed 0', linestyle='dashed', color='y')
+#seedZero = numpy.load("finalProjectData_EXPERI/fitness_Zero_Seed_EXPERI.npy")
+#matplotlib.pyplot.plot(seedZero, linewidth=3, label='Seed 0', linestyle='dashed', color='y')
 
 seedOne = numpy.load("finalProjectData_EXPERI/fitness_First_Seed_EXPERI.npy")
 matplotlib.pyplot.plot(seedOne, linewidth=3, label='Seed 1', linestyle='dashed', color='g')

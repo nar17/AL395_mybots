@@ -20,9 +20,6 @@ class PARALLEL_HILL_CLIMBER:
 
 		self.bestGenFitnessList = []
 		self.bestGenFitnessList.append(0)
-
-
-		
 		
 
 	def Evolve(self):
@@ -52,9 +49,9 @@ class PARALLEL_HILL_CLIMBER:
 	def Evaluate(self, solutions):
 		self.solutions = solutions
 		for i in range(c.populationSize):
-			solutions[i].Start_Simulation('DIRECT')
+			solutions[i].Start_Simulation('GUI')
 		for i in range(c.populationSize):
-			solutions[i].Wait_For_Simulation_To_End('DIRECT')
+			solutions[i].Wait_For_Simulation_To_End('GUI')
 
 	def Print(self):
 		print(" ")
@@ -148,7 +145,6 @@ class PARALLEL_HILL_CLIMBER:
 			parent_fitnesses.append(self.parents[i].fitness)
 		bestFitness = parent_fitnesses.index(min(parent_fitnesses))
 		self.parents[bestFitness].Start_Simulation('GUI')
-		print(bestFitness)
 
 			#golf fitness
 		#for i in self.parents:

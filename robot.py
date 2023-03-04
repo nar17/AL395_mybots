@@ -16,13 +16,15 @@ class ROBOT:
 		self.sensors = {}
 		self.solutionID = solutionID
 		self.robotId = p.loadURDF("body"+str(solutionID)+".urdf")
-		#self.world = WORLD()
+		#self.robotId = p.loadURDF("body1.urdf") #this is for simulating specific bodies
 		pyrosim.Prepare_To_Simulate(self.robotId)
 		self.Prepare_To_Sense()
 		self.Prepare_To_Act()
 		self.nn = NEURAL_NETWORK("brain" + str(solutionID) + ".nndf")
-		os.system("del brain" + str(solutionID) + ".nndf")
-		os.system("del body" + str(solutionID) + ".urdf")
+		#self.nn = NEURAL_NETWORK("brain1.nndf")  #this is for simulating specific bodies
+		#if (int(solutionID) >= 50 and int(solutionID) <= 2475) or (int(solutionID)>=2525 and int(solutionID)<=4975):
+		#	os.system("del brain" + str(solutionID) + ".nndf")
+		#	os.system("del body" + str(solutionID) + ".urdf")
 
 	
 	def Prepare_To_Sense(self):
