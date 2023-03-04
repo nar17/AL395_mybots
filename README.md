@@ -10,12 +10,15 @@ To generate the fitness curves, open and start `finalProjectFitnessPlots.py`.
 The goal of this project is to determine the effect of hidden neuron layers on the performance and evolution of a randomized robot.
 *Insert gif here*
 
+
+
 # Environment:
 - OS: Windows
 - IDE: Sublime Text
 - Language: Python 3
 - Physics Engine: `pybullet`
 - Simulator: `pyrosim.pyrosim`
+
 
 
 # Robot Basics:
@@ -48,6 +51,7 @@ The evolutionary algorithm utilized is the ['parallel hillclimber'](https://en.w
 Locomotion in the -x direction. If a child moves further in the -x direction, it will replace its parent. 
 
 
+
 # Test:
 ## Question:
 Will a randomized robot with hidden neuron layers perform locomotion in a specified direction (-x) better than a randomized robot with no hidden neuron layers? How does the presence of hidden neuron layers affect the evolution of a randomized robot? 
@@ -72,6 +76,7 @@ The experimental group for this project is a randomized robot with three hidden 
 - Number of Seeds/Tests = 5
 
 
+
 # Results:
 ## Fitness Curves:
 For each generation, the randomized robot with the best fitness was plotted on the fitness curve for each seed. The following plot shows the fitness curves.
@@ -82,10 +87,14 @@ For each generation, the randomized robot with the best fitness was plotted on t
 *here, talk about the results briefly.. qualitative versus quantitative*
 
 ### Results Video:
-The following 2-minute video shows the animated results of the test. *MAKE THE VIDEO A URL*
+This 2-minute video shows the animated results of the test. *MAKE THE VIDEO A URL*
 
 ### B-Roll:
-The follwing ____-minute video shows further animated results from the test. *MAKE THE VIDEO A URL*
+This ____-minute video shows further animated results from the test. *MAKE THE VIDEO A URL*
+
+### Going Forward:
+*talk about what other tests to run.. etc. etc.*
+
 
 
 # Acknowledgements:
