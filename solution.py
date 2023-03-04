@@ -101,7 +101,7 @@ class SOLUTION:
 		
 
 	def New_A7_Lists(self):
-		self.numLinks_A7=random.randint(3,4)+1
+		self.numLinks_A7=random.randint(2,3)+1
 		self.numJoints_A7=self.numLinks_A7-1
 
 		self.X=[]
@@ -220,8 +220,6 @@ class SOLUTION:
 
 	def Create_Body(self):
 		pyrosim.Start_URDF("body"+str(self.myID)+".urdf")
-		#if self.listID==0:
-		#	self.New_A7_Lists()
 		self.New_A7_Generator()
 		pyrosim.End()
 
@@ -298,15 +296,23 @@ class SOLUTION:
 	def Mutate(self):
 		self.randMut = random.random()
 		
-		#if self.myID<(c.populationSize*c.numberOfGenerations/2):
-		if self.randMut<0.5:
+		if self.myID<175:
 			self.Mutate_Add_Link()
+			#self.Mutate_Synapses_Control()
+			self.Mutate_Synapses_Experi()
+		elif (self.myID>175 and self.myID<350):
+			self.Mutate_Sensor_Placement()
+			#self.Mutate_Synapses_Control()
+			self.Mutate_Synapses_Experi()
+		else:
+			#self.Mutate_Synapses_Control()
+			self.Mutate_Synapses_Experi()
+
+			
+
 			#elif (self.randMut>0.33 and self.randMut<0.66):
 			#	self.Mutate_Joint_Axis()
-		else:
-			self.Mutate_Sensor_Placement()
 		#self.Mutate_Synapses_Control()
-		self.Mutate_Synapses_Experi()
 		#else:
 			#self.Mutate_Synapses_Control()
 			#self.Mutate_Synapses_Experi()
