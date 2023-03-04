@@ -1,10 +1,13 @@
 # Final Project:
-Optimize morphology and behavior for a task of your choice
+#### Task:
+Optimize morphology and behavior for a task of your choice.
 
-
-## 	Running Instructions:
+####	Running Instructions:
 To run the evolution, open and start search.py.
 To generate the fitness curves, open and start EightFitnessPlots.py.
+
+#### Preview:
+*Insert gif here*
 
 
 ##	Genotype:
