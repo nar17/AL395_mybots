@@ -53,7 +53,7 @@ Locomotion in the -x direction. If a child moves further in the -x direction, it
 
 
 # Test:
-## Question:
+### Question:
 Will a randomized robot with hidden neuron layers perform locomotion in a specified direction (-x) better than a randomized robot with no hidden neuron layers? How does the presence of hidden neuron layers affect the evolution of a randomized robot? 
 
 ### Hypothesis:
