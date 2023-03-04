@@ -101,7 +101,7 @@ This ____-minute video shows further animated results from the test. *MAKE THE V
 - This assignment was performed for Sam Kriegman's Artificial Life class at Northwestern University in the Winter 2023 quarter. 
 - It is based off of Josh Bongard's reddit-based MOOC called 'Ludobots'. 
 - Special thanks to Sunyang Xu and the rest of the students on Campuswire for their help throughout the course.
-- The biggest thanks goes to Donna Hooshmand who always expressed enthusiasm and interest in every question and idea we presented in class, office hours, and Campuswire. TA of the year!!!
+- The biggest thanks goes to Donna Hooshmand who always expressed enthusiasm and interest in every idea, question, and bug we presented throughout the quarter. TA of the year!!!
 
 ### Sources:
 [1] https://www.r-bloggers.com/2015/09/selecting-the-number-of-neurons-in-the-hidden-layer-of-a-neural-network/#:~:text=The%20most%20common%20rule%20of,number%20is%20greater%20than%201).
