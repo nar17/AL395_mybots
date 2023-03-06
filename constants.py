@@ -1,17 +1,17 @@
 import numpy
 import random
 
-randomSeed = 4
-numpyRandomSeed = 4
+randomSeed = 88
+numpyRandomSeed = 88
 
 
-numberOfGenerations = 1
+numberOfGenerations = 5
 populationSize = 1
 
 motorJointRange = 0.8
-motormaxForce = 60
+motormaxForce = 75
 
-numSteps = 1000
+numSteps = 1500
 timeSleep = 1/150
 xNum = numpy.pi
 

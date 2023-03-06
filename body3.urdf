@@ -46,8 +46,8 @@
             <geometry>
                 <box size="0 0 1" />
             </geometry>
-            <material name="Blue">
-                <color rgba="0 0 1 1"/>
+            <material name="Green">
+                <color rgba="0 1 0 1"/>
             </material>
         </visual>
         <collision>
@@ -68,8 +68,8 @@
             <geometry>
                 <box size="0.9789781879753565 0.3331232246829251 0.3479846634002767" />
             </geometry>
-            <material name="Blue">
-                <color rgba="0 0 1 1"/>
+            <material name="Green">
+                <color rgba="0 1 0 1"/>
             </material>
         </visual>
         <collision>
@@ -112,8 +112,8 @@
             <geometry>
                 <box size="0 0 1" />
             </geometry>
-            <material name="Blue">
-                <color rgba="0 0 1 1"/>
+            <material name="Green">
+                <color rgba="0 1 0 1"/>
             </material>
         </visual>
         <collision>
@@ -134,8 +134,8 @@
             <geometry>
                 <box size="0.9789781879753565 0.3331232246829251 0.3479846634002767" />
             </geometry>
-            <material name="Blue">
-                <color rgba="0 0 1 1"/>
+            <material name="Green">
+                <color rgba="0 1 0 1"/>
             </material>
         </visual>
         <collision>

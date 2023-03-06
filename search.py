@@ -5,8 +5,7 @@ import numpy
 from parallelHillClimber import PARALLEL_HILL_CLIMBER
 
 
-random.seed(c.randomSeed)
-numpy.random.seed(c.numpyRandomSeed)
+
 
 phc = PARALLEL_HILL_CLIMBER()
 phc.Show_First()

@@ -7,6 +7,8 @@ import time
 
 class SOLUTION:
 	def __init__(self, nextAvailableID):
+		random.seed(c.randomSeed)
+		numpy.random.seed(c.numpyRandomSeed)
 		self.myID = nextAvailableID
 		self.New_A7_Lists()
 
@@ -15,21 +17,21 @@ class SOLUTION:
 		self.countMotors = self.numJoints_A7*2
 
 		#Control
-		#self.weights = numpy.random.rand(self.countSensors,self.countMotors) * 2 - 1
+		self.weights = numpy.random.rand(self.countSensors,self.countMotors) * 2 - 1
 
 		#Experi (with hidden layer)
-		self.weights_Sensors2HiddenOne = numpy.random.rand(self.countSensors,self.countHidden) * 2 - 1
-		self.weights_HiddenOne2HiddenTwo = numpy.random.rand(self.countHidden,self.countHidden) * 2 - 1
-		self.weights_HiddenTwo2HiddenThree = numpy.random.rand(self.countHidden,self.countHidden) * 2 - 1
-		self.weights_HiddenThree2Motor = numpy.random.rand(self.countHidden,self.countMotors) * 2 - 1
+		#self.weights_Sensors2HiddenOne = numpy.random.rand(self.countSensors,self.countHidden) * 2 - 1
+		#self.weights_HiddenOne2HiddenTwo = numpy.random.rand(self.countHidden,self.countHidden) * 2 - 1
+		#self.weights_HiddenTwo2HiddenThree = numpy.random.rand(self.countHidden,self.countHidden) * 2 - 1
+		#self.weights_HiddenThree2Motor = numpy.random.rand(self.countHidden,self.countMotors) * 2 - 1
 		
 
 	def Start_Simulation(self, directOrGUI):
 		if self.myID == 0:
 			self.Create_World()
 		self.Create_Body()
-		#self.Create_Brain_Control()
-		self.Create_Brain_Experi()
+		self.Create_Brain_Control()
+		#self.Create_Brain_Experi()
 		self.directOrGUI = directOrGUI
 		os.system("start /B py simulate.py " + str(self.directOrGUI) + " " + str(self.myID))
 		
@@ -101,7 +103,7 @@ class SOLUTION:
 		
 
 	def New_A7_Lists(self):
-		self.numLinks_A7=random.randint(2,3)+1
+		self.numLinks_A7=random.randint(2,4)+1
 		self.numJoints_A7=self.numLinks_A7-1
 
 		self.X=[]
@@ -296,17 +298,21 @@ class SOLUTION:
 	def Mutate(self):
 		self.randMut = random.random()
 		
-		if self.myID<175:
+		if self.randMut<0.25:
 			self.Mutate_Add_Link()
-			#self.Mutate_Synapses_Control()
-			self.Mutate_Synapses_Experi()
-		elif (self.myID>175 and self.myID<350):
+			self.Mutate_Synapses_Control()
+			#self.Mutate_Synapses_Experi()
+		elif (self.randMut>0.25 and self.randMut<0.5):
 			self.Mutate_Sensor_Placement()
-			#self.Mutate_Synapses_Control()
-			self.Mutate_Synapses_Experi()
+			self.Mutate_Synapses_Control()
+			#self.Mutate_Synapses_Experi()
+		elif (self.randMut>0.5 and self.randMut<0.75):
+			self.Mutate_Joint_Axis()
+			self.Mutate_Synapses_Control()
+			#self.Mutate_Synapses_Experi()
 		else:
-			#self.Mutate_Synapses_Control()
-			self.Mutate_Synapses_Experi()
+			self.Mutate_Synapses_Control()
+			#self.Mutate_Synapses_Experi()
 
 			
 
