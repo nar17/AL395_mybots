@@ -16,13 +16,13 @@ class SOLUTION:
 		self.countMotors = self.numJoints_A7*2
 
 		#Control
-		self.weights = numpy.random.rand(self.countSensors,self.countMotors) * 2 - 1
+		#self.weights = numpy.random.rand(self.countSensors,self.countMotors) * 2 - 1
 
 		#Experi (with hidden layers)
-		#self.weights_Sensors2HiddenOne = numpy.random.rand(self.countSensors,self.countHidden) * 2 - 1
-		#self.weights_HiddenOne2HiddenTwo = numpy.random.rand(self.countHidden,self.countHidden) * 2 - 1
-		#self.weights_HiddenTwo2HiddenThree = numpy.random.rand(self.countHidden,self.countHidden) * 2 - 1
-		#self.weights_HiddenThree2Motor = numpy.random.rand(self.countHidden,self.countMotors) * 2 - 1
+		self.weights_Sensors2HiddenOne = numpy.random.rand(self.countSensors,self.countHidden) * 2 - 1
+		self.weights_HiddenOne2HiddenTwo = numpy.random.rand(self.countHidden,self.countHidden) * 2 - 1
+		self.weights_HiddenTwo2HiddenThree = numpy.random.rand(self.countHidden,self.countHidden) * 2 - 1
+		self.weights_HiddenThree2Motor = numpy.random.rand(self.countHidden,self.countMotors) * 2 - 1
 		
 
 	def Start_Simulation(self, directOrGUI):
@@ -31,9 +31,9 @@ class SOLUTION:
 		self.Create_Body()
 
 			#Control
-		self.Create_Brain_Control()
+		#self.Create_Brain_Control()
 			#Experi (with hidden layers)
-		#self.Create_Brain_Experi()
+		self.Create_Brain_Experi()
 
 		self.directOrGUI = directOrGUI
 		os.system("start /B py simulate.py " + str(self.directOrGUI) + " " + str(self.myID))
@@ -306,28 +306,28 @@ class SOLUTION:
 		if self.randMut<0.25:
 			self.Mutate_Add_Link()
 				#Control
-			self.Mutate_Synapses_Control()
+			#self.Mutate_Synapses_Control()
 				#Experi (with hidden layers)
-			#self.Mutate_Synapses_Experi()
+			self.Mutate_Synapses_Experi()
 
 		elif (self.randMut>0.25 and self.randMut<0.5):
 			self.Mutate_Sensor_Placement()
 				#Control
-			self.Mutate_Synapses_Control()
+			#self.Mutate_Synapses_Control()
 				#Experi (with hidden layers)
-			#self.Mutate_Synapses_Experi()
+			self.Mutate_Synapses_Experi()
 
 		elif (self.randMut>0.5 and self.randMut<0.75):
 			self.Mutate_Joint_Axis()
 				#Control
-			self.Mutate_Synapses_Control()
+			#self.Mutate_Synapses_Control()
 				#Experi (with hidden layers)
-			#self.Mutate_Synapses_Experi()
+			self.Mutate_Synapses_Experi()
 		else:
 				#Control
-			self.Mutate_Synapses_Control()
-				##Experi (with hidden layers)
-			#self.Mutate_Synapses_Experi()
+			#self.Mutate_Synapses_Control()
+				#Experi (with hidden layers)
+			self.Mutate_Synapses_Experi()
 
 
 

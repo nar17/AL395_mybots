@@ -11,8 +11,8 @@ numpy.random.seed(c.numpyRandomSeed)
 phc = PARALLEL_HILL_CLIMBER()
 phc.Show_First()
 phc.Evolve()
-phc.Save_Fitness_Data_CONTROL()
-#phc.Save_Fitness_Data_EXPERI()
+#phc.Save_Fitness_Data_CONTROL()
+phc.Save_Fitness_Data_EXPERI()
 phc.Show_Best()
 
 
