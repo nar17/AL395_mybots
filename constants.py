@@ -5,7 +5,7 @@ randomSeed = 0
 numpyRandomSeed = 0
 
 
-numberOfGenerations = 0
+numberOfGenerations = 200
 populationSize = 25
 
 motorJointRange = 0.8

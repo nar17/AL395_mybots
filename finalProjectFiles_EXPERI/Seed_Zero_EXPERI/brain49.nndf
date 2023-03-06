@@ -1,0 +1,121 @@
+<neuralNetwork>
+    <neuron name = "0" type = "sensor" linkName = "rootLink" />
+    <neuron name = "1" type = "sensor" linkName = "link1NPP" />
+    <neuron name = "2" type = "sensor" linkName = "link2NPP" />
+    <neuron name = "3" type = "sensor" linkName = "link1NNP" />
+    <neuron name = "4" type = "sensor" linkName = "link2NNP" />
+    <neuron name = "5" type = "motor"  jointName = "rootLink_link1NPP" />
+    <neuron name = "6" type = "motor"  jointName = "rootLink_link1NNP" />
+    <neuron name = "7" type = "motor"  jointName = "link1NPP_link2NPP" />
+    <neuron name = "8" type = "motor"  jointName = "link1NNP_link2NNP" />
+    <neuron name = "9" type = "hidden" />
+    <neuron name = "10" type = "hidden" />
+    <neuron name = "11" type = "hidden" />
+    <neuron name = "12" type = "hidden" />
+    <neuron name = "13" type = "hidden" />
+    <neuron name = "14" type = "hidden" />
+    <neuron name = "15" type = "hidden" />
+    <neuron name = "16" type = "hidden" />
+    <neuron name = "17" type = "hidden" />
+    <neuron name = "18" type = "hidden" />
+    <neuron name = "19" type = "hidden" />
+    <neuron name = "20" type = "hidden" />
+    <neuron name = "21" type = "hidden" />
+    <neuron name = "22" type = "hidden" />
+    <neuron name = "23" type = "hidden" />
+    <synapse sourceNeuronName = "0" targetNeuronName = "9" weight = "0.5728910054895431" />
+    <synapse sourceNeuronName = "0" targetNeuronName = "10" weight = "0.825518474023134" />
+    <synapse sourceNeuronName = "0" targetNeuronName = "11" weight = "0.624730072100985" />
+    <synapse sourceNeuronName = "0" targetNeuronName = "12" weight = "0.6437911333230708" />
+    <synapse sourceNeuronName = "0" targetNeuronName = "13" weight = "0.6588028252887774" />
+    <synapse sourceNeuronName = "1" targetNeuronName = "9" weight = "-0.6487017685752523" />
+    <synapse sourceNeuronName = "1" targetNeuronName = "10" weight = "0.9916254589665465" />
+    <synapse sourceNeuronName = "1" targetNeuronName = "11" weight = "0.3143715809245995" />
+    <synapse sourceNeuronName = "1" targetNeuronName = "12" weight = "-0.15814587184020557" />
+    <synapse sourceNeuronName = "1" targetNeuronName = "13" weight = "0.7760477045340717" />
+    <synapse sourceNeuronName = "2" targetNeuronName = "9" weight = "0.16470254597845457" />
+    <synapse sourceNeuronName = "2" targetNeuronName = "10" weight = "0.987249018147003" />
+    <synapse sourceNeuronName = "2" targetNeuronName = "11" weight = "0.5041473889004082" />
+    <synapse sourceNeuronName = "2" targetNeuronName = "12" weight = "-0.26497858148054765" />
+    <synapse sourceNeuronName = "2" targetNeuronName = "13" weight = "0.4851244506050001" />
+    <synapse sourceNeuronName = "3" targetNeuronName = "9" weight = "0.46021994445012315" />
+    <synapse sourceNeuronName = "3" targetNeuronName = "10" weight = "-0.37401844444640453" />
+    <synapse sourceNeuronName = "3" targetNeuronName = "11" weight = "0.7683504817136524" />
+    <synapse sourceNeuronName = "3" targetNeuronName = "12" weight = "-0.7184701672654128" />
+    <synapse sourceNeuronName = "3" targetNeuronName = "13" weight = "-0.2694529703921147" />
+    <synapse sourceNeuronName = "4" targetNeuronName = "9" weight = "0.27254838205561693" />
+    <synapse sourceNeuronName = "4" targetNeuronName = "10" weight = "-0.04172176158345042" />
+    <synapse sourceNeuronName = "4" targetNeuronName = "11" weight = "0.35631179517182265" />
+    <synapse sourceNeuronName = "4" targetNeuronName = "12" weight = "0.9947073621459535" />
+    <synapse sourceNeuronName = "4" targetNeuronName = "13" weight = "-0.8440067258777746" />
+    <synapse sourceNeuronName = "9" targetNeuronName = "14" weight = "0.5179377176655175" />
+    <synapse sourceNeuronName = "9" targetNeuronName = "15" weight = "0.6348490171018704" />
+    <synapse sourceNeuronName = "9" targetNeuronName = "16" weight = "-0.43559711737313833" />
+    <synapse sourceNeuronName = "9" targetNeuronName = "17" weight = "-0.4896878951877204" />
+    <synapse sourceNeuronName = "9" targetNeuronName = "18" weight = "-0.11728475440035058" />
+    <synapse sourceNeuronName = "10" targetNeuronName = "14" weight = "-0.2122864848134225" />
+    <synapse sourceNeuronName = "10" targetNeuronName = "15" weight = "0.01563813512431067" />
+    <synapse sourceNeuronName = "10" targetNeuronName = "16" weight = "-0.5768315969154825" />
+    <synapse sourceNeuronName = "10" targetNeuronName = "17" weight = "-0.01239904992991736" />
+    <synapse sourceNeuronName = "10" targetNeuronName = "18" weight = "0.6255048456140542" />
+    <synapse sourceNeuronName = "11" targetNeuronName = "14" weight = "0.7657667845356513" />
+    <synapse sourceNeuronName = "11" targetNeuronName = "15" weight = "0.33352452493713525" />
+    <synapse sourceNeuronName = "11" targetNeuronName = "16" weight = "-0.42373907210387496" />
+    <synapse sourceNeuronName = "11" targetNeuronName = "17" weight = "0.7464902366835018" />
+    <synapse sourceNeuronName = "11" targetNeuronName = "18" weight = "-0.1575441780105915" />
+    <synapse sourceNeuronName = "12" targetNeuronName = "14" weight = "-0.5363856194702303" />
+    <synapse sourceNeuronName = "12" targetNeuronName = "15" weight = "-0.7308053819840623" />
+    <synapse sourceNeuronName = "12" targetNeuronName = "16" weight = "0.9233377158856069" />
+    <synapse sourceNeuronName = "12" targetNeuronName = "17" weight = "-0.8240416910705255" />
+    <synapse sourceNeuronName = "12" targetNeuronName = "18" weight = "0.059520929869455674" />
+    <synapse sourceNeuronName = "13" targetNeuronName = "14" weight = "-0.5956454568856169" />
+    <synapse sourceNeuronName = "13" targetNeuronName = "15" weight = "0.7365607909240082" />
+    <synapse sourceNeuronName = "13" targetNeuronName = "16" weight = "-0.6109466129810823" />
+    <synapse sourceNeuronName = "13" targetNeuronName = "17" weight = "0.4729595187675859" />
+    <synapse sourceNeuronName = "13" targetNeuronName = "18" weight = "-0.6697680631766818" />
+    <synapse sourceNeuronName = "14" targetNeuronName = "19" weight = "0.8762244973932247" />
+    <synapse sourceNeuronName = "14" targetNeuronName = "20" weight = "0.32664999888537105" />
+    <synapse sourceNeuronName = "14" targetNeuronName = "21" weight = "-0.16975827006459898" />
+    <synapse sourceNeuronName = "14" targetNeuronName = "22" weight = "0.9249650194715149" />
+    <synapse sourceNeuronName = "14" targetNeuronName = "23" weight = "0.04810172311597416" />
+    <synapse sourceNeuronName = "15" targetNeuronName = "19" weight = "-0.23185254137646805" />
+    <synapse sourceNeuronName = "15" targetNeuronName = "20" weight = "-0.675048993184509" />
+    <synapse sourceNeuronName = "15" targetNeuronName = "21" weight = "0.4421786327427881" />
+    <synapse sourceNeuronName = "15" targetNeuronName = "22" weight = "0.19266588757916225" />
+    <synapse sourceNeuronName = "15" targetNeuronName = "23" weight = "-0.554214306044011" />
+    <synapse sourceNeuronName = "16" targetNeuronName = "19" weight = "-0.5000763307021576" />
+    <synapse sourceNeuronName = "16" targetNeuronName = "20" weight = "-0.559235743485915" />
+    <synapse sourceNeuronName = "16" targetNeuronName = "21" weight = "-0.008316270036412554" />
+    <synapse sourceNeuronName = "16" targetNeuronName = "22" weight = "-0.9054213740759924" />
+    <synapse sourceNeuronName = "16" targetNeuronName = "23" weight = "-0.4215050308846624" />
+    <synapse sourceNeuronName = "17" targetNeuronName = "19" weight = "0.4732478879947166" />
+    <synapse sourceNeuronName = "17" targetNeuronName = "20" weight = "0.2424598066653496" />
+    <synapse sourceNeuronName = "17" targetNeuronName = "21" weight = "0.6371922890092059" />
+    <synapse sourceNeuronName = "17" targetNeuronName = "22" weight = "0.4896499098315854" />
+    <synapse sourceNeuronName = "17" targetNeuronName = "23" weight = "-0.9574453252793178" />
+    <synapse sourceNeuronName = "18" targetNeuronName = "19" weight = "0.13913826822448216" />
+    <synapse sourceNeuronName = "18" targetNeuronName = "20" weight = "-0.12316654639333158" />
+    <synapse sourceNeuronName = "18" targetNeuronName = "21" weight = "-0.2773999124551989" />
+    <synapse sourceNeuronName = "18" targetNeuronName = "22" weight = "0.9847631729226489" />
+    <synapse sourceNeuronName = "18" targetNeuronName = "23" weight = "0.3139267415104898" />
+    <synapse sourceNeuronName = "19" targetNeuronName = "5" weight = "-0.4978598537226262" />
+    <synapse sourceNeuronName = "19" targetNeuronName = "6" weight = "0.0657321174093306" />
+    <synapse sourceNeuronName = "19" targetNeuronName = "7" weight = "-0.8095361337879181" />
+    <synapse sourceNeuronName = "19" targetNeuronName = "8" weight = "0.49054655955558" />
+    <synapse sourceNeuronName = "20" targetNeuronName = "5" weight = "-0.3046965207593457" />
+    <synapse sourceNeuronName = "20" targetNeuronName = "6" weight = "-0.6622332543223282" />
+    <synapse sourceNeuronName = "20" targetNeuronName = "7" weight = "-0.675157074041105" />
+    <synapse sourceNeuronName = "20" targetNeuronName = "8" weight = "-0.9695422692595368" />
+    <synapse sourceNeuronName = "21" targetNeuronName = "5" weight = "0.5557605065141902" />
+    <synapse sourceNeuronName = "21" targetNeuronName = "6" weight = "0.45739975138888256" />
+    <synapse sourceNeuronName = "21" targetNeuronName = "7" weight = "-0.02994821500080569" />
+    <synapse sourceNeuronName = "21" targetNeuronName = "8" weight = "-0.3880704881921315" />
+    <synapse sourceNeuronName = "22" targetNeuronName = "5" weight = "-0.21677669453958237" />
+    <synapse sourceNeuronName = "22" targetNeuronName = "6" weight = "0.7681769838810171" />
+    <synapse sourceNeuronName = "22" targetNeuronName = "7" weight = "-0.7574004555542448" />
+    <synapse sourceNeuronName = "22" targetNeuronName = "8" weight = "-0.940870519747588" />
+    <synapse sourceNeuronName = "23" targetNeuronName = "5" weight = "-0.5685511005805788" />
+    <synapse sourceNeuronName = "23" targetNeuronName = "6" weight = "0.0413712666276298" />
+    <synapse sourceNeuronName = "23" targetNeuronName = "7" weight = "-0.9846341636101115" />
+    <synapse sourceNeuronName = "23" targetNeuronName = "8" weight = "-0.791470531713129" />
+</neuralNetwork>

@@ -12,8 +12,8 @@ phc = PARALLEL_HILL_CLIMBER()
 phc.Show_First()
 phc.Evolve()
 #phc.Save_Fitness_Data_CONTROL()
-#phc.Save_Fitness_Data_EXPERI()
-#phc.Show_Best()
+phc.Save_Fitness_Data_EXPERI()
+phc.Show_Best()
 
 
 
