@@ -74,6 +74,7 @@ The experimental group for this project is a randomized robot with three hidden 
 - Number of Generations = 200
 - Number of Timesteps = 1000
 - Number of Seeds/Tests = 5
+- Total Simulations = 50,000
 
 
 
