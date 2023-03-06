@@ -4,8 +4,8 @@ import matplotlib.pyplot
 import constants as c
 
 #CONTROL
-#seedZero = numpy.load("finalProjectData_CONTROL/fitness_Zero_Seed_CONTROL.npy")
-#matplotlib.pyplot.plot(seedZero, linewidth=3, label='Seed 0: Control', color='y')
+seedZero = numpy.load("finalProjectData_CONTROL/fitness_Zero_Seed_CONTROL.npy")
+matplotlib.pyplot.plot(seedZero, linewidth=3, label='Seed 0: Control', color='y')
 
 seedOne = numpy.load("finalProjectData_CONTROL/fitness_First_Seed_CONTROL.npy")
 matplotlib.pyplot.plot(seedOne, linewidth=3, label='Seed 1: Control', color='g')
@@ -20,8 +20,8 @@ seedFour = numpy.load("finalProjectData_CONTROL/fitness_Fourth_Seed_CONTROL.npy"
 matplotlib.pyplot.plot(seedFour, linewidth=3, label='Seed 4: Control', color='k')
 
 #EXPERIMENTAL
-#seedZero = numpy.load("finalProjectData_EXPERI/fitness_Zero_Seed_EXPERI.npy")
-#matplotlib.pyplot.plot(seedZero, linewidth=3, label='Seed 0: Exp.', linestyle='dashed', color='y')
+seedZero = numpy.load("finalProjectData_EXPERI/fitness_Zero_Seed_EXPERI.npy")
+matplotlib.pyplot.plot(seedZero, linewidth=3, label='Seed 0: Exp.', linestyle='dashed', color='y')
 
 seedOne = numpy.load("finalProjectData_EXPERI/fitness_First_Seed_EXPERI.npy")
 matplotlib.pyplot.plot(seedOne, linewidth=3, label='Seed 1: Exp.', linestyle='dashed', color='g')
@@ -37,7 +37,7 @@ matplotlib.pyplot.plot(seedFour, linewidth=3, label='Seed 4: Exp.', linestyle='d
 
 
 font = {'family':'MingLiU-ExtB', 'color':'black', 'weight':'normal', 'size': 16}
-matplotlib.pyplot.title('Solid Line: No Hidden Layers | Dashed Line: Three Hidden Layers', fontdict=font)
+matplotlib.pyplot.title('Evolution Fitness Plot', fontdict=font)
 matplotlib.pyplot.xlabel('Number of Generations = '+str(c.numberOfGenerations)+' --> Population = '+str(c.populationSize)+' per Generation', fontdict=font)
 matplotlib.pyplot.ylabel('fitness (locomotion in -x direction)', fontdict=font)
 matplotlib.pyplot.legend(bbox_to_anchor=(1.01,1), loc='best', borderaxespad=0, shadow=True)

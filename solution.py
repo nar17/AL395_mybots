@@ -7,8 +7,7 @@ import time
 
 class SOLUTION:
 	def __init__(self, nextAvailableID):
-		random.seed(c.randomSeed)
-		numpy.random.seed(c.numpyRandomSeed)
+		
 		self.myID = nextAvailableID
 		self.New_A7_Lists()
 
