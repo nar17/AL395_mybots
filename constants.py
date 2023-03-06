@@ -1,8 +1,8 @@
 import numpy
 import random
 
-randomSeed = 3
-numpyRandomSeed = 3
+randomSeed = 4
+numpyRandomSeed = 4
 
 
 numberOfGenerations = 200
