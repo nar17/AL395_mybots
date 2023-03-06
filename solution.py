@@ -18,7 +18,7 @@ class SOLUTION:
 		#Control
 		self.weights = numpy.random.rand(self.countSensors,self.countMotors) * 2 - 1
 
-		#Experi (with hidden layer)
+		#Experi (with hidden layers)
 		#self.weights_Sensors2HiddenOne = numpy.random.rand(self.countSensors,self.countHidden) * 2 - 1
 		#self.weights_HiddenOne2HiddenTwo = numpy.random.rand(self.countHidden,self.countHidden) * 2 - 1
 		#self.weights_HiddenTwo2HiddenThree = numpy.random.rand(self.countHidden,self.countHidden) * 2 - 1
@@ -29,8 +29,12 @@ class SOLUTION:
 		if self.myID == 0:
 			self.Create_World()
 		self.Create_Body()
+
+			#Control
 		self.Create_Brain_Control()
+			#Experi (with hidden layers)
 		#self.Create_Brain_Experi()
+
 		self.directOrGUI = directOrGUI
 		os.system("start /B py simulate.py " + str(self.directOrGUI) + " " + str(self.myID))
 		
@@ -39,7 +43,6 @@ class SOLUTION:
 		while not os.path.exists("fitness" + str(self.myID) + ".txt"):
 			time.sleep(0.03)
 			
-			#quadruped fitness
 		while True:
 			try:
 				fitnessFile=open("fitness"+str(self.myID)+".txt","r")
@@ -49,10 +52,10 @@ class SOLUTION:
 				pass
 		fitnessFile.close()
 
-		if (self.myID >= 50 and self.myID <= 2475) or (self.myID>=2525 and self.myID<=4975):
-			os.system("del fitness" + str(self.myID) + ".txt")
-			os.system("del brain" + str(self.myID) + ".nndf")
-			os.system("del body" + str(self.myID) + ".urdf")
+		#if self.myID > 50:
+			#os.system("del fitness" + str(self.myID) + ".txt")
+			#os.system("del brain" + str(self.myID) + ".nndf")
+			#os.system("del body" + str(self.myID) + ".urdf")
 		
 
 	def Create_World(self):
@@ -228,14 +231,16 @@ class SOLUTION:
 	def Create_Brain_Control(self):
 		pyrosim.Start_NeuralNetwork("brain" + str(self.myID) + ".nndf")	
 
+		#sensor
 		for i in range(len(self.sensorList)):
 			pyrosim.Send_Sensor_Neuron(name = self.neuronId, linkName = self.sensorList[i])
 			self.neuronId +=1
+		#motor
 		for i in range(len(self.motorList)):
 			pyrosim.Send_Motor_Neuron(name = self.neuronId, jointName = self.motorList[i])
 			self.neuronId +=1
 
-			#synapse with no hidden neurons
+		#sensor to motor
 		for currentRow in range(len(self.sensorList)):
 			for currentColumn in range(len(self.motorList)):
 				pyrosim.Send_Synapse(sourceNeuronName = currentRow , targetNeuronName = currentColumn+len(self.sensorList) , weight = self.weights[currentRow][currentColumn])
@@ -249,9 +254,11 @@ class SOLUTION:
 
 		self.numHiddenNeurons = len(self.sensorList)
 
+		#sensor
 		for i in range(len(self.sensorList)):
 			pyrosim.Send_Sensor_Neuron(name = self.neuronId, linkName = self.sensorList[i])
 			self.neuronId +=1
+		#motor
 		for i in range(len(self.motorList)):
 			pyrosim.Send_Motor_Neuron(name = self.neuronId, jointName = self.motorList[i])
 			self.neuronId +=1
@@ -268,23 +275,22 @@ class SOLUTION:
 			pyrosim.Send_Hidden_Neuron(name = self.neuronId)
 			self.neuronId +=1
 
-		#synapses with hidden neurons
-			#sensor to hiddenOne
+		#sensor to hiddenOne
 		for currentRow in range(len(self.sensorList)):
 			for currentColumn in range(self.numHiddenNeurons):
 				pyrosim.Send_Synapse( sourceNeuronName = currentRow , targetNeuronName = currentColumn+len(self.sensorList)+len(self.motorList) , weight = self.weights_Sensors2HiddenOne[currentRow][currentColumn] )
 
-			#hiddenOne to hiddenTwo
+		#hiddenOne to hiddenTwo
 		for currentRow in range(self.numHiddenNeurons):
 			for currentColumn in range(self.numHiddenNeurons):
 				pyrosim.Send_Synapse( sourceNeuronName = currentRow+len(self.sensorList)+len(self.motorList) , targetNeuronName = currentColumn+len(self.sensorList)+len(self.motorList)+self.numHiddenNeurons , weight = self.weights_HiddenOne2HiddenTwo[currentRow][currentColumn] ) 
 
-			#hiddenTwo to hiddenThree
+		#hiddenTwo to hiddenThree
 		for currentRow in range(self.numHiddenNeurons):
 			for currentColumn in range(self.numHiddenNeurons):
 				pyrosim.Send_Synapse( sourceNeuronName = currentRow+len(self.sensorList)+len(self.motorList)+self.numHiddenNeurons , targetNeuronName = currentColumn+len(self.sensorList)+len(self.motorList)+self.numHiddenNeurons+self.numHiddenNeurons , weight = self.weights_HiddenTwo2HiddenThree[currentRow][currentColumn] ) 
 
-			#hiddenThree to Motor
+		#hiddenThree to Motor
 		for currentRow in range(self.numHiddenNeurons):
 			for currentColumn in range(len(self.motorList)):
 				pyrosim.Send_Synapse( sourceNeuronName = currentRow+len(self.sensorList)+len(self.motorList)+self.numHiddenNeurons+self.numHiddenNeurons , targetNeuronName = currentColumn+len(self.sensorList) , weight = self.weights_HiddenThree2Motor[currentRow][currentColumn] ) 
@@ -299,27 +305,28 @@ class SOLUTION:
 		
 		if self.randMut<0.25:
 			self.Mutate_Add_Link()
+				#Control
 			self.Mutate_Synapses_Control()
+				#Experi (with hidden layers)
 			#self.Mutate_Synapses_Experi()
+
 		elif (self.randMut>0.25 and self.randMut<0.5):
 			self.Mutate_Sensor_Placement()
+				#Control
 			self.Mutate_Synapses_Control()
+				#Experi (with hidden layers)
 			#self.Mutate_Synapses_Experi()
+
 		elif (self.randMut>0.5 and self.randMut<0.75):
 			self.Mutate_Joint_Axis()
+				#Control
 			self.Mutate_Synapses_Control()
+				#Experi (with hidden layers)
 			#self.Mutate_Synapses_Experi()
 		else:
+				#Control
 			self.Mutate_Synapses_Control()
-			#self.Mutate_Synapses_Experi()
-
-			
-
-			#elif (self.randMut>0.33 and self.randMut<0.66):
-			#	self.Mutate_Joint_Axis()
-		#self.Mutate_Synapses_Control()
-		#else:
-			#self.Mutate_Synapses_Control()
+				##Experi (with hidden layers)
 			#self.Mutate_Synapses_Experi()
 
 
@@ -344,7 +351,7 @@ class SOLUTION:
 
 	
 	def Mutate_Joint_Axis(self):
-		self.linkListIndex = random.randint(0,self.numLinks_A7-2) #having error here.. just subtracted another 1 ?
+		self.linkListIndex = random.randint(0,self.numLinks_A7-2)
 		self.JaxisList[self.linkListIndex]=random.choice(["1 0 0", "0 1 0", "0 0 1"])
 
 

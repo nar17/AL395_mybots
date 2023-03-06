@@ -31,9 +31,9 @@ class PARALLEL_HILL_CLIMBER:
 		self.Spawn()
 		self.Mutate()
 		self.Evaluate(self.children)
-		#self.Print()
+		self.Print()
 		self.Select()
-		#self.Delete()
+	
 
 	def Spawn(self):
 		self.children = {}
@@ -57,7 +57,6 @@ class PARALLEL_HILL_CLIMBER:
 		print(" ")
 		print(" ")
 		
-			#quadruped
 		for i in self.parents.keys():
 			print("parent fitness: "+str(self.parents[i].fitness)+", Children fitness: "+str(self.children[i].fitness))
 		
@@ -76,19 +75,6 @@ class PARALLEL_HILL_CLIMBER:
 			self.bestGenFitness = min(self.parentsFitnessesList)
 		self.bestGenFitnessList.append(self.bestGenFitness)
 		
-
-		#mini putt
-			#if abs(self.parents[i].xfitness+11)+abs(self.parents[i].yfitness) > abs(self.children[i].xfitness+11)+abs(self.children[i].yfitness):
-			#	self.parents[i] = self.children[i]
-		#furthest drive
-			#if self.parents[i].xfitness > self.children[i].xfitness and abs(self.parents[i].yfitness) > abs(self.children[i].yfitness):
-			#	self.parents[i] = self.children[i]
-
-	def Delete(self):
-		os.system("del body*.urdf")
-		os.system("del brain*.nndf")
-		os.system("del fitness*.txt")
-
 
 	def Save_Fitness_Data_CONTROL(self):
 		if c.randomSeed == 0:
@@ -133,24 +119,9 @@ class PARALLEL_HILL_CLIMBER:
 		self.parents[0].Wait_For_Simulation_To_End('GUI')
 
 	def Show_Best(self):
-		#print(self.parents)
-		#print(self.bestGenFitnessList)
-		#self.bestParentGen = self.bestGenFitnessList.index(min(self.bestGenFitnessList))
-		#self.parents[self.bestParentGen].Start_Simulation('GUI')
-
 		parent_fitnesses = []
 		
-			#quadruped fitness
 		for i in self.parents:
 			parent_fitnesses.append(self.parents[i].fitness)
 		bestFitness = parent_fitnesses.index(min(parent_fitnesses))
 		self.parents[bestFitness].Start_Simulation('GUI')
-
-			#golf fitness
-		#for i in self.parents:
-			#mini putt
-			#parent_fitnesses.append(abs(self.parents[i].xfitness+11)+abs(self.parents[i].yfitness))
-			#furthest drive
-			#parent_fitnesses.append(self.parents[i].xfitness+abs(self.parents[i].yfitness))
-		#bestFitness = parent_fitnesses.index(min(parent_fitnesses))
-		#self.parents[bestFitness].Start_Simulation('GUI')

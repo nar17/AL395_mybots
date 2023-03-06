@@ -15,16 +15,13 @@ class ROBOT:
 		self.motors = {}
 		self.sensors = {}
 		self.solutionID = solutionID
-		self.robotId = p.loadURDF("body"+str(solutionID)+".urdf")
-		#self.robotId = p.loadURDF("body400.urdf") #this is for simulating specific bodies
+		#self.robotId = p.loadURDF("body"+str(solutionID)+".urdf")
+		self.robotId = p.loadURDF("body4043.urdf") #this is for simulating specific bodies
 		pyrosim.Prepare_To_Simulate(self.robotId)
 		self.Prepare_To_Sense()
 		self.Prepare_To_Act()
-		self.nn = NEURAL_NETWORK("brain" + str(solutionID) + ".nndf")
-		#self.nn = NEURAL_NETWORK("brain400.nndf")  #this is for simulating specific bodies
-		#if (int(solutionID) >= 50 and int(solutionID) <= 2475) or (int(solutionID)>=2525 and int(solutionID)<=4975):
-		#	os.system("del brain" + str(solutionID) + ".nndf")
-		#	os.system("del body" + str(solutionID) + ".urdf")
+		#self.nn = NEURAL_NETWORK("brain" + str(solutionID) + ".nndf")
+		self.nn = NEURAL_NETWORK("brain4043.nndf")  #this is for simulating specific bodies
 
 	
 	def Prepare_To_Sense(self):
@@ -34,14 +31,13 @@ class ROBOT:
 
 	def Sense(self, t):
 		for i in self.sensors:
-			#if self.sensors.keys()==1:
-			#self.sensors[i].Get_Value_Sin(t)
-			#else:
 			self.sensors[i].Get_Value(t)
+
 
 	def Prepare_To_Act(self):
 		for jointName in pyrosim.jointNamesToIndices:
 			self.motors[jointName] = MOTOR(jointName)
+
 
 	def Act(self, jointName):
 		for neuronName in self.nn.Get_Neuron_Names():
@@ -49,18 +45,14 @@ class ROBOT:
 				jointName = self.nn.Get_Motor_Neurons_Joint(neuronName)
 				desiredAngle = (self.nn.Get_Value_Of(neuronName))*c.motorJointRange
 				self.motors[jointName].Set_Value(desiredAngle, self.robotId)
-				#print(neuronName, jointName, desiredAngle)
+
 
 	def Think(self):
 		self.nn.Update()
-		#self.nn.Print()
+
 
 	def Get_Fitness(self):
-		#stateOfLinkZero = p.getLinkState(self.robotId,0)
-		#positionOfLinkZero = stateOfLinkZero[0] 
-		#xCoordinateOfLinkZero = str(positionOfLinkZero[0])
-
-			#quadruped fitness = furthest -x position
+			#fitness = furthest -x position
 		basePositionAndOrientation = p.getBasePositionAndOrientation(self.robotId)
 		basePosition = basePositionAndOrientation[0]
 		xPosition = str(basePosition[0])
@@ -69,11 +61,3 @@ class ROBOT:
 		fitnessFile.close()
 		os.system("rename tmp"+str(self.solutionID)+".txt " + "fitness"+str(self.solutionID)+".txt")
 
-			#golfer; fitness = golf ball coordinates
-		#xPosition = str(self.world.Get_X_Pos_And_Orientation())
-		#yPosition = str(self.world.Get_Y_Pos_And_Orientation())
-		#fitnessFile = open("tmp" + str(self.solutionID) + ".txt", "w")
-		#fitnessFile.write(xPosition + "\n" + yPosition)
-		#fitnessFile.close()
-		#os.system("rename tmp"+str(self.solutionID)+".txt " + "fitness"+str(self.solutionID)+".txt")
-		
