@@ -38,7 +38,7 @@ matplotlib.pyplot.plot(seedFour, linewidth=3, label='Seed 4: Exp.', linestyle='d
 
 font = {'family':'MingLiU-ExtB', 'color':'black', 'weight':'normal', 'size': 16}
 matplotlib.pyplot.title('Evolution Fitness Plot', fontdict=font)
-matplotlib.pyplot.xlabel('Number of Generations = '+str(c.numberOfGenerations)+' --> Population Size = '+str(c.populationSize)+' per Generation', fontdict=font)
+matplotlib.pyplot.xlabel('Number of Generations = 200 --> Population Size = 25 per Generation', fontdict=font)
 matplotlib.pyplot.ylabel('fitness (locomotion in -x direction)', fontdict=font)
 matplotlib.pyplot.legend(bbox_to_anchor=(1.01,1), loc='best', borderaxespad=0, shadow=True)
 matplotlib.pyplot.show()

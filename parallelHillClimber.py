@@ -8,9 +8,9 @@ from solution import SOLUTION
 
 class PARALLEL_HILL_CLIMBER:
 	def __init__(self):
-		#os.system("del body*.urdf")
-		#os.system("del brain*.nndf")
-		#os.system("del fitness*.txt")
+		os.system("del body*.urdf")
+		os.system("del brain*.nndf")
+		os.system("del fitness*.txt")
 		
 		self.parents = {}
 		self.nextAvailableID = 0

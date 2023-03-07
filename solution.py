@@ -52,10 +52,10 @@ class SOLUTION:
 				pass
 		fitnessFile.close()
 
-		#if self.myID > 50:
-		#	os.system("del fitness" + str(self.myID) + ".txt")
-		#	os.system("del brain" + str(self.myID) + ".nndf")
-		#	os.system("del body" + str(self.myID) + ".urdf")
+		if self.myID > 50:
+			os.system("del fitness" + str(self.myID) + ".txt")
+			os.system("del brain" + str(self.myID) + ".nndf")
+			os.system("del body" + str(self.myID) + ".urdf")
 		
 
 	def Create_World(self):
