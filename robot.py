@@ -16,12 +16,12 @@ class ROBOT:
 		self.sensors = {}
 		self.solutionID = solutionID
 		#self.robotId = p.loadURDF("body"+str(solutionID)+".urdf")
-		self.robotId = p.loadURDF("body1287.urdf") #this is for simulating specific bodies
+		self.robotId = p.loadURDF("body4803.urdf") #this is for simulating specific bodies
 		pyrosim.Prepare_To_Simulate(self.robotId)
 		self.Prepare_To_Sense()
 		self.Prepare_To_Act()
 		#self.nn = NEURAL_NETWORK("brain" + str(solutionID) + ".nndf")
-		self.nn = NEURAL_NETWORK("brain1287.nndf")  #this is for simulating specific bodies
+		self.nn = NEURAL_NETWORK("brain4803.nndf")  #this is for simulating specific bodies
 
 	
 	def Prepare_To_Sense(self):
