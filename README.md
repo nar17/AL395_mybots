@@ -82,7 +82,7 @@ The experimental group for this project is a randomized robot with three hidden 
 ## Fitness Curves:
 For each generation, the randomized robot with the best fitness was plotted on the fitness curve for each seed. Total before and after fitness values can be found in the folders `finalProjectFiles_CONTROL` and `finalProjectFiles_EXPERI`. The following plot shows the fitness curves.
 
-![Assignment_Eight_Robot_Evolution_Fitness_Curves](https://user-images.githubusercontent.com/122194228/221723812-ada48555-33b5-4785-a45c-00be3602b9bc.jpg)
+![FP_Fitness_Plot](https://user-images.githubusercontent.com/122194228/223331198-8da7723e-5ae1-4976-9ea3-1b02700aa2b2.png)
 
 ### Findings & Discussion:
 *here, talk about the results briefly.. qualitative versus quantitative*
