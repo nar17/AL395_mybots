@@ -72,7 +72,7 @@ The experimental group for this project is a randomized robot with three hidden 
 ### Testing Parameters:
 - Population Size = 25
 - Number of Generations = 200
-- Number of Timesteps = 1000
+- Number of Timesteps = 1500
 - Number of Seeds/Tests = 5
 - Total Simulations = 50,000
 
@@ -80,7 +80,7 @@ The experimental group for this project is a randomized robot with three hidden 
 
 # Results:
 ## Fitness Curves:
-For each generation, the randomized robot with the best fitness was plotted on the fitness curve for each seed. The following plot shows the fitness curves.
+For each generation, the randomized robot with the best fitness was plotted on the fitness curve for each seed. Total before and after fitness values can be found in the folders `finalProjectFiles_CONTROL` and `finalProjectFiles_EXPERI`. The following plot shows the fitness curves.
 
 ![Assignment_Eight_Robot_Evolution_Fitness_Curves](https://user-images.githubusercontent.com/122194228/221723812-ada48555-33b5-4785-a45c-00be3602b9bc.jpg)
 
