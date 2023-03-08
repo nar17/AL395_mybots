@@ -46,7 +46,11 @@ The neural network is constructed with one layer of touch sensor neurons (one se
 The evolutionary algorithm utilized is the ['parallel hillclimber'](https://en.wikipedia.org/wiki/Hill_climbing) as taught in Josh Bongard's [reddit-based 'Ludobots' MOOC](https://www.reddit.com/r/ludobots/). For this project, 25 different parents will be tested against 25 children mutated from their respective parents. If a child performs better than its parent, it will replace the parent in the next generation. The algorithm will perform over 200 generations. 
 
 ### Mutation Function: 
-*________________insert mutation function here___________________*
+The randomized robots mutate by random choice of the following choices:
+- 25% : Adjust sensor placement and mutate synapse weights
+- 25% : Add a link to the end of each arm and mutate synapse weights
+- 25% : Change the joint axis for one joint on each arm and mutate synapse weights
+- 25% : Mutate synapse weights
 
 ### Fitness Definition:
 Locomotion in the -x direction. If a child moves further in the -x direction, it will replace its parent. 
@@ -73,6 +77,7 @@ The experimental group for this project is a randomized robot with three hidden 
 ### Testing Parameters:
 - Population Size = 25
 - Number of Generations = 200
+- Number of Robots per Generation = 5000
 - Number of Timesteps = 1500
 - Number of Seeds/Tests = 5
 - Total Simulations = 50,000
@@ -86,16 +91,20 @@ For each generation, the randomized robot with the best fitness was plotted on t
 ![FP_Fitness_Plot](https://user-images.githubusercontent.com/122194228/223331198-8da7723e-5ae1-4976-9ea3-1b02700aa2b2.png)
 
 ### Findings & Discussion:
-*here, talk about the results briefly.. qualitative versus quantitative*
+The final fitnesses did not show any significant difference between the performance of the control and experimental groups. The robots did mutate in different manners as hypothesized and seen by a comparison between the final parents. Qualitatively, the experimental groups showed more control in their motor functions compared to the control group. Additionally, the experimental group's best robots showed more symmetrical movements of their two arms compared to a more oscillating arm behavior by the control group. Given that the time steps were set relatively low at 1500 steps, I hypothesize that the deep neural network made up of the three hidden layers did not have adequate time to adequately learn abstract concepts related to locomotion. Further experiments could explore this by running the same test at time steps near 20,000 or higher. 
 
 ### Results Video:
-This 2-minute video shows the animated results of the test. *MAKE THE VIDEO A URL*
+This [2-minute video](https://www.youtube.com/watch?v=etbkn_yEEDE) shows the animated results of the test. *MAKE THE VIDEO A URL*
 
 ### B-Roll:
-This ____-minute video shows further animated results from the test. *MAKE THE VIDEO A URL*
+This [1.5 minute video](https://www.youtube.com/watch?v=QLehORyXbzY) shows further animated results from the test. *MAKE THE VIDEO A URL*
 
 ### Going Forward:
-*talk about what other tests to run.. etc. etc.*
+- Increase number of generations
+- Increase time steps
+- Expand possible mutations
+- Investigate the timing of mutations (for example, mutate the body during early generations and the brain in later generations)
+- Explore symmetric synapses to match symmetric body
 
 
 
