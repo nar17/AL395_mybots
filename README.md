@@ -31,7 +31,7 @@ The following picture shows the genotype graph:
 ![Assignment_Seven_Robot_Genotype_Graph](https://user-images.githubusercontent.com/122194228/219932836-4f015801-6408-4898-9aba-c6cb0faf3902.JPG)
 
 ### 	Ontology:
-In solution.py, the robot is generated from a rootlink of fixed size and position, where two legs grow from the rootlink origin. Each leg consists of randomly-sized links connected by center-placed, revolute joints with randomized axis. The legs are symmetrical across the X-Z plane, and they grow in the positive-Z, negative-X, and positive- or negative-Y directions. Each link is randomly assigned either a green color, indicating the presence of a sensor neuron, or a blue color, indicated no neurons. 
+In solution.py, the robot is generated from a rootlink of fixed size and position, where two legs grow from the rootlink origin. Each leg consists of randomly-sized links connected by center-placed, revolute joints with randomized axis. The legs are symmetrical across the X-Z plane, and they grow in the positive-Z, negative-X, and positive- or negative-Y directions. Each link is randomly assigned either a green color, indicating the presence of a sensor neuron, or a blue color, indicated no neurons. Each link is connected by a center-placed joint of random axis, and each joint has a motor neuron. 
 
 The following images shows a diagram of the robot's ontology and an example of a randomized robot:
 
