@@ -94,10 +94,10 @@ For each generation, the randomized robot with the best fitness was plotted on t
 The final fitnesses did not show any significant difference between the performance of the control and experimental groups. The robots did mutate in different manners as hypothesized and seen by a comparison between the final parents. Qualitatively, the experimental groups showed more control in their motor functions compared to the control group. Additionally, the experimental group's best robots showed more symmetrical movements of their two arms compared to a more oscillating arm behavior by the control group. Given that the time steps were set relatively low at 1500 steps, I hypothesize that the deep neural network made up of the three hidden layers did not have adequate time to adequately learn abstract concepts related to locomotion. Further experiments could explore this by running the same test at time steps near 20,000 or higher. 
 
 ### Results Video:
-This [2-minute video](https://www.youtube.com/watch?v=etbkn_yEEDE) shows the animated results of the test. *MAKE THE VIDEO A URL*
+This [2-minute video](https://www.youtube.com/watch?v=etbkn_yEEDE) shows the animated results of the test.
 
 ### B-Roll:
-This [1.5-minute video](https://www.youtube.com/watch?v=QLehORyXbzY) shows further animated results from the test. *MAKE THE VIDEO A URL*
+This [1.5-minute video](https://www.youtube.com/watch?v=QLehORyXbzY) shows further animated results from the test.
 
 ### Going Forward:
 - Increase number of generations
