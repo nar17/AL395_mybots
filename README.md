@@ -3,7 +3,7 @@
 Optimize morphology and behavior for a task of your choice.
 
 ###	Running Instructions:
-To run the evolution, open `search.py`. To specify which simulation to run (control or experiment), follow the directions located in the comments in `search.py`.
+To run the evolution, open `search.py`. To specify which simulation to run (control or experiment), follow the directions located in the comments in `search.py`. The code is currently set up to run a experimental group population size two for twenty generations. The simulation will show the first parent and the overall best evolved robot.
 To generate the fitness curves, open and start `finalProjectFitnessPlots.py`.
 
 ### Preview:
