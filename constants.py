@@ -5,8 +5,8 @@ randomSeed = 4
 numpyRandomSeed = 4
 
 
-numberOfGenerations = 0
-populationSize = 1
+numberOfGenerations = 20
+populationSize = 2
 
 motorJointRange = 0.8
 motormaxForce = 75
