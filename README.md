@@ -97,7 +97,7 @@ The final fitnesses did not show any significant difference between the performa
 This [2-minute video](https://www.youtube.com/watch?v=etbkn_yEEDE) shows the animated results of the test. *MAKE THE VIDEO A URL*
 
 ### B-Roll:
-This [1.5 minute video](https://www.youtube.com/watch?v=QLehORyXbzY) shows further animated results from the test. *MAKE THE VIDEO A URL*
+This [1.5-minute video](https://www.youtube.com/watch?v=QLehORyXbzY) shows further animated results from the test. *MAKE THE VIDEO A URL*
 
 ### Going Forward:
 - Increase number of generations
