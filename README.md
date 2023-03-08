@@ -8,7 +8,7 @@ To generate the fitness curves, open and start `finalProjectFitnessPlots.py`.
 
 ### Preview:
 The goal of this project is to determine the effect of hidden neuron layers on the performance and evolution of a randomized robot.
-*Insert gif here*
+![Final_Project_GIF](https://user-images.githubusercontent.com/122194228/223633219-db4ea32a-dbff-46a5-bbe8-7eb89d12c35f.gif)
 
 
 
