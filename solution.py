@@ -52,10 +52,10 @@ class SOLUTION:
 				pass
 		fitnessFile.close()
 
-		#if self.myID > 50:
-		#	os.system("del fitness" + str(self.myID) + ".txt")
-		#	os.system("del brain" + str(self.myID) + ".nndf")
-		#	os.system("del body" + str(self.myID) + ".urdf")
+		if self.myID > 50:
+			os.system("del fitness" + str(self.myID) + ".txt")
+			os.system("del brain" + str(self.myID) + ".nndf")
+			os.system("del body" + str(self.myID) + ".urdf")
 		
 
 	def Create_World(self):
@@ -295,7 +295,6 @@ class SOLUTION:
 			for currentColumn in range(len(self.motorList)):
 				pyrosim.Send_Synapse( sourceNeuronName = currentRow+len(self.sensorList)+len(self.motorList)+self.numHiddenNeurons+self.numHiddenNeurons , targetNeuronName = currentColumn+len(self.sensorList) , weight = self.weights_HiddenThree2Motor[currentRow][currentColumn] ) 
 
-
 		self.neuronId = 0
 		pyrosim.End()
 
@@ -328,7 +327,6 @@ class SOLUTION:
 			#self.Mutate_Synapses_Control()
 				#Experi (with hidden layers)
 			self.Mutate_Synapses_Experi()
-
 
 
 	def Mutate_Synapses_Control(self):

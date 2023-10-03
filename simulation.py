@@ -30,8 +30,6 @@ class SIMULATION:
 	def Run(self):
 		for t in range (c.numSteps):
 			p.stepSimulation()
-			#if t == c.numSteps:
-			#	self.world.Get_Pos_And_Orientation()
 			self.robot.Sense(t)
 			self.robot.Think()
 			self.robot.Act(t)
